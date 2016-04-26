@@ -14,6 +14,7 @@
 		6A57339C1CCF6D5A00202256 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A57339A1CCF6D5A00202256 /* Main.storyboard */; };
 		6A57339E1CCF6D5B00202256 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A57339D1CCF6D5B00202256 /* Assets.xcassets */; };
 		6A5733A11CCF6D5B00202256 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A57339F1CCF6D5B00202256 /* LaunchScreen.storyboard */; };
+		6A6441CF1CCF837400FD7717 /* ZLNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6441CE1CCF837400FD7717 /* ZLNetworkManager.m */; };
 		DEA8EFBC198F5306FF87411E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F6952E7470A261D32E444E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,8 @@
 		6A57339D1CCF6D5B00202256 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../ZLDisucssBar/Assets.xcassets; sourceTree = "<group>"; };
 		6A5733A01CCF6D5B00202256 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6A5733A21CCF6D5B00202256 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../ZLDisucssBar/Info.plist; sourceTree = "<group>"; };
+		6A6441CD1CCF837400FD7717 /* ZLNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLNetworkManager.h; sourceTree = "<group>"; };
+		6A6441CE1CCF837400FD7717 /* ZLNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLNetworkManager.m; sourceTree = "<group>"; };
 		6AD1E6081CCF7CC600BD7F50 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		A46DC721D06C2CACD76BA209 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		FE22E2889640E3BC978B20CD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -84,7 +87,14 @@
 			isa = PBXGroup;
 			children = (
 				6A5733901CCF6D5A00202256 /* ZLDisucssBar */,
+				6A6441CC1CCF831F00FD7717 /* Store */,
+				6A6441D31CCF864500FD7717 /* Model */,
+				6A6441D01CCF864500FD7717 /* Views */,
+				6A6441D21CCF864500FD7717 /* Controllers */,
+				6A6441D11CCF864500FD7717 /* InterFace */,
 				6A12C0491CCF777100E519DD /* Deploy */,
+				6A6441D41CCF869F00FD7717 /* Resource */,
+				6A6441D51CCF86E000FD7717 /* HtmlCorrelation */,
 				6A12C0471CCF76A000E519DD /* System */,
 				6A57338F1CCF6D5A00202256 /* Products */,
 				D315C42866980BE2F7EEE2A1 /* Pods */,
@@ -114,6 +124,57 @@
 			);
 			name = "Supporting Files";
 			path = ../ZLDisucssBar;
+			sourceTree = "<group>";
+		};
+		6A6441CC1CCF831F00FD7717 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				6A6441CD1CCF837400FD7717 /* ZLNetworkManager.h */,
+				6A6441CE1CCF837400FD7717 /* ZLNetworkManager.m */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		6A6441D01CCF864500FD7717 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6A6441D11CCF864500FD7717 /* InterFace */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = InterFace;
+			sourceTree = "<group>";
+		};
+		6A6441D21CCF864500FD7717 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		6A6441D31CCF864500FD7717 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6A6441D41CCF869F00FD7717 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		6A6441D51CCF86E000FD7717 /* HtmlCorrelation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HtmlCorrelation;
 			sourceTree = "<group>";
 		};
 		D315C42866980BE2F7EEE2A1 /* Pods */ = {
@@ -154,6 +215,7 @@
 		6A5733861CCF6D5A00202256 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = ZL;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = llisent;
 				TargetAttributes = {
@@ -248,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A6441CF1CCF837400FD7717 /* ZLNetworkManager.m in Sources */,
 				6A5733991CCF6D5A00202256 /* ViewController.m in Sources */,
 				6A5733961CCF6D5A00202256 /* AppDelegate.m in Sources */,
 				6A5733931CCF6D5A00202256 /* main.m in Sources */,
