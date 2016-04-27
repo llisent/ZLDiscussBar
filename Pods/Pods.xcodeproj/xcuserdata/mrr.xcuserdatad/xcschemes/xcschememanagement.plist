@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>CYLTabBarController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>FMDB.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -72,12 +77,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>23B2BEF94268B11CD3C8BC9776C007C5</key>
+		<key>09846A0F46988573DAEDDD6B55466BEA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2EFECDA82E4436D1226CD3DDF75B9724</key>
+		<key>0A134C959EE959CA7E71E8093A39DF96</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3102E5DBF072AC6F9AD388653EA1042E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -93,16 +103,6 @@
 			<true/>
 		</dict>
 		<key>53480ED0BE09FF49E34B1702D485CAAB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>80369E9A49A5BF93906C587B6E72E046</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>831D972ECEE620C12ED01EF2C2E9678C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -127,12 +127,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E63A977DB678111271E6252EB9200BD3</key>
+		<key>ABBC902D0B5C803729B685300017062E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FB649F26EB1F74F5B2352E5B03F2A6FA</key>
+		<key>BF0343C93C494AD9B62956C981F6086A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D3847DCAF2FE2AE7864D295539420B3E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F1CF5335E078359481530AF0B469B8A2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

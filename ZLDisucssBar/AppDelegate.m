@@ -16,7 +16,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"ZLLogin" bundle:[NSBundle mainBundle]];
+    UINavigationController *navi = [sb instantiateInitialViewController];
+    self.window = [[UIWindow alloc]initWithFrame:ScreenBonds];
+    self.window.rootViewController = navi;
+    [self.window makeKeyWindow];
     return YES;
 }
 

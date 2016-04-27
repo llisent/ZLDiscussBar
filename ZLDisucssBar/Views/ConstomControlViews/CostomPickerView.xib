@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CostomPickerView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="235"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AbU-CQ-tWH">
+                    <rect key="frame" x="0.0" y="35" width="320" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="fnJ-SM-ZN3"/>
+                    </constraints>
+                </pickerView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cne-43-P2M">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3u-B7-CBf">
+                            <rect key="frame" x="260" y="0.0" width="60" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="hJt-AD-LMy"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                            <state key="normal" title="确定">
+                                <color key="titleColor" red="0.11430007964372635" green="0.37672293186187744" blue="0.55837875604629517" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XY4-rM-7cv">
+                            <rect key="frame" x="0.0" y="0.0" width="60" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="hHn-UB-wxu"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                            <state key="normal" title="取消">
+                                <color key="titleColor" red="0.11430007964372635" green="0.37672293186187744" blue="0.55837875604629517" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="v3u-B7-CBf" firstAttribute="top" secondItem="cne-43-P2M" secondAttribute="top" id="UU7-pI-qzN"/>
+                        <constraint firstAttribute="trailing" secondItem="v3u-B7-CBf" secondAttribute="trailing" id="e5G-NY-aqG"/>
+                        <constraint firstAttribute="bottom" secondItem="v3u-B7-CBf" secondAttribute="bottom" id="kxy-xb-Xpr"/>
+                        <constraint firstAttribute="bottom" secondItem="XY4-rM-7cv" secondAttribute="bottom" id="ocU-0d-RfX"/>
+                        <constraint firstItem="XY4-rM-7cv" firstAttribute="top" secondItem="cne-43-P2M" secondAttribute="top" id="rf8-Wd-ykW"/>
+                        <constraint firstItem="XY4-rM-7cv" firstAttribute="leading" secondItem="cne-43-P2M" secondAttribute="leading" id="woA-6g-loH"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="AbU-CQ-tWH" firstAttribute="top" secondItem="cne-43-P2M" secondAttribute="bottom" id="2Be-h0-j0c"/>
+                <constraint firstItem="AbU-CQ-tWH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="QlI-yW-vop"/>
+                <constraint firstAttribute="trailing" secondItem="AbU-CQ-tWH" secondAttribute="trailing" id="TDc-6s-ZID"/>
+                <constraint firstItem="cne-43-P2M" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="b2Q-jD-LZu"/>
+                <constraint firstItem="cne-43-P2M" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="em0-jF-QvA"/>
+                <constraint firstAttribute="bottom" secondItem="AbU-CQ-tWH" secondAttribute="bottom" id="gYD-8b-SPB"/>
+                <constraint firstAttribute="trailing" secondItem="cne-43-P2M" secondAttribute="trailing" id="z9U-6e-iZH"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="cancelBtn" destination="XY4-rM-7cv" id="JHV-DI-2BI"/>
+                <outlet property="pickerView" destination="AbU-CQ-tWH" id="HCZ-LG-p44"/>
+                <outlet property="sureBtn" destination="v3u-B7-CBf" id="sE4-MM-X8X"/>
+            </connections>
+            <point key="canvasLocation" x="465.5" y="337"/>
+        </view>
+    </objects>
+</document>

@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - CYLTabBarController (1.2.1)
   - FMDB (2.6):
     - FMDB/standard (= 2.6)
   - FMDB/standard (2.6)
@@ -46,6 +47,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.6.3)
+  - CYLTabBarController
   - FMDB
   - JGProgressHUD
   - Masonry
@@ -60,6 +62,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  CYLTabBarController: 62ee700d59dc1f42777053e6254933f499ab4564
   FMDB: c1968bab3ab0aed38f66cb778ae1e7fa9a652b6e
   JGProgressHUD: 153053a21d81208cb5f659691996bcefce6a9885
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
