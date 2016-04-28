@@ -30,7 +30,7 @@
         SDWebImageDownloader *dl = [SDWebImageDownloader sharedDownloader];
         [dl setValue:@"http://www.zuanke8.com/api/mobile/index.php" forHTTPHeaderField:@"Referer"];
         self.sechash = dict[@"sechash"];
-        [ZLGlobal sharedInstence].loginFormHash = dict[@"formhash"];
+        [ZLGlobal sharedInstence].gachincoFormHash = dict[@"formhash"];
         [dl downloadImageWithURL:[NSURL URLWithString:dict[@"seccode"]] options:SDWebImageDownloaderHandleCookies progress:^(NSInteger receivedSize, NSInteger expectedSize) {
             
         } completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
@@ -59,7 +59,7 @@
                                                           type:user.safetyQuestion
                                                            asw:user.safetyAnswer
                                                            url:url
-                                                      formhash:[ZLGlobal sharedInstence].loginFormHash block:^(NSDictionary *dic) {
+                                                      formhash:[ZLGlobal sharedInstence].gachincoFormHash block:^(NSDictionary *dic) {
                                                           user.userUID    = dic[@"member_uid"];
                                                           user.username   = dic[@"member_username"];
                                                           user.readaccess = dic[@"readaccess"];

@@ -10,9 +10,12 @@
 
 @interface ZLGlobal : NSObject
 
-@property (nonatomic ,strong) NSString *loginFormHash;
-
+/** 最新formhash*/
 @property (nonatomic ,strong) NSString *gachincoFormHash;
+
+/** 是否登陆*/
+@property (nonatomic ,assign) BOOL     isLogin;
+
 
 + (instancetype)sharedInstence;
 
@@ -21,5 +24,6 @@
 
 #pragma mark - **************** 设置cookies
 - (void)setHttpCookies;
+
 
 @end
