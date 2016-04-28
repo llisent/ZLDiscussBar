@@ -7,8 +7,10 @@
 //
 
 #import "HomeGuide.h"
-#import "HomeViewController.h"
-#import "PersonalCenter.h"
+#import "ZLHomePageViewController.h"
+#import "ZLPersonalCenter.h"
+#import "ZLPlateViewController.h"
+#import "ZLBookMarkViewController.h"
 
 @interface HomeGuide ()
 
@@ -23,13 +25,23 @@
 {
     if (_tabBarController == nil) {
         
-        HomeViewController *firstViewController = [[HomeViewController alloc] init];
+        ZLHomePageViewController *firstViewController = [[ZLHomePageViewController alloc] init];
         UIViewController *firstNavigationController = [[UINavigationController alloc]
                                                        initWithRootViewController:firstViewController];
         
-        PersonalCenter *secondViewController = [[PersonalCenter alloc] init];
-        UIViewController *secondNavigationController = [[UINavigationController alloc]
-                                                        initWithRootViewController:secondViewController];
+        ZLPlateViewController *secondViewController = [[ZLPlateViewController alloc]init];
+        UIViewController *secondNavigationController = [[UINavigationController alloc]initWithRootViewController:secondViewController];
+        
+        ZLBookMarkViewController *thirdViewController = [[ZLBookMarkViewController alloc]init];
+        UIViewController *thirdNavigationController = [[UINavigationController alloc]initWithRootViewController:thirdViewController];
+        
+        
+        
+        ZLPersonalCenter *fourthViewController = [[ZLPersonalCenter alloc] init];
+        UIViewController *fourthNavigationController = [[UINavigationController alloc]
+                                                        initWithRootViewController:fourthViewController];
+        
+        
         
 
         CYLTabBarController *tabBarController = [[CYLTabBarController alloc] init];
@@ -43,7 +55,9 @@
         
         [tabBarController setViewControllers:@[
                                                firstNavigationController,
-                                               secondNavigationController
+                                               secondNavigationController,
+                                               thirdNavigationController,
+                                               fourthNavigationController
                                                ]];
         /**
          *  更多TabBar自定义设置：比如：tabBarItem 的选中和不选中文字和背景图片属性、tabbar 背景图片属性
@@ -68,6 +82,16 @@
                             CYLTabBarItemSelectedImage : @"home_highlight",
                             };
     NSDictionary *dict2 = @{
+                            CYLTabBarItemTitle : @"板块",
+                            CYLTabBarItemImage : @"account_normal",
+                            CYLTabBarItemSelectedImage : @"account_highlight",
+                            };
+    NSDictionary *dict3 = @{
+                            CYLTabBarItemTitle : @"书签",
+                            CYLTabBarItemImage : @"home_normal",
+                            CYLTabBarItemSelectedImage : @"home_highlight",
+                            };
+    NSDictionary *dict4 = @{
                             CYLTabBarItemTitle : @"我的",
                             CYLTabBarItemImage : @"account_normal",
                             CYLTabBarItemSelectedImage : @"account_highlight",
@@ -75,7 +99,9 @@
 
     NSArray *tabBarItemsAttributes = @[
                                        dict1,
-                                       dict2
+                                       dict2,
+                                       dict3,
+                                       dict4
                                        ];
     tabBarController.tabBarItemsAttributes = tabBarItemsAttributes;
 }

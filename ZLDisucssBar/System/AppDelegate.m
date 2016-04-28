@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "HomeGuide.h"
 
 @interface AppDelegate ()
 
@@ -16,10 +17,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"ZLLogin" bundle:[NSBundle mainBundle]];
-    UINavigationController *navi = [sb instantiateInitialViewController];
+//    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"ZLLogin" bundle:[NSBundle mainBundle]];
+//    UINavigationController *navi = [sb instantiateInitialViewController];
     self.window = [[UIWindow alloc]initWithFrame:ScreenBonds];
-    self.window.rootViewController = navi;
+    HomeGuide *guide = [[HomeGuide alloc]init];
+    self.window.rootViewController = guide.tabBarController;
     [self.window makeKeyWindow];
     return YES;
 }

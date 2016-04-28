@@ -7,6 +7,8 @@
 //
 
 @import UIKit;
+#import "CYLPlusButton.h"
+#import "CYLTabBarController.h"
 
 @interface CYLTabBar : UITabBar
 

@@ -25,6 +25,10 @@
 		DD0CFE271CD1B0750002531F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD0CFE211CD1B0750002531F /* ViewController.m */; };
 		DD0CFE291CD1B0B60002531F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DD0CFE281CD1B0B60002531F /* main.m */; };
 		DD0CFE2B1CD1B0F80002531F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD0CFE2A1CD1B0F80002531F /* Info.plist */; };
+		DD0CFE361CD1B57F0002531F /* ZLHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD0CFE351CD1B57F0002531F /* ZLHomePageViewController.m */; };
+		DD0CFE391CD1B5AA0002531F /* ZLPersonalCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DD0CFE381CD1B5AA0002531F /* ZLPersonalCenter.m */; };
+		DD0CFE3C1CD1B5C10002531F /* ZLBookMarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD0CFE3B1CD1B5C10002531F /* ZLBookMarkViewController.m */; };
+		DD0CFE3F1CD1B5CC0002531F /* ZLPlateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD0CFE3E1CD1B5CC0002531F /* ZLPlateViewController.m */; };
 		DEA8EFBC198F5306FF87411E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F6952E7470A261D32E444E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +66,14 @@
 		DD0CFE211CD1B0750002531F /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		DD0CFE281CD1B0B60002531F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../main.m; sourceTree = "<group>"; };
 		DD0CFE2A1CD1B0F80002531F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
+		DD0CFE341CD1B57F0002531F /* ZLHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHomePageViewController.h; sourceTree = "<group>"; };
+		DD0CFE351CD1B57F0002531F /* ZLHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHomePageViewController.m; sourceTree = "<group>"; };
+		DD0CFE371CD1B5AA0002531F /* ZLPersonalCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPersonalCenter.h; sourceTree = "<group>"; };
+		DD0CFE381CD1B5AA0002531F /* ZLPersonalCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPersonalCenter.m; sourceTree = "<group>"; };
+		DD0CFE3A1CD1B5C10002531F /* ZLBookMarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLBookMarkViewController.h; sourceTree = "<group>"; };
+		DD0CFE3B1CD1B5C10002531F /* ZLBookMarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLBookMarkViewController.m; sourceTree = "<group>"; };
+		DD0CFE3D1CD1B5CC0002531F /* ZLPlateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPlateViewController.h; sourceTree = "<group>"; };
+		DD0CFE3E1CD1B5CC0002531F /* ZLPlateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPlateViewController.m; sourceTree = "<group>"; };
 		FE22E2889640E3BC978B20CD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,6 +190,10 @@
 		6AD52D721CD0BFBE00207D23 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				DD0CFE2D1CD1B5320002531F /* Plate */,
+				DD0CFE2E1CD1B5320002531F /* Bookmark */,
+				DD0CFE2F1CD1B5320002531F /* PersonalCenter */,
+				DD0CFE301CD1B5320002531F /* HomePage */,
 				DD0CFE151CD1AFA60002531F /* TabBar */,
 				6AD52D731CD0BFBE00207D23 /* Login */,
 			);
@@ -243,6 +259,42 @@
 				DD0CFE211CD1B0750002531F /* ViewController.m */,
 			);
 			path = System;
+			sourceTree = "<group>";
+		};
+		DD0CFE2D1CD1B5320002531F /* Plate */ = {
+			isa = PBXGroup;
+			children = (
+				DD0CFE3D1CD1B5CC0002531F /* ZLPlateViewController.h */,
+				DD0CFE3E1CD1B5CC0002531F /* ZLPlateViewController.m */,
+			);
+			path = Plate;
+			sourceTree = "<group>";
+		};
+		DD0CFE2E1CD1B5320002531F /* Bookmark */ = {
+			isa = PBXGroup;
+			children = (
+				DD0CFE3A1CD1B5C10002531F /* ZLBookMarkViewController.h */,
+				DD0CFE3B1CD1B5C10002531F /* ZLBookMarkViewController.m */,
+			);
+			path = Bookmark;
+			sourceTree = "<group>";
+		};
+		DD0CFE2F1CD1B5320002531F /* PersonalCenter */ = {
+			isa = PBXGroup;
+			children = (
+				DD0CFE371CD1B5AA0002531F /* ZLPersonalCenter.h */,
+				DD0CFE381CD1B5AA0002531F /* ZLPersonalCenter.m */,
+			);
+			path = PersonalCenter;
+			sourceTree = "<group>";
+		};
+		DD0CFE301CD1B5320002531F /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				DD0CFE341CD1B57F0002531F /* ZLHomePageViewController.h */,
+				DD0CFE351CD1B57F0002531F /* ZLHomePageViewController.m */,
+			);
+			path = HomePage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,9 +424,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD0CFE3C1CD1B5C10002531F /* ZLBookMarkViewController.m in Sources */,
+				DD0CFE361CD1B57F0002531F /* ZLHomePageViewController.m in Sources */,
 				DD0CFE291CD1B0B60002531F /* main.m in Sources */,
 				DD0CFE271CD1B0750002531F /* ViewController.m in Sources */,
+				DD0CFE391CD1B5AA0002531F /* ZLPersonalCenter.m in Sources */,
 				6AD52D6B1CD0BF9E00207D23 /* ZLNetworkManager.m in Sources */,
+				DD0CFE3F1CD1B5CC0002531F /* ZLPlateViewController.m in Sources */,
 				DD0CFE181CD1AFCD0002531F /* ZLHomeGuide.m in Sources */,
 				6AD52D6C1CD0BF9E00207D23 /* ZLUserInfo.m in Sources */,
 				6AD52D7B1CD0BFBE00207D23 /* ZLMainLoginViewController.m in Sources */,
