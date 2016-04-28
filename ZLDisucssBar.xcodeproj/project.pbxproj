@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A40B41E1CD1B3CD0096C14E /* HomeGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A40B41D1CD1B3CD0096C14E /* HomeGuide.m */; };
 		6AD52D5E1CD0BF6C00207D23 /* CostomPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD52D5C1CD0BF6C00207D23 /* CostomPickerView.m */; };
 		6AD52D5F1CD0BF6C00207D23 /* CostomPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AD52D5D1CD0BF6C00207D23 /* CostomPickerView.xib */; };
 		6AD52D6A1CD0BF9E00207D23 /* ZLGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD52D621CD0BF9E00207D23 /* ZLGlobal.m */; };
@@ -29,6 +30,8 @@
 
 /* Begin PBXFileReference section */
 		25F6952E7470A261D32E444E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A40B41C1CD1B3CD0096C14E /* HomeGuide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeGuide.h; sourceTree = "<group>"; };
+		6A40B41D1CD1B3CD0096C14E /* HomeGuide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeGuide.m; sourceTree = "<group>"; };
 		6A57338E1CCF6D5A00202256 /* ZLDisucssBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZLDisucssBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AD52D5B1CD0BF6C00207D23 /* CostomPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CostomPickerView.h; sourceTree = "<group>"; };
 		6AD52D5C1CD0BF6C00207D23 /* CostomPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CostomPickerView.m; sourceTree = "<group>"; };
@@ -218,6 +221,8 @@
 		DD0CFE151CD1AFA60002531F /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				6A40B41C1CD1B3CD0096C14E /* HomeGuide.h */,
+				6A40B41D1CD1B3CD0096C14E /* HomeGuide.m */,
 				DD0CFE161CD1AFCD0002531F /* ZLHomeGuide.h */,
 				DD0CFE171CD1AFCD0002531F /* ZLHomeGuide.m */,
 			);
@@ -377,6 +382,7 @@
 				6AD52D5E1CD0BF6C00207D23 /* CostomPickerView.m in Sources */,
 				6AD52D6A1CD0BF9E00207D23 /* ZLGlobal.m in Sources */,
 				6AD52D7A1CD0BFBE00207D23 /* ZLCheckSecurityCodeVc.m in Sources */,
+				6A40B41E1CD1B3CD0096C14E /* HomeGuide.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
