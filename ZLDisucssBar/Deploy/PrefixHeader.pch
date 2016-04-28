@@ -30,6 +30,8 @@
 #import <FMDB.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <CYLTabBar.h>
+#import <MGSwipeButton.h>
+#import <MGSwipeTableCell.h>
 
 
 #import "ZLNetworkManager.h"

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6A40B41E1CD1B3CD0096C14E /* HomeGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A40B41D1CD1B3CD0096C14E /* HomeGuide.m */; };
+		6A40B4231CD1BB7A0096C14E /* ZLCostomPostsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A40B4211CD1BB7A0096C14E /* ZLCostomPostsCell.m */; };
+		6A40B4241CD1BB7A0096C14E /* ZLCostomPostsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A40B4221CD1BB7A0096C14E /* ZLCostomPostsCell.xib */; };
 		6AD52D5E1CD0BF6C00207D23 /* CostomPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD52D5C1CD0BF6C00207D23 /* CostomPickerView.m */; };
 		6AD52D5F1CD0BF6C00207D23 /* CostomPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AD52D5D1CD0BF6C00207D23 /* CostomPickerView.xib */; };
 		6AD52D6A1CD0BF9E00207D23 /* ZLGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD52D621CD0BF9E00207D23 /* ZLGlobal.m */; };
@@ -36,6 +38,9 @@
 		25F6952E7470A261D32E444E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A40B41C1CD1B3CD0096C14E /* HomeGuide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeGuide.h; sourceTree = "<group>"; };
 		6A40B41D1CD1B3CD0096C14E /* HomeGuide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeGuide.m; sourceTree = "<group>"; };
+		6A40B4201CD1BB7A0096C14E /* ZLCostomPostsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCostomPostsCell.h; sourceTree = "<group>"; };
+		6A40B4211CD1BB7A0096C14E /* ZLCostomPostsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCostomPostsCell.m; sourceTree = "<group>"; };
+		6A40B4221CD1BB7A0096C14E /* ZLCostomPostsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLCostomPostsCell.xib; sourceTree = "<group>"; };
 		6A57338E1CCF6D5A00202256 /* ZLDisucssBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZLDisucssBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AD52D5B1CD0BF6C00207D23 /* CostomPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CostomPickerView.h; sourceTree = "<group>"; };
 		6AD52D5C1CD0BF6C00207D23 /* CostomPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CostomPickerView.m; sourceTree = "<group>"; };
@@ -97,6 +102,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6A40B41F1CD1BB560096C14E /* CostomPosts */ = {
+			isa = PBXGroup;
+			children = (
+				6A40B4201CD1BB7A0096C14E /* ZLCostomPostsCell.h */,
+				6A40B4211CD1BB7A0096C14E /* ZLCostomPostsCell.m */,
+				6A40B4221CD1BB7A0096C14E /* ZLCostomPostsCell.xib */,
+			);
+			path = CostomPosts;
+			sourceTree = "<group>";
+		};
 		6A5733851CCF6D5A00202256 = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +149,7 @@
 		6AD52D591CD0BF6C00207D23 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6A40B41F1CD1BB560096C14E /* CostomPosts */,
 				6AD52D5A1CD0BF6C00207D23 /* ConstomControlViews */,
 			);
 			path = Views;
@@ -361,6 +377,7 @@
 			files = (
 				DD0CFE261CD1B0750002531F /* Main.storyboard in Resources */,
 				6AD52D6D1CD0BF9E00207D23 /* ZLLogin.storyboard in Resources */,
+				6A40B4241CD1BB7A0096C14E /* ZLCostomPostsCell.xib in Resources */,
 				6AD52D791CD0BFBE00207D23 /* Plan in Resources */,
 				DD0CFE231CD1B0750002531F /* Assets.xcassets in Resources */,
 				DD0CFE251CD1B0750002531F /* LaunchScreen.storyboard in Resources */,
@@ -426,6 +443,7 @@
 			files = (
 				DD0CFE3C1CD1B5C10002531F /* ZLBookMarkViewController.m in Sources */,
 				DD0CFE361CD1B57F0002531F /* ZLHomePageViewController.m in Sources */,
+				6A40B4231CD1BB7A0096C14E /* ZLCostomPostsCell.m in Sources */,
 				DD0CFE291CD1B0B60002531F /* main.m in Sources */,
 				DD0CFE271CD1B0750002531F /* ViewController.m in Sources */,
 				DD0CFE391CD1B5AA0002531F /* ZLPersonalCenter.m in Sources */,
