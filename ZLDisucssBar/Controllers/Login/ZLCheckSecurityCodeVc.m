@@ -16,18 +16,38 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self creatConstomUI];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self getSeccode];
 }
 
-- (void)creatConstomUI{
-    self.securityCodeImageView.image = self.securityImg;
+- (void)getSeccode{
+
+    [[ZLNetworkManager sharedInstence]getSeccodeWithblock:^(NSDictionary *dict) {
+        
+        SDWebImageDownloader *dl = [SDWebImageDownloader sharedDownloader];
+        [dl setValue:@"http://www.zuanke8.com/api/mobile/index.php" forHTTPHeaderField:@"Referer"];
+        self.sechash = dict[@"sechash"];
+        [ZLGlobal sharedInstence].loginFormHash = dict[@"formhash"];
+        [dl downloadImageWithURL:[NSURL URLWithString:dict[@"seccode"]] options:SDWebImageDownloaderHandleCookies progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+            
+        } completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.securityCodeImageView.image = image;
+            });
+        }];
+        
+    } failure:^(NSError *error) {
+        
+    }];
 }
+
+
 
 - (IBAction)loginNow:(id)sender {
+    
     NSString *codStr = [self.securityCodeTextField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     NSString *url = [NSString stringWithFormat:@"http://www.zuanke8.com/api/mobile/index.php?loginsubmit=yes&charset=utf-8&secqaahash=%@&loginfield=auto&seccodehash=%@&seccodeverify=%@&sechash=%@&module=login&mobile=no&version=3",self.sechash,self.sechash,codStr,self.sechash];
@@ -43,19 +63,36 @@
                                                           user.userUID    = dic[@"member_uid"];
                                                           user.username   = dic[@"member_username"];
                                                           user.readaccess = dic[@"readaccess"];
+                                                          [self.navigationController dismissViewControllerAnimated:YES completion:^{
+                                                              
+                                                              NSArray *arr = [[NSHTTPCookieStorage sharedHTTPCookieStorage]cookies];
+                                                              NSLog(@"cookies:---%@---",arr);
+                                                              
+                                                              
+                                                              SaveCookies
+                                                          }];
         
     } failure:^(NSError *error) {
         
     }];
 }
+
+
 - (IBAction)testData:(id)sender {
+    
     [[ZLNetworkManager sharedInstence]getInfoWithPage:1 block:^(NSDictionary *dict) {
         
     } failure:^(NSError *error) {
         
     }];
 }
+
 - (IBAction)changeImg:(id)sender {
+    [self getSeccode];
+}
+
+- (IBAction)goback:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

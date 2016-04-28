@@ -16,7 +16,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self test];
+}
+
+- (void)test{
+    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithTitle:@"登陆" style:UIBarButtonItemStylePlain target:self action:@selector(login)];
+    [self.navigationItem setLeftBarButtonItem:left];
+}
+
+- (void)login{
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"ZLLogin" bundle:[NSBundle mainBundle]];
+    UINavigationController *navi = [sb instantiateInitialViewController];
+    [self.navigationController presentViewController:navi animated:YES completion:^{
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -30,6 +30,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)initData{
@@ -109,26 +110,28 @@
         [ZLUserInfo sharedInstence].safetyAnswer   = @"";
     }
     
-    [[ZLNetworkManager sharedInstence]getSeccodeWithblock:^(NSDictionary *dict) {
-
-        SDWebImageDownloader *dl = [SDWebImageDownloader sharedDownloader];
-        [dl setValue:@"http://www.zuanke8.com/api/mobile/index.php" forHTTPHeaderField:@"Referer"];
-        vc.sechash = dict[@"sechash"];
-        
-        [ZLGlobal sharedInstence].loginFormHash = dict[@"formhash"];
-        [dl downloadImageWithURL:[NSURL URLWithString:dict[@"seccode"]] options:SDWebImageDownloaderHandleCookies progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-            
-        } completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                vc.securityImg = image;
-            [self.navigationController pushViewController:vc animated:YES];
-            });
-            
-        }];
-
-    } failure:^(NSError *error) {
-        
-    }];
+    [self.navigationController pushViewController:vc animated:YES];
+//    
+//    [[ZLNetworkManager sharedInstence]getSeccodeWithblock:^(NSDictionary *dict) {
+//
+//        SDWebImageDownloader *dl = [SDWebImageDownloader sharedDownloader];
+//        [dl setValue:@"http://www.zuanke8.com/api/mobile/index.php" forHTTPHeaderField:@"Referer"];
+//        vc.sechash = dict[@"sechash"];
+//        
+//        [ZLGlobal sharedInstence].loginFormHash = dict[@"formhash"];
+//        [dl downloadImageWithURL:[NSURL URLWithString:dict[@"seccode"]] options:SDWebImageDownloaderHandleCookies progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+//            
+//        } completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                vc.securityImg = image;
+//            [self.navigationController pushViewController:vc animated:YES];
+//            });
+//            
+//        }];
+//
+//    } failure:^(NSError *error) {
+//        
+//    }];
 }
 
 #pragma mark - **************** PickerViewDataSource

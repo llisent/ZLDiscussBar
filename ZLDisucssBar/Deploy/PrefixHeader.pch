@@ -15,6 +15,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+
+
 #import "ZLGlobal.h"
 #import "Macros.h"
 #import "ZLUserInfo.h"
@@ -33,10 +35,11 @@
 #import <MGSwipeButton.h>
 #import <MGSwipeTableCell.h>
 
-
 #import "ZLNetworkManager.h"
 
 
+#define SaveCookies [[ZLGlobal sharedInstence]synchronizeCookies];
+#define ReadCookies [[ZLGlobal sharedInstence]setHttpCookies];
 
 
 

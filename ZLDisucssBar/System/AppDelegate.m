@@ -19,8 +19,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 //    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"ZLLogin" bundle:[NSBundle mainBundle]];
 //    UINavigationController *navi = [sb instantiateInitialViewController];
-    self.window = [[UIWindow alloc]initWithFrame:ScreenBonds];
-    HomeGuide *guide = [[HomeGuide alloc]init];
+    ReadCookies
+    
+    self.window                    = [[UIWindow alloc]initWithFrame:ScreenBonds];
+    HomeGuide *guide               = [[HomeGuide alloc]init];
     self.window.rootViewController = guide.tabBarController;
     [self.window makeKeyWindow];
     return YES;

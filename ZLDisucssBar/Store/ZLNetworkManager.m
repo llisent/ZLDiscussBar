@@ -54,7 +54,6 @@
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         
     }];
-    
 }
 
 
@@ -65,7 +64,7 @@
                           @"tpp":@"10",
                           @"version":@"1",
                           @"charset":@"gbk",
-                          @"submodule":@"checkpost",
+                          @"submodule":@"checkpost", //子模块
                           @"fid":@"15",
                           @"page":[NSString stringWithFormat:@"%ld",page]};
     
@@ -77,7 +76,6 @@
     }];
     
 }
-
 
 
 @end

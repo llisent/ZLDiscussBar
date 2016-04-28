@@ -26,23 +26,18 @@
     if (_tabBarController == nil) {
         
         ZLHomePageViewController *firstViewController = [[ZLHomePageViewController alloc] init];
-        UIViewController *firstNavigationController = [[UINavigationController alloc]
+        UIViewController *firstNavigationController   = [[UINavigationController alloc]
                                                        initWithRootViewController:firstViewController];
-        
-        ZLPlateViewController *secondViewController = [[ZLPlateViewController alloc]init];
-        UIViewController *secondNavigationController = [[UINavigationController alloc]initWithRootViewController:secondViewController];
-        
+
+        ZLPlateViewController *secondViewController   = [[ZLPlateViewController alloc]init];
+        UIViewController *secondNavigationController  = [[UINavigationController alloc]initWithRootViewController:secondViewController];
+
         ZLBookMarkViewController *thirdViewController = [[ZLBookMarkViewController alloc]init];
-        UIViewController *thirdNavigationController = [[UINavigationController alloc]initWithRootViewController:thirdViewController];
-        
-        
-        
-        ZLPersonalCenter *fourthViewController = [[ZLPersonalCenter alloc] init];
-        UIViewController *fourthNavigationController = [[UINavigationController alloc]
+        UIViewController *thirdNavigationController   = [[UINavigationController alloc]initWithRootViewController:thirdViewController];
+
+        ZLPersonalCenter *fourthViewController        = [[ZLPersonalCenter alloc] init];
+        UIViewController *fourthNavigationController  = [[UINavigationController alloc]
                                                         initWithRootViewController:fourthViewController];
-        
-        
-        
 
         CYLTabBarController *tabBarController = [[CYLTabBarController alloc] init];
         
@@ -67,8 +62,6 @@
     }
     return _tabBarController;
 }
-
-
 /*
  *
  在`-setViewControllers:`之前设置TabBar的属性，设置TabBarItem的属性，包括 title、Image、selectedImage。

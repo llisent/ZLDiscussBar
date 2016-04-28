@@ -19,4 +19,23 @@
     return global;
 }
 
+- (void)synchronizeCookies{
+    NSData *cookiesData = [NSKeyedArchiver archivedDataWithRootObject: [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject: cookiesData forKey: @"zuankeCookues"];
+    [defaults synchronize];
+}
+
+- (void)setHttpCookies{
+    id cookie = [[NSUserDefaults standardUserDefaults] objectForKey:@"zuankeCookues"];
+    if (!cookie) {
+        return;
+    }
+    NSArray *cookies = [NSKeyedUnarchiver unarchiveObjectWithData: cookie];
+    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (NSHTTPCookie *cookie in cookies){
+        [cookieStorage setCookie: cookie];
+    }
+}
+
 @end
