@@ -1,0 +1,5 @@
+一、关于cookies
+    如果用户设置了自动登录 则在每次开启软件的时候读取相应Cookies 如果未设置自动登录 则不读取相应的Cookies
+    Cookies设置方式为 每次网络请求存储在NsUserDefaults中 如果用户退出登录，则删除一切相关信息与Cookies
+    自动登录默认开启
+二、关于

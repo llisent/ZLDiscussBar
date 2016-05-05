@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, HPGetInfoType) {
+    HPGetInfoTypeLoadMore,
+    HPGetInfoTypeRefresh,
+};
+
 @interface ZLHomePageViewController : UIViewController
 
 @end

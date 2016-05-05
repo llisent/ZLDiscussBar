@@ -19,6 +19,8 @@
 
 + (instancetype)sharedInstence;
 
+
+
 #pragma mark - **************** 同步cookies
 - (void)synchronizeCookies;
 

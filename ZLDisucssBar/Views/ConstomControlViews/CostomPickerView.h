@@ -9,9 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @interface CostomPickerView : UIView
-@property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
-@property (weak, nonatomic) IBOutlet UIButton *sureBtn;
 
-@property (weak, nonatomic) IBOutlet UIButton *cancelBtn;
+/** pickerView*/
+@property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
+
+/** 确定*/
+@property (weak, nonatomic) IBOutlet UIButton     *sureBtn;
+
+/** 取消*/
+@property (weak, nonatomic) IBOutlet UIButton     *cancelBtn;
 
 @end

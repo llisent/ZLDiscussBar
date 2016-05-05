@@ -60,14 +60,16 @@
                                                            asw:user.safetyAnswer
                                                            url:url
                                                       formhash:[ZLGlobal sharedInstence].gachincoFormHash block:^(NSDictionary *dic) {
-                                                          user.userUID    = dic[@"member_uid"];
-                                                          user.username   = dic[@"member_username"];
-                                                          user.readaccess = dic[@"readaccess"];
+                                                          //登陆信息
+                                                          NSString *messageval = dic[@"Message"][@"messageval"];
+                                                          
+                                                          user.userUID    = dic[@"Variables"][@"member_uid"];
+                                                          user.username   = dic[@"Variables"][@"member_username"];
+                                                          user.readaccess = dic[@"Variables"][@"readaccess"];
                                                           [self.navigationController dismissViewControllerAnimated:YES completion:^{
                                                               
                                                               NSArray *arr = [[NSHTTPCookieStorage sharedHTTPCookieStorage]cookies];
                                                               NSLog(@"cookies:---%@---",arr);
-                                                              
                                                               
                                                               SaveCookies
                                                           }];
@@ -80,22 +82,27 @@
 
 - (IBAction)testData:(id)sender {
     
-    [[ZLNetworkManager sharedInstence]getInfoWithPage:1 block:^(NSDictionary *dict) {
-        
-    } failure:^(NSError *error) {
-        
-    }];
+//    [[ZLNetworkManager sharedInstence]getInfoWithPage:1 block:^(NSDictionary *dict) {
+//        
+//    } failure:^(NSError *error) {
+//        
+//    }];
 }
 
+#pragma mark - **************** 更换验证码
 - (IBAction)changeImg:(id)sender {
+    
     [self getSeccode];
 }
 
-- (IBAction)goback:(id)sender {
+#pragma mark - **************** 回到登陆页
+- (IBAction)backOnClick:(id)sender {
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
+    
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

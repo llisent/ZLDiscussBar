@@ -20,6 +20,7 @@
 #import "ZLGlobal.h"
 #import "Macros.h"
 #import "ZLUserInfo.h"
+#import "ZLPostsModel.h"
 
 
 //Library
@@ -38,8 +39,8 @@
 #import "ZLNetworkManager.h"
 
 
-#define SaveCookies [[ZLGlobal sharedInstence]synchronizeCookies];
-#define ReadCookies [[ZLGlobal sharedInstence]setHttpCookies];
+#define SaveCookies [[ZLGlobal sharedInstence] synchronizeCookies];
+#define ReadCookies [[ZLGlobal sharedInstence] setHttpCookies];
 
 
 

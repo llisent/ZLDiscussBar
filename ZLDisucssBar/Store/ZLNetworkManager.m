@@ -57,7 +57,8 @@
 }
 
 
-- (void)getInfoWithPage:(NSInteger)page
+- (void)getInfoWithFid:(NSString *)fid
+                  page:(NSInteger)page
                   block:(void (^)(NSDictionary *dict))success
                 failure:(void (^)(NSError *error))failure{
     NSDictionary *par = @{@"module":@"forumdisplay",
@@ -65,16 +66,29 @@
                           @"version":@"1",
                           @"charset":@"gbk",
                           @"submodule":@"checkpost", //子模块
-                          @"fid":@"15",
+                          @"fid":fid,             // 模块代码
                           @"page":[NSString stringWithFormat:@"%ld",page]};
     
-    
     [netManager GET:@"http://www.zuanke8.com/api/mobile/index.php" parameters:par success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-        success(responseObject);
+        success(responseObject[@"Variables"]);
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         failure(error);
     }];
     
+}
+
+- (void)getUserInfoWithUid:(NSString *)uid
+                     block:(void (^)(NSDictionary *dict))success
+                   failure:(void (^)(NSError *error))failure{
+    NSDictionary *par = @{@"module":@"profile",
+                           @"uid":uid,
+                           @"version":@"3",
+                           @"charest":@"utf-8"};
+    [netManager GET:@"http://www.zuanke8.com/api/mobile/index.php" parameters:par success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSLog(@"%@",responseObject);
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        
+    }];
 }
 
 

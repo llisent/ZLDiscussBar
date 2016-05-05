@@ -10,7 +10,7 @@
 #import "CostomPickerView.h"
 #import "ZLCheckSecurityCodeVc.h"
 
-@interface ZLMainLoginViewController ()<UIPickerViewDelegate, UIPickerViewDataSource>
+@interface ZLMainLoginViewController ()<UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
 
 @property (nonatomic ,strong) CostomPickerView *pickerView;
 @property (nonatomic ,strong) NSDictionary *safetyDict;
@@ -56,14 +56,16 @@
 }
 
 - (void)creatCostomView{
-    __weak typeof(self)weakSelf = self;
+    __weak typeof(self)weakSelf             = self;
     self.safetyLabel.userInteractionEnabled = YES;
-    self.loginButton.layer.cornerRadius = 5;
-    self.loginButton.clipsToBounds = YES;
-    
-    self.pickerView = [[CostomPickerView alloc]initWithFrame:CGRectMake(0, ScreenHeight, ScreenWidth, 235)];
-    self.pickerView.pickerView.dataSource = self;
-    self.pickerView.pickerView.delegate   = self;
+    self.loginButton.layer.cornerRadius     = 5;
+    self.loginButton.clipsToBounds          = YES;
+    self.backHomePage.layer.cornerRadius    = 5;
+    self.backHomePage.clipsToBounds         = YES;
+
+    self.pickerView                         = [[CostomPickerView alloc]initWithFrame:CGRectMake(0, ScreenHeight, ScreenWidth, 235)];
+    self.pickerView.pickerView.dataSource   = self;
+    self.pickerView.pickerView.delegate     = self;
     
     [[self.pickerView.sureBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         NSInteger row = [weakSelf.pickerView.pickerView selectedRowInComponent:0];
@@ -117,7 +119,7 @@
 //        SDWebImageDownloader *dl = [SDWebImageDownloader sharedDownloader];
 //        [dl setValue:@"http://www.zuanke8.com/api/mobile/index.php" forHTTPHeaderField:@"Referer"];
 //        vc.sechash = dict[@"sechash"];
-//        
+//
 //        [ZLGlobal sharedInstence].loginFormHash = dict[@"formhash"];
 //        [dl downloadImageWithURL:[NSURL URLWithString:dict[@"seccode"]] options:SDWebImageDownloaderHandleCookies progress:^(NSInteger receivedSize, NSInteger expectedSize) {
 //            
@@ -132,6 +134,13 @@
 //    } failure:^(NSError *error) {
 //        
 //    }];
+}
+
+#pragma mark - **************** 返回首页
+- (IBAction)backHomepageOnClick:(id)sender {
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        //发送通知 刷新数据 更新Cookies & formHash
+    }];
 }
 
 #pragma mark - **************** PickerViewDataSource

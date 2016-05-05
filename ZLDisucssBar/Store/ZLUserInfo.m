@@ -11,7 +11,6 @@
 @implementation ZLUserInfo
 
 + (instancetype)sharedInstence{
-    
     static ZLUserInfo *user = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

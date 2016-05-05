@@ -19,19 +19,21 @@
     return global;
 }
 
+#pragma mark - **************** 同步cookies
 - (void)synchronizeCookies{
-    NSData *cookiesData = [NSKeyedArchiver archivedDataWithRootObject: [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]];
+    NSData *cookiesData      = [NSKeyedArchiver archivedDataWithRootObject: [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject: cookiesData forKey: @"zuankeCookues"];
     [defaults synchronize];
 }
 
+#pragma mark - **************** 设置cookies
 - (void)setHttpCookies{
     id cookie = [[NSUserDefaults standardUserDefaults] objectForKey:@"zuankeCookues"];
     if (!cookie) {
         return;
     }
-    NSArray *cookies = [NSKeyedUnarchiver unarchiveObjectWithData: cookie];
+    NSArray *cookies                   = [NSKeyedUnarchiver unarchiveObjectWithData: cookie];
     NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     for (NSHTTPCookie *cookie in cookies){
         [cookieStorage setCookie: cookie];

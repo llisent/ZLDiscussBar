@@ -7,8 +7,13 @@
 //
 
 #import "ZLPersonalCenter.h"
+#import "ZLPersonalCenterView.h"
 
-@interface ZLPersonalCenter ()
+@interface ZLPersonalCenter ()<UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic ,strong) ZLPersonalCenterView *header;
+
+@property (nonatomic ,strong) UITableView *mainTableView;
 
 @end
 
@@ -16,7 +21,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self initHeader];
+}
+
+- (void)initHeader{
+//    self.header = [[ZLPersonalCenterView alloc]initWithFrame:CGRectMake(0, 0, ScreenHeight, 182)];
+    [[ZLNetworkManager sharedInstence]getUserInfoWithUid:[ZLUserInfo sharedInstence].userUID block:^(NSDictionary *dict) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+- (void)initData{
+    
+}
+
+- (void)creatConstomUI{
+    self.mainTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight - 49)];
+    [self.mainTableView setTableHeaderView:self.header];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 2;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myCell" forIndexPath:indexPath];
+    return cell;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +56,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

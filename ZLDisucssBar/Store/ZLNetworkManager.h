@@ -37,8 +37,13 @@
                             block:(void (^)(NSDictionary *dict))success
                           failure:(void (^)(NSError *error))failure;
 
-- (void)getInfoWithPage:(NSInteger)page
-                  block:(void (^)(NSDictionary *dict))success
-                failure:(void (^)(NSError *error))failure;
+- (void)getInfoWithFid:(NSString *)fid
+                  page:(NSInteger)page
+                 block:(void (^)(NSDictionary *dict))success
+               failure:(void (^)(NSError *error))failure;
+
+- (void)getUserInfoWithUid:(NSString *)uid
+                     block:(void (^)(NSDictionary *dict))success
+                   failure:(void (^)(NSError *error))failure;
 
 @end
