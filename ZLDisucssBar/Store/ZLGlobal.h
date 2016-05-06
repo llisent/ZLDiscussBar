@@ -16,6 +16,12 @@
 /** 是否登陆*/
 @property (nonatomic ,assign) BOOL     isLogin;
 
+/** 自动填写登陆信息*/
+@property (nonatomic ,assign) BOOL     autoFill;
+
+/** 是否自动登陆*/
+@property (nonatomic ,assign) BOOL     autoLogin;
+
 
 + (instancetype)sharedInstence;
 

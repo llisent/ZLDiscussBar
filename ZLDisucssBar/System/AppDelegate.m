@@ -20,7 +20,7 @@
 //    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"ZLLogin" bundle:[NSBundle mainBundle]];
 //    UINavigationController *navi = [sb instantiateInitialViewController];
     ReadCookies
-    
+
     self.window                    = [[UIWindow alloc]initWithFrame:ScreenBonds];
     HomeGuide *guide               = [[HomeGuide alloc]init];
     self.window.rootViewController = guide.tabBarController;

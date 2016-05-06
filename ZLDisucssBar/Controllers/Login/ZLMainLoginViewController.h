@@ -25,5 +25,6 @@
 /** 登陆*/
 @property (weak, nonatomic) IBOutlet UIButton    *loginButton;
 
-@property (weak, nonatomic) IBOutlet UIButton *backHomePage;
+/** 返回首页*/
+@property (weak, nonatomic) IBOutlet UIButton    *backHomePage;
 @end

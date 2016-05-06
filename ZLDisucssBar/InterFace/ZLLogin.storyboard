@@ -240,16 +240,9 @@
                                     <action selector="loginNow:" destination="c9B-Yf-Yif" eventType="touchUpInside" id="ICb-Vf-exv"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="px8-q1-pnx">
-                                <rect key="frame" x="137" y="407" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="testData:" destination="c9B-Yf-Yif" eventType="touchUpInside" id="ULG-5f-VU0"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PzZ-9m-hkl">
                                 <rect key="frame" x="11" y="11" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="返回"/>
                                 <connections>
                                     <action selector="backOnClick:" destination="c9B-Yf-Yif" eventType="touchUpInside" id="fJb-rY-tWL"/>
                                 </connections>

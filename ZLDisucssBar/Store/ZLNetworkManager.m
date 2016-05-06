@@ -85,7 +85,8 @@
                            @"version":@"3",
                            @"charest":@"utf-8"};
     [netManager GET:@"http://www.zuanke8.com/api/mobile/index.php" parameters:par success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-        NSLog(@"%@",responseObject);
+        success(responseObject[@"Variables"]);
+        
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         
     }];

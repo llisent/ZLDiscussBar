@@ -39,7 +39,7 @@
         UIViewController *fourthNavigationController  = [[UINavigationController alloc]
                                                         initWithRootViewController:fourthViewController];
 
-        CYLTabBarController *tabBarController = [[CYLTabBarController alloc] init];
+        CYLTabBarController *tabBarController         = [[CYLTabBarController alloc] init];
         
         /*
          *

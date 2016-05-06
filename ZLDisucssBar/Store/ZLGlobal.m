@@ -19,6 +19,18 @@
     return global;
 }
 
+- (BOOL)isLogin{
+    return [[NSUserDefaults standardUserDefaults]boolForKey:@"isLogin"];
+}
+
+- (BOOL)autoFill{
+    return [[NSUserDefaults standardUserDefaults]boolForKey:@"autoFill"];
+}
+
+- (BOOL)autoLogin{
+    return [[NSUserDefaults standardUserDefaults]boolForKey:@"autoLogin"];
+}
+
 #pragma mark - **************** 同步cookies
 - (void)synchronizeCookies{
     NSData *cookiesData      = [NSKeyedArchiver archivedDataWithRootObject: [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]];

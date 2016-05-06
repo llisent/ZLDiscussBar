@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ZLUserInfo : NSObject
+@interface ZLUserInfo : NSObject <NSCoding>
 
 /** 用户名*/
 @property (nonatomic ,strong) NSString *userID;
