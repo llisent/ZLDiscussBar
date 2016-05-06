@@ -29,11 +29,11 @@
         self.userLevel.text    = @"游客";
         self.userLntegral.text = @"0果";
     }else{
-        [self.userImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://uc.zuanke8.com/avatar.php?uid=%@&size=small",[[ZLUserInfo sharedInstence] userUID]]]
+        [self.userImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://uc.zuanke8.com/avatar.php?uid=%@&size=big",[[ZLUserInfo sharedInstence] userUID]]]
                         placeholderImage:[UIImage imageNamed:@"noavatar_middle"]];
         self.userName.text     = [[ZLUserInfo sharedInstence] username];
         self.userLevel.text    = dict[@"space"][@"group"][@"grouptitle"];
-        self.userLntegral.text = [NSString stringWithFormat:@"%@果",dict[@"space"][@"credits"]];
+        self.userLntegral.text = [NSString stringWithFormat:@"%@ 果果",dict[@"space"][@"credits"]];
     }
 }
 

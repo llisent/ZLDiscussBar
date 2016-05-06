@@ -9,6 +9,7 @@
 #import "ZLHomePageViewController.h"
 #import "ZLCostomPostsCell.h"
 #import "ZLPostsModel.h"
+#import "ZLPostsDetailVC.h"
 
 
 @interface ZLHomePageViewController ()<UITableViewDataSource ,UITableViewDelegate>
@@ -18,6 +19,9 @@
 @property (nonatomic ,assign) HPGetInfoType  type;
 @property (nonatomic ,strong) NSMutableArray *dataArray;
 @property (nonatomic ,strong) NSMutableSet   *dataSet;
+@property (nonatomic ,strong) UIButton       *reloadBtn;
+
+@property (nonatomic ,assign) BOOL isLocked;
 
 
 @end
@@ -26,6 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"赚客大家谈";
     self.edgesForExtendedLayout               = UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
 
@@ -63,7 +68,47 @@
     }];
     
     [self.view addSubview: self.mainTableView];
+    [self creatReloadBar];
+}
+
+#pragma mark - **************** 旋转按钮
+- (void)creatReloadBar{
+    UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(ScreenWidth - 76, ScreenHeight - 64 - 49 - 10 - 66 , 66, 66)];
+    bgView.layer.cornerRadius = 12;
+    bgView.backgroundColor = [UIColor colorWithWhite:0.784 alpha:0.619];
     
+    self.reloadBtn = [[UIButton alloc]initWithFrame:CGRectMake(4, 4, 58, 58)];
+    [self.reloadBtn setImage:[UIImage imageNamed:@"pic_icon_fresh"] forState:UIControlStateNormal];
+    [bgView addSubview:self.reloadBtn];
+    
+    [[self.reloadBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        if (!self.isLocked) {
+            self.isLocked = YES;
+            [self startRotation];
+            self.page     = 1;
+            self.type     = HPGetInfoTypeRefresh;
+            [self initData];
+        }
+    }];
+    [self.view addSubview:bgView];
+}
+
+#pragma mark - **************** 开始旋转
+- (void)startRotation{
+
+    CABasicAnimation *anim   = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    anim.byValue = [NSNumber numberWithFloat:M_PI * 2];
+    anim.repeatCount         = MAXFLOAT;
+    anim.removedOnCompletion = NO;
+    anim.duration            = 1.8f;
+    anim.fillMode            = kCAFillModeForwards;
+    [self.reloadBtn.layer addAnimation:anim forKey:nil];
+
+}
+
+#pragma mark - **************** 停止旋转
+- (void)endRotation{
+    [self.reloadBtn.layer removeAllAnimations];
 }
 
 #pragma mark - **************** 停止刷新
@@ -103,9 +148,13 @@
             }
         }
         [self endingRefreshing];
+        self.isLocked = NO;
+        [self endRotation];
         [self.mainTableView reloadData];
     } failure:^(NSError *error) {
         [self endingRefreshing];
+        self.isLocked = NO;
+        [self endRotation];
     }];
 }
 
@@ -131,6 +180,15 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ZLPostsModel *model = self.dataArray[indexPath.row];
+    ZLPostsDetailVC * vc = [[ZLPostsDetailVC alloc]init];
+    vc.tid = model.tid;
+//    if (model.readperm > [[ZLUserInfo sharedInstence]readaccess]) {
+//        [SVProgressHUD showErrorWithStatus:@"权限不足"];
+//        return;
+//    }
+    vc.title = model.subject;
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 

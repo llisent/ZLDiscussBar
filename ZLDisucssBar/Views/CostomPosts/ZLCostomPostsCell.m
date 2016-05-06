@@ -21,7 +21,7 @@
     self.author.text       = model.author;
     self.title.text        = model.subject;
     self.reportNum.text    = model.replies;
-    self.lastPostTime.text = model.lastpost;
+    self.lastPostTime.text = model.dateline;
     [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:iconUrl]];
 }
 
