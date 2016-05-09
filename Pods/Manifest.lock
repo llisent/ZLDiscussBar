@@ -20,7 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - CYLTabBarController (1.2.1)
+  - CYLTabBarController (1.0.7)
   - FMDB (2.6):
     - FMDB/standard (= 2.6)
   - FMDB/standard (2.6)
@@ -40,10 +40,10 @@ PODS:
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
   - SVProgressHUD (1.1.3)
-  - Wonderful (1.2.0)
-  - YYCategories (1.0):
-    - YYCategories/no-arc (= 1.0)
-  - YYCategories/no-arc (1.0)
+  - Wonderful (1.1.0)
+  - YYKit (0.9.11):
+    - YYKit/no-arc (= 0.9.11)
+  - YYKit/no-arc (0.9.11)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.6.3)
@@ -58,11 +58,11 @@ DEPENDENCIES:
   - SDWebImage
   - SVProgressHUD
   - Wonderful
-  - YYCategories
+  - YYKit
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  CYLTabBarController: 62ee700d59dc1f42777053e6254933f499ab4564
+  CYLTabBarController: 03c1a4c8e3bcae75cac3d22e1ca7bbe2cb7b7c77
   FMDB: c1968bab3ab0aed38f66cb778ae1e7fa9a652b6e
   JGProgressHUD: 153053a21d81208cb5f659691996bcefce6a9885
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
@@ -72,7 +72,7 @@ SPEC CHECKSUMS:
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
-  Wonderful: 8f8737eb8d2c32264110e91659095cb5c8bff223
-  YYCategories: 08fccb29097e711091d828cdf77a2066ad8ba806
+  Wonderful: 0b300deeacedff9a72525143d14eff4193c23d07
+  YYKit: 76c3f2cee1a72d3c5b1d7fd8d170ee507fe5df68
 
 COCOAPODS: 0.39.0

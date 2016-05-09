@@ -8,7 +8,6 @@
 
 #import "CYLTabBar.h"
 
-
 @interface CYLTabBar ()
 
 /** 发布按钮 */
@@ -35,8 +34,8 @@
 }
 
 - (instancetype)sharedInit {
-    if (CYLExternPlusButton) {
-        self.plusButton = CYLExternPlusButton;
+    if (CYLExternPushlishButton) {
+        self.plusButton = CYLExternPushlishButton;
         [self addSubview:(UIButton *)self.plusButton];
     }
     [self setBackgroundImage:[self imageWithColor:[UIColor whiteColor]]];
@@ -45,7 +44,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    if (!CYLExternPlusButton) {
+    if (!CYLExternPushlishButton) {
         return;
     }
     CGFloat barWidth = self.frame.size.width;
@@ -73,7 +72,7 @@
     NSUInteger plusButtonIndex;
     if ([[self.plusButton class] respondsToSelector:@selector(indexOfPlusButtonInTabBar)]) {
         if (CYLTabbarItemsCount % 2 == 0) {
-            [NSException raise:@"CYLTabBarController" format:@"If the count of CYLTabbarControllers is not odd,there's no need to realizse `+indexOfPlusButtonInTabBar` in your custom plusButton class.【Chinese】如果CYLTabbarControllers的个数不是奇数，会自动居中，你无需在你自定义的plusButton中实现`+indexOfPlusButtonInTabBar`，来指定plusButton的位置"];
+            [NSException raise:@"CYLTabBarController" format:@"If the count of CYLTabbarControllers is not odd,there's no need to realizse `+indexOfPlusButtonInTabBar` in your custom plusButton class.【中文】如果CYLTabbarControllers的个数不是奇数，会自动居中，你无需在你自定义的plusButton中实现`+indexOfPlusButtonInTabBar`，来指定plusButton的位置"];
         }
         plusButtonIndex = [[self.plusButton class] indexOfPlusButtonInTabBar];
         //仅修改self.plusButton的x,ywh值不变
@@ -84,7 +83,7 @@
                                            );
     } else {
         if (CYLTabbarItemsCount % 2 != 0) {
-            [NSException raise:@"CYLTabBarController" format:@"If the count of CYLTabbarControllers is odd,you must realizse `+indexOfPlusButtonInTabBar` in your custom plusButton class.【Chinese】如果CYLTabbarControllers的个数是奇数，你必须在你自定义的plusButton中实现`+indexOfPlusButtonInTabBar`，来指定plusButton的位置"];
+            [NSException raise:@"CYLTabBarController" format:@"If the count of CYLTabbarControllers is odd,you must realizse `+indexOfPlusButtonInTabBar` in your custom plusButton class.【中文】如果CYLTabbarControllers的个数是奇数，你必须在你自定义的plusButton中实现`+indexOfPlusButtonInTabBar`，来指定plusButton的位置"];
         }
         plusButtonIndex = CYLTabbarItemsCount / 2.0;
     }
@@ -117,8 +116,10 @@
     [self bringSubviewToFront:self.plusButton];
 }
 
-/**
- *  Capturing touches on a subview outside the frame of its superview
+/*
+ *
+ Capturing touches on a subview outside the frame of its superview
+ *
  */
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     if (!self.clipsToBounds && !self.hidden && self.alpha > 0) {

@@ -13,4 +13,6 @@
 /** 判断是否为回复贴 条件待添加*/
 - (BOOL)isReplyPosts;
 
+- (NSString *)handleMessage;
+
 @end

@@ -9,7 +9,11 @@
 #import "CYLPlusButton.h"
 #import "CYLTabBarController.h"
 
-UIButton<CYLPlusButtonSubclassing> *CYLExternPlusButton = nil;
+UIButton<CYLPlusButtonSubclassing> *CYLExternPushlishButton = nil;
+
+@interface CYLPlusButton ()
+
+@end
 
 @implementation CYLPlusButton
 
@@ -19,7 +23,7 @@ UIButton<CYLPlusButtonSubclassing> *CYLExternPlusButton = nil;
 + (void)registerSubclass {
     if ([self conformsToProtocol:@protocol(CYLPlusButtonSubclassing)]) {
         Class<CYLPlusButtonSubclassing> class = self;
-        CYLExternPlusButton = [class plusButton];
+        CYLExternPushlishButton = [class plusButton];
     }
 }
 

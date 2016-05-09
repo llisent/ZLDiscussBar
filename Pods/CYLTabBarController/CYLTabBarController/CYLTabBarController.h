@@ -14,7 +14,7 @@ static NSString * const CYLTabBarItemSelectedImage = @"tabBarItemSelectedImage";
 
 extern NSUInteger CYLTabbarItemsCount;
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 
 @interface CYLTabBarController : UITabBarController
 
@@ -26,19 +26,6 @@ extern NSUInteger CYLTabbarItemsCount;
  * The Attributes of items which is displayed on the tab bar.
  */
 @property (nonatomic, readwrite, copy) IBOutletCollection(NSDictionary) NSArray *tabBarItemsAttributes;
-
-/*!
- * Judge if there is plus button.
- */
-+ (BOOL)havePlusButton;
-
-/*!
- * Include plusButton if exists.
- */
-+ (NSUInteger)allItemsInTabBarCount;
-
-- (id<UIApplicationDelegate>)appDelegate;
-- (UIWindow *)rootWindow;
 
 @end
 

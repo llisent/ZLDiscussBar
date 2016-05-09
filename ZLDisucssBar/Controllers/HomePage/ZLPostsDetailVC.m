@@ -56,6 +56,7 @@
         }
         for (NSDictionary *dict in arr) {
             ZLPostDetailModel *model = [ZLPostDetailModel mj_objectWithKeyValues:dict];
+            model.message = [model.message handleMessage];
             NSInteger num1 = self.dataSet.count;
             [self.dataSet addObject:model.pid];
             if (self.dataSet.count != num1) {
@@ -132,8 +133,8 @@
 - (void)showImageWith:(UIImage *)img{
     ZLScrollImageVC *vc = [[ZLScrollImageVC alloc]init];
     vc.constomImage = img;
-    self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self.navigationController presentViewController:vc animated:YES completion:^{
+    self.modalTransitionStyle = UIModalTransitionStylePartialCurl;
+    [self presentViewController:vc animated:YES completion:^{
         
     }];
 }

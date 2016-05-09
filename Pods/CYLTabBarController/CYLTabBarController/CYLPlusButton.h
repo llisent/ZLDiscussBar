@@ -5,15 +5,14 @@
 //  Created by 微博@iOS程序犭袁 ( http://weibo.com/luohanchenyilong/ ) on 10/20/15.
 //  Copyright © 2015 https://github.com/ChenYilong . All rights reserved.
 //
-
-@import UIKit;
+@import Foundation;
+#import <UIKit/UIKit.h>
 
 @protocol CYLPlusButtonSubclassing
 
 @required
-+ (id)plusButton;
++ (instancetype)plusButton;
 @optional
-
 /*!
  用来自定义加号按钮的位置，如果不实现默认居中，但是如果 tabbar 的个数是奇数则必须实现该方法，否则 CYLTabBarController 会抛出 exception 来进行提示。
  
@@ -34,7 +33,7 @@
 
 @class CYLTabBar;
 
-extern UIButton<CYLPlusButtonSubclassing> *CYLExternPlusButton;
+extern UIButton<CYLPlusButtonSubclassing> *CYLExternPushlishButton;
 
 @interface CYLPlusButton : UIButton
 

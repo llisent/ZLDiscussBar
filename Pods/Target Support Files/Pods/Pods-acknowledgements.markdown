@@ -297,7 +297,7 @@ SOFTWARE.
 
 
 
-## YYCategories
+## YYKit
 
 The MIT License (MIT)
 
