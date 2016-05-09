@@ -85,6 +85,7 @@
         if (!self.isLocked) {
             self.isLocked = YES;
             [self startRotation];
+            [self.mainTableView.mj_header beginRefreshing];
             self.page     = 1;
             self.type     = HPGetInfoTypeRefresh;
             [self initData];
@@ -127,7 +128,7 @@
         }
         
         NSArray *data = dict[@"forum_threadlist"];
-        if (self.type == HPGetInfoTypeRefresh) {
+        if (self.type != HPGetInfoTypeLoadMore) {
             //下拉--置空数组/set 加入model 把tid加入到set中
             [self.dataArray removeAllObjects];
             [self.dataSet removeAllObjects];

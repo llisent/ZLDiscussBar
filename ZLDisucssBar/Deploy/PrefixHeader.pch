@@ -22,7 +22,6 @@
 #import "ZLUserInfo.h"
 #import "ZLPostsModel.h"
 
-
 //Library
 #import <Masonry.h>
 #import <ReactiveCocoa.h>
@@ -37,7 +36,16 @@
 #import <MGSwipeTableCell.h>
 #import <SVProgressHUD.h>
 
+
 #import "ZLNetworkManager.h"
+
+#pragma mark - **************** category
+#import "NSString+ZLPostsDetail.h"
+
+typedef NS_ENUM(NSUInteger, HPGetInfoType) {
+    HPGetInfoTypeLoadMore,
+    HPGetInfoTypeRefresh,
+};
 
 
 #define SaveCookies [[ZLGlobal sharedInstence] synchronizeCookies];

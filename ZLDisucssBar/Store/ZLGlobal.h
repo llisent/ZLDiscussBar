@@ -14,17 +14,19 @@
 @property (nonatomic ,strong) NSString *gachincoFormHash;
 
 /** 是否登陆*/
-@property (nonatomic ,assign) BOOL     isLogin;
+@property (nonatomic ,assign) BOOL isLogin;
 
 /** 自动填写登陆信息*/
-@property (nonatomic ,assign) BOOL     autoFill;
+@property (nonatomic ,assign) BOOL autoFill;
 
 /** 是否自动登陆*/
-@property (nonatomic ,assign) BOOL     autoLogin;
+@property (nonatomic ,assign) BOOL autoLogin;
+
+/** 是否下载图片*/
+@property (nonatomic ,assign) BOOL downLoadImage;
 
 
 + (instancetype)sharedInstence;
-
 
 
 #pragma mark - **************** 同步cookies

@@ -46,4 +46,9 @@
                      block:(void (^)(NSDictionary *dict))success
                    failure:(void (^)(NSError *error))failure;
 
+- (void)getDetailInfoWithPage:(NSInteger)page
+                          tid:(NSString *)tid
+                        block:(void (^)(NSDictionary *dict))success
+                      failure:(void (^)(NSError *error))failure;
+
 @end

@@ -16,9 +16,9 @@
     static ZLNetworkManager *manager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        manager = [[ZLNetworkManager alloc]init];
-        manager.netManager                    = [AFHTTPRequestOperationManager manager];
-        manager.netManager.responseSerializer = [AFJSONResponseSerializer serializer];
+        manager                                              = [[ZLNetworkManager alloc]init];
+        manager.netManager                                   = [AFHTTPRequestOperationManager manager];
+        manager.netManager.responseSerializer                = [AFJSONResponseSerializer serializer];
         manager.netManager.requestSerializer.timeoutInterval = 10;
     });
     return manager;
@@ -89,6 +89,27 @@
         
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         
+    }];
+}
+
+//帖子详情
+- (void)getDetailInfoWithPage:(NSInteger)page
+                          tid:(NSString *)tid
+                        block:(void (^)(NSDictionary *dict))success
+                      failure:(void (^)(NSError *error))failure{
+    NSDictionary *par = @{@"module":@"viewthread",
+                          @"ppp":@"20",
+                          @"version":@"1",
+                          @"charset":@"gbk",
+                          @"image":@"1",
+                          @"tid":tid,
+                          @"page":[NSString stringWithFormat:@"%ld",page]};
+    
+    
+    [netManager GET:@"http://www.zuanke8.com/api/mobile/index.php" parameters:par success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        success(responseObject[@"Variables"]);
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        failure(error);
     }];
 }
 

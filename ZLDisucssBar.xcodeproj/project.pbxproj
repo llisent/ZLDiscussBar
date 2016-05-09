@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A0187561CE068F8003DA05B /* NSString+ZLPostsDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A0187551CE068F8003DA05B /* NSString+ZLPostsDetail.m */; };
+		6A0187591CE07148003DA05B /* ZLPostDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A0187581CE07148003DA05B /* ZLPostDetailModel.m */; };
+		6A01875D1CE096B4003DA05B /* ZLShowImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A01875C1CE096B4003DA05B /* ZLShowImageView.m */; };
+		6A0187621CE0A938003DA05B /* ZLScrollImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A0187611CE0A938003DA05B /* ZLScrollImageVC.m */; };
 		6A40B41E1CD1B3CD0096C14E /* HomeGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A40B41D1CD1B3CD0096C14E /* HomeGuide.m */; };
 		6A40B4231CD1BB7A0096C14E /* ZLCostomPostsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A40B4211CD1BB7A0096C14E /* ZLCostomPostsCell.m */; };
 		6A40B4241CD1BB7A0096C14E /* ZLCostomPostsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A40B4221CD1BB7A0096C14E /* ZLCostomPostsCell.xib */; };
@@ -53,6 +57,14 @@
 
 /* Begin PBXFileReference section */
 		25F6952E7470A261D32E444E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A0187541CE068F8003DA05B /* NSString+ZLPostsDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ZLPostsDetail.h"; sourceTree = "<group>"; };
+		6A0187551CE068F8003DA05B /* NSString+ZLPostsDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ZLPostsDetail.m"; sourceTree = "<group>"; };
+		6A0187571CE07148003DA05B /* ZLPostDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPostDetailModel.h; sourceTree = "<group>"; };
+		6A0187581CE07148003DA05B /* ZLPostDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPostDetailModel.m; sourceTree = "<group>"; };
+		6A01875B1CE096B4003DA05B /* ZLShowImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLShowImageView.h; sourceTree = "<group>"; };
+		6A01875C1CE096B4003DA05B /* ZLShowImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLShowImageView.m; sourceTree = "<group>"; };
+		6A0187601CE0A938003DA05B /* ZLScrollImageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLScrollImageVC.h; sourceTree = "<group>"; };
+		6A0187611CE0A938003DA05B /* ZLScrollImageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLScrollImageVC.m; sourceTree = "<group>"; };
 		6A40B41C1CD1B3CD0096C14E /* HomeGuide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeGuide.h; sourceTree = "<group>"; };
 		6A40B41D1CD1B3CD0096C14E /* HomeGuide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeGuide.m; sourceTree = "<group>"; };
 		6A40B4201CD1BB7A0096C14E /* ZLCostomPostsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCostomPostsCell.h; sourceTree = "<group>"; };
@@ -143,6 +155,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6A0187531CE068E5003DA05B /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				6A0187541CE068F8003DA05B /* NSString+ZLPostsDetail.h */,
+				6A0187551CE068F8003DA05B /* NSString+ZLPostsDetail.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		6A01875A1CE096A4003DA05B /* ShowImage */ = {
+			isa = PBXGroup;
+			children = (
+				6A01875B1CE096B4003DA05B /* ZLShowImageView.h */,
+				6A01875C1CE096B4003DA05B /* ZLShowImageView.m */,
+				6A0187601CE0A938003DA05B /* ZLScrollImageVC.h */,
+				6A0187611CE0A938003DA05B /* ZLScrollImageVC.m */,
+			);
+			path = ShowImage;
+			sourceTree = "<group>";
+		};
 		6A40B41F1CD1BB560096C14E /* CostomPosts */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +254,7 @@
 		6AD52D591CD0BF6C00207D23 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6A01875A1CE096A4003DA05B /* ShowImage */,
 				6AA2DFBB1CDCB5C3002067A0 /* PostsDetailCell */,
 				6ABE1F9E1CDB38F000B9AD6E /* PersonalCenterViews */,
 				6A40B41F1CD1BB560096C14E /* CostomPosts */,
@@ -268,6 +301,8 @@
 			children = (
 				6A59F5131CDAECFB009AA073 /* ZLPostsModel.h */,
 				6A59F5141CDAECFB009AA073 /* ZLPostsModel.m */,
+				6A0187571CE07148003DA05B /* ZLPostDetailModel.h */,
+				6A0187581CE07148003DA05B /* ZLPostDetailModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -275,6 +310,7 @@
 		6AD52D6E1CD0BFBE00207D23 /* Deploy */ = {
 			isa = PBXGroup;
 			children = (
+				6A0187531CE068E5003DA05B /* Categories */,
 				6A65F15B1CD9C8D300B69DF4 /* Tips */,
 				6AD52D6F1CD0BFBE00207D23 /* Macros.h */,
 				6AD52D701CD0BFBE00207D23 /* Plan */,
@@ -540,6 +576,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A0187561CE068F8003DA05B /* NSString+ZLPostsDetail.m in Sources */,
+				6A01875D1CE096B4003DA05B /* ZLShowImageView.m in Sources */,
 				DD0CFE3C1CD1B5C10002531F /* ZLBookMarkViewController.m in Sources */,
 				DD0CFE361CD1B57F0002531F /* ZLHomePageViewController.m in Sources */,
 				6AA718B11CDA007F000F0CBE /* ZLBaseViewController.m in Sources */,
@@ -553,6 +591,7 @@
 				6AD52D6B1CD0BF9E00207D23 /* ZLNetworkManager.m in Sources */,
 				6AA2DFC41CDCB5FF002067A0 /* ZLPostDetailCellReply.m in Sources */,
 				DD0CFE3F1CD1B5CC0002531F /* ZLPlateViewController.m in Sources */,
+				6A0187621CE0A938003DA05B /* ZLScrollImageVC.m in Sources */,
 				6A59F5151CDAECFB009AA073 /* ZLPostsModel.m in Sources */,
 				DD0CFE181CD1AFCD0002531F /* ZLHomeGuide.m in Sources */,
 				6AD52D6C1CD0BF9E00207D23 /* ZLUserInfo.m in Sources */,
@@ -562,6 +601,7 @@
 				6AD52D6A1CD0BF9E00207D23 /* ZLGlobal.m in Sources */,
 				6AD52D7A1CD0BFBE00207D23 /* ZLCheckSecurityCodeVc.m in Sources */,
 				6ABE1FA11CDB390600B9AD6E /* ZLPersonalCenterView.m in Sources */,
+				6A0187591CE07148003DA05B /* ZLPostDetailModel.m in Sources */,
 				6A40B41E1CD1B3CD0096C14E /* HomeGuide.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -658,7 +698,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PREFIX_HEADER = "$(SRCROOT)/ZLDisucssBar/Deploy/prefixHeader.pch";
+				GCC_PREFIX_HEADER = /Users/mrr/Desktop/ZLDiscussBar/ZLDisucssBar/Deploy/PrefixHeader.pch;
 				INFOPLIST_FILE = ZLDisucssBar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -675,7 +715,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PREFIX_HEADER = "$(SRCROOT)/ZLDisucssBar/Deploy/prefixHeader.pch";
+				GCC_PREFIX_HEADER = /Users/mrr/Desktop/ZLDiscussBar/ZLDisucssBar/Deploy/PrefixHeader.pch;
 				INFOPLIST_FILE = ZLDisucssBar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
