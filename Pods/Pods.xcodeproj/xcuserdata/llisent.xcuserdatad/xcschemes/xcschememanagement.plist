@@ -64,6 +64,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>TYAttributedLabel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Wonderful.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -76,77 +81,6 @@
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>0124FC252F1E9EF99323DCB53F91E29A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>16ACF35FDB8EAF2E5A8191EA1BCBEA01</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1C34D9F28A170A51EE235BD45A7C64BD</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>23DB52F8E262472BAE5CE7257DB881C6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3116F685117B044E8E119EA475203BA9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>409B3ED220578CA412457EA226442005</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>410B25DF16EA5C5B3E2698F74F9625FB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>53480ED0BE09FF49E34B1702D485CAAB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>77E909796B64B965417CF45A56E048B4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8C463CD491D989B457394A7AA95384BC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8F74D9EA91F4C43190670066BAC37D44</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9EAB3E42EF957541E6C3C76D35FD008E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9F12FB4A63E20F601CFB2E64A65B57C1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>AFBAFBECD8B057CA51A4E5ACE30712A1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-	</dict>
+	<dict/>
 </dict>
 </plist>

@@ -40,6 +40,7 @@ PODS:
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
   - SVProgressHUD (1.1.3)
+  - TYAttributedLabel (2.5.6)
   - Wonderful (1.1.0)
   - YYKit (0.9.11):
     - YYKit/no-arc (= 0.9.11)
@@ -57,6 +58,7 @@ DEPENDENCIES:
   - ReactiveCocoa
   - SDWebImage
   - SVProgressHUD
+  - TYAttributedLabel
   - Wonderful
   - YYKit
 
@@ -72,6 +74,7 @@ SPEC CHECKSUMS:
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
+  TYAttributedLabel: 251d4cb2bf35813815d0ad632b3e56ba626c6b01
   Wonderful: 0b300deeacedff9a72525143d14eff4193c23d07
   YYKit: 76c3f2cee1a72d3c5b1d7fd8d170ee507fe5df68
 

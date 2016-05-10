@@ -13,4 +13,4 @@ pod 'JGProgressHUD'
 pod 'MGSwipeTableCell'
 pod 'CYLTabBarController'
 pod 'YYKit'
-
+pod 'TYAttributedLabel'
