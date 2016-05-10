@@ -24,5 +24,13 @@
 
 @property (nonatomic ,strong) NSDictionary *attachments;
 
+@property (nonatomic ,strong) NSString     *replyStr;
+
+@property (nonatomic ,assign) BOOL         isReply;
+
+
+- (void)detectionModel;
+
+
 
 @end

@@ -15,4 +15,6 @@
 
 - (NSString *)handleMessage;
 
+- (NSString *)flattenHTML:(NSString *)str;
+
 @end

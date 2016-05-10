@@ -12,7 +12,7 @@
 
 - (BOOL)isReplyPosts{
     NSRange ran = [self rangeOfString:@"blockquote"];
-    NSLog(@"%@",self);
+    NSLog(@"%@---",self);
     if (ran.length != 0) {
         return YES;
     }
@@ -23,8 +23,30 @@
     NSString *message = self;
     message = [message stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
     message = [message stringByReplacingOccurrencesOfString:@"<br />" withString:@""];
-    message = [message stringByReplacingOccurrencesOfString:@"" withString:@""];
+    message = [message stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
     return message;
+}
+
+- (NSString *)flattenHTML:(NSString *)str{
+    
+    NSScanner *theScanner;
+    
+    NSString *text = nil;
+    
+    theScanner = [NSScanner scannerWithString:str];
+    
+    while ([theScanner isAtEnd] == NO) {
+        
+        [theScanner scanUpToString:@"<" intoString:NULL];
+        
+        [theScanner scanUpToString:@">" intoString:&text];
+        
+        str = [str stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>",text] withString:@""];
+        
+    }
+    
+    return str;
+    
 }
 
 @end
