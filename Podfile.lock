@@ -36,6 +36,7 @@ PODS:
   - ReactiveCocoa/no-arc (2.5)
   - ReactiveCocoa/UI (2.5):
     - ReactiveCocoa/Core
+  - RegexKitLite (4.0)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
@@ -56,6 +57,7 @@ DEPENDENCIES:
   - MJExtension
   - MJRefresh
   - ReactiveCocoa
+  - RegexKitLite
   - SDWebImage
   - SVProgressHUD
   - TYAttributedLabel
@@ -72,6 +74,7 @@ SPEC CHECKSUMS:
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+  RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
   TYAttributedLabel: 251d4cb2bf35813815d0ad632b3e56ba626c6b01

@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '2C0DC9277C016E4123261868'
-               BlueprintName = 'ReactiveCocoa'
+               BlueprintIdentifier = '91DE32E9C0B05C865E466FAE'
+               BlueprintName = 'RegexKitLite'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libReactiveCocoa.a'>
+               BuildableName = 'libRegexKitLite.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

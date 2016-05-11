@@ -121,6 +121,8 @@
     self.message = [self.message stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
     self.message = [self.message stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
     
+    self.replyStr = [self.replyStr stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
+    self.replyStr = [self.replyStr stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
     
 //    
 //    
