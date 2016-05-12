@@ -30,6 +30,7 @@
 - (TYTextContainer *)makeContainerWithType:(NSInteger)type{
     TYTextContainer *container = [[TYTextContainer alloc]createTextContainerWithTextWidth:ScreenWidth - 20];
     container.text             = self;
+    container.font = [UIFont fontWithName:@"Helvetica Neue" size:15];
     
     // ------处理表情
     NSMutableArray *tmpArray   = [NSMutableArray array];
@@ -37,7 +38,7 @@
         
         TYImageStorage *imageStorage    = [[TYImageStorage alloc]init];
         imageStorage.cacheImageOnMemory = YES;
-        imageStorage.imageName          = [NSString stringWithFormat:@"smile%@.gif",capturedStrings[1]];
+        imageStorage.image              = [UIImage imageNamed:[NSString stringWithFormat:@"smile%@.gif",capturedStrings[1]]];
         imageStorage.range              = capturedRanges[0];
         imageStorage.size               = ([capturedStrings[1] intValue] > 30) ? CGSizeMake(60, 60) : CGSizeMake(20, 20);
         [tmpArray addObject:imageStorage];

@@ -174,10 +174,14 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static CGFloat a;
     NSDictionary *attribute = @{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:15]};
     ZLPostsModel *model = self.dataArray[indexPath.row];
     
     CGSize size = [model.subject boundingRectWithSize:CGSizeMake(ScreenWidth-20, CGFLOAT_MAX) options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attribute context:nil].size;
+    a += size.height;
+    NSLog(@"%lf------%ld",a,indexPath.row);
+    NSLog(@"%lf",size.height+86);
     return size.height + 86;
 }
 

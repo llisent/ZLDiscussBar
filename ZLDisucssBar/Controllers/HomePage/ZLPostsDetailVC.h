@@ -10,6 +10,7 @@
 
 @interface ZLPostsDetailVC : UIViewController
 
-@property (nonatomic ,strong)NSString *tid;
+//帖子ID
+@property (nonatomic ,strong) NSString *tid;
 
 @end

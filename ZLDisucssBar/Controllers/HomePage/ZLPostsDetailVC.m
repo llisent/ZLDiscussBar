@@ -27,6 +27,7 @@
 /** 页码*/
 @property (nonatomic ,assign) NSInteger      page;
 
+
 @property (nonatomic ,strong) NSMutableArray *textArray;
 
 @end
@@ -56,9 +57,9 @@
     self.tid = @"3068759";
     [[ZLNetworkManager sharedInstence]getDetailInfoWithPage:self.page tid:self.tid block:^(NSDictionary *dict) {
         NSArray *arr = dict[@"postlist"];
-//        if (arr.count != 20) {
-//            self.page--;
-//        }
+        if (self.dataArray.count !=0 && arr.count!= 10) {
+            self.page--;
+        }
         
         for (NSDictionary *dictx in arr) {
             ZLPostDetailModel *model = [ZLPostDetailModel mj_objectWithKeyValues:dictx];
@@ -203,6 +204,12 @@
      *  2.考虑是否为回复贴（如果是返回值为两个）
      *  3.考虑图片高度
      */
+    
+    static CGFloat a;
+    
+    if (!indexPath.row) {
+        NSLog(@"12123123123");
+    }
     NSDictionary *dict       = self.textArray[indexPath.row];
     ZLPostDetailModel *model = self.dataArray[indexPath.row];
     NSArray *imgArr          = [NSArray array];
@@ -217,7 +224,7 @@
     }
     
     
-    CGFloat height;
+    CGFloat height = 0.0f;
     height += [text1 getHeightWithFramesetter:nil width:ScreenWidth - 20];
     if (text2) {
         height += [text2 getHeightWithFramesetter:nil width:ScreenWidth - 20] + 10;
@@ -225,7 +232,9 @@
     if (imgArr.count != 0) {
         height += ((ScreenWidth - 40)/3 + 10) * ((imgArr.count % 3 == 0) ? (imgArr.count / 3) : (imgArr.count / 3) + 1) + 10;
     }
-    
+    a += height;
+    NSLog(@"%lf------%ld",a,indexPath.row);
+    NSLog(@"%lf",height+70);
     return height + 70;
 
 }

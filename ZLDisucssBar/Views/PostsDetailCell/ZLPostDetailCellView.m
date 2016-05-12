@@ -17,12 +17,14 @@
 
 - (void)updateInfomationWith:(ZLPostDetailModel *)model{
     
+    // ------清除遗留值
     {
         self.author.text  = @"";
         self.time.text    = @"";
         self.avatar.image = nil;
     }
     
+    // ------删除约束
     {
         [self.replyLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             
@@ -37,6 +39,7 @@
     
     // ------头像
     [self.avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://uc.zuanke8.com/avatar.php?uid=%@&size=big",model.authorid]]];
+    
     // ------用户名 & 时间
     self.author.text = model.author;
     self.time.text   = model.dateline;
@@ -50,7 +53,10 @@
     
     // ------是否为回帖
     if (model.isReply) {
-        self.quoteLabel.hidden = NO;
+        self.quoteLabel.hidden             = NO;
+        self.quoteLabel.layer.cornerRadius = 3;
+        self.quoteLabel.clipsToBounds      = YES;
+
         [self.quoteLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.avatar.mas_bottom).offset(10);
             make.bottom.mas_equalTo(self.replyLabel.mas_top).offset(-10);

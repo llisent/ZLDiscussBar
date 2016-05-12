@@ -98,7 +98,7 @@
                         block:(void (^)(NSDictionary *dict))success
                       failure:(void (^)(NSError *error))failure{
     NSDictionary *par = @{@"module":@"viewthread",
-                          @"ppp":@"20",
+                          @"ppp":@"10",
                           @"version":@"1",
                           @"charset":@"gbk",
                           @"image":@"1",
