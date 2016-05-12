@@ -11,7 +11,7 @@
 #import "ZLPostDetailCellReply.h"
 #import "ZLPostDetailModel.h"
 #import "ZLScrollImageVC.h"
-#import "ZLPostDetailCell.h"
+#import "ZLPostDetailCellView.h"
 
 @interface ZLPostsDetailVC ()<UITableViewDelegate, UITableViewDataSource, ZLPostDetailCellNormalDelegate>
 
@@ -27,6 +27,8 @@
 /** 页码*/
 @property (nonatomic ,assign) NSInteger      page;
 
+@property (nonatomic ,strong) NSMutableArray *textArray;
+
 @end
 
 @implementation ZLPostsDetailVC
@@ -36,6 +38,7 @@
     
     self.dataArray = [NSMutableArray array];
     self.dataSet   = [NSMutableSet set];
+    self.textArray = [NSMutableArray array];
     self.page      = 1;
     
     
@@ -50,19 +53,30 @@
 }
 
 - (void)initData{
+    self.tid = @"3068759";
     [[ZLNetworkManager sharedInstence]getDetailInfoWithPage:self.page tid:self.tid block:^(NSDictionary *dict) {
         NSArray *arr = dict[@"postlist"];
-        if (arr.count == 0) {
-            self.page --;
-        }
-        for (NSDictionary *dict in arr) {
-            ZLPostDetailModel *model = [ZLPostDetailModel mj_objectWithKeyValues:dict];
-            [model detectionModel];
-//            model.message = [model.message handleMessage];
-//            model.message = [model.message flattenHTML:model.message];
+//        if (arr.count != 20) {
+//            self.page--;
+//        }
+        
+        for (NSDictionary *dictx in arr) {
+            ZLPostDetailModel *model = [ZLPostDetailModel mj_objectWithKeyValues:dictx];
+
             NSInteger num1 = self.dataSet.count;
             [self.dataSet addObject:model.pid];
+            
             if (self.dataSet.count != num1) {
+                [model detectionModel];
+                if (model.container2) {
+                    NSDictionary *co = @{@"a":model.container1,@"b":model.container2};
+                    [self.textArray addObject:co];
+
+                }else{
+                    NSDictionary *co = @{@"a":model.container1};
+                    [self.textArray addObject:co];
+
+                }
                 [self.dataArray addObject:model];
             }
         }
@@ -84,10 +98,8 @@
     self.mainTableView            = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
     self.mainTableView.delegate   = self;
     self.mainTableView.dataSource = self;
-//    [self.mainTableView registerNib:[UINib nibWithNibName:@"ZLPostDetailCellNormal" bundle:nil] forCellReuseIdentifier:@"cellNormal"];
-//    [self.mainTableView registerNib:[UINib nibWithNibName:@"ZLPostDetailCellReply" bundle:nil] forCellReuseIdentifier:@"cellReply"];
-    
-    [self.mainTableView registerClass:[ZLPostDetailCell class] forCellReuseIdentifier:@"detailCell"];
+
+    [self.mainTableView registerNib:[UINib nibWithNibName:@"ZLPostDetailCellView" bundle:nil] forCellReuseIdentifier:@"detailCell"];
 
     self.mainTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         self.page++;
@@ -105,24 +117,84 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    ZLPostDetailModel *model = self.dataArray[indexPath.row];
-    ZLPostDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"detailCell" forIndexPath:indexPath];
+    ZLPostDetailModel *model  = self.dataArray[indexPath.row];
+    ZLPostDetailCellView *cell = [tableView dequeueReusableCellWithIdentifier:@"detailCell" forIndexPath:indexPath];
+
     
-    [cell updateWithModel:model];
+    [cell updateInfomationWith:model];
+    
+    [self deepAssignmentWithCell:cell Model:model rowNum:indexPath.row];
+    
+
+    
     return cell;
-    
-//    if (![model.message isReplyPosts]) {
-//        //非回复贴
-//        ZLPostDetailCellNormal *cell = [tableView dequeueReusableCellWithIdentifier:@"cellNormal" forIndexPath:indexPath];
-//        cell.delegate = self;
-//        [cell updateInfoWithDic:model];
-//        return cell;
-//    }else{
-//        //回复贴
-//        ZLPostDetailCellReply *cell  = [tableView dequeueReusableCellWithIdentifier:@"cellReply" forIndexPath:indexPath];
-//        return cell;
-//    }
 }
+
+- (void)deepAssignmentWithCell:(ZLPostDetailCellView *)cell Model:(ZLPostDetailModel *)model rowNum:(NSUInteger)row{
+    
+    {
+        cell.quoteLabel.textContainer = nil;
+        cell.replyLabel.textContainer = nil;
+        [cell.imageBedView removeAllSubviews];
+    }
+
+    // ------
+    NSDictionary *dict = self.textArray[row];
+    
+    
+    // ------建立容器
+    TYTextContainer *containerReply = dict[@"a"];
+    
+    //把容器赋回Label
+    cell.replyLabel.textContainer = containerReply;
+    
+    
+    if (model.isReply) {
+        // ------建立容器
+        TYTextContainer *containerQuote = dict[@"b"];
+
+        cell.quoteLabel.textContainer = containerQuote;
+        [cell.quoteLabel sizeToFit];
+        
+    }
+    
+    [cell.replyLabel sizeToFit];
+    
+    if (cell.imgArr.count != 0) {
+        // ------有图片需要显示 加载图片(待加载代理)
+        for (int i = 0; i < [cell.imgArr count]; i++) {
+            NSDictionary *dic      = cell.imgArr[i];
+            NSString *url          = [NSString stringWithFormat:@"http://img.zuanke8.com/forum/%@",dic[@"attachment"]];
+            UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(((ScreenWidth - 40)/3 + 10) * (i%3),
+                                                                                  (i/3) * ((ScreenWidth - 40)/3 + 10),
+                                                                                  (ScreenWidth-40)/3,
+                                                                                  (ScreenWidth-40)/3)];
+            imageView.userInteractionEnabled = YES;
+            [imageView sd_setImageWithURL:[NSURL URLWithString:url]];
+            [cell.imageBedView addSubview:imageView];
+            
+            SDWebImageDownloader *dl = [SDWebImageDownloader sharedDownloader];
+            [dl downloadImageWithURL:[NSURL URLWithString:url] options:SDWebImageDownloaderLowPriority progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+                imageView.image             = image;
+                UITapGestureRecognizer *ges = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+                    
+                }];
+                [imageView addGestureRecognizer:ges];
+            }];
+        }
+        //高度
+        CGFloat  a = ((ScreenWidth - 40)/3 + 10) * ((cell.imgArr.count % 3 == 0) ? (cell.imgArr.count / 3) : (cell.imgArr.count / 3) + 1);
+        [cell.imageBedView mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.height.mas_equalTo(a);
+            
+        }];
+    }
+    [cell updateConstraints];
+    [cell layoutIfNeeded];
+}
+
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     /**
@@ -131,41 +203,40 @@
      *  2.考虑是否为回复贴（如果是返回值为两个）
      *  3.考虑图片高度
      */
+    NSDictionary *dict       = self.textArray[indexPath.row];
     ZLPostDetailModel *model = self.dataArray[indexPath.row];
-    NSDictionary *attribute  = @{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:15]};
-    CGFloat height;
+    NSArray *imgArr          = [NSArray array];
     
-//    if ([model.message isReplyPosts]) {
-//        //回帖
-//        height += [model.message boundingRectWithSize:CGSizeMake(ScreenWidth-20, CGFLOAT_MAX)
-//                                    options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-//                                 attributes:attribute
-//                                    context:nil].size.height;
-//        
-//        height += [model.replyStr boundingRectWithSize:CGSizeMake(ScreenWidth-20, CGFLOAT_MAX)
-//                                               options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-//                                            attributes:attribute
-//                                               context:nil].size.height;
-//    }else{
-//        //非回帖
-//    }
+    TYTextContainer *text1     = dict[@"a"];
+    TYTextContainer *text2     = dict[@"b"];
     
-    if ([[ZLGlobal sharedInstence]downLoadImage] && model.attachments.count != 0) {
-        //不下载图片Or无图
+    if ([[ZLGlobal sharedInstence]downLoadImage]) {
+        imgArr = @[];
+    }else{
+        imgArr = model.attachments.allValues;
     }
     
     
+    CGFloat height;
+    height += [text1 getHeightWithFramesetter:nil width:ScreenWidth - 20];
+    if (text2) {
+        height += [text2 getHeightWithFramesetter:nil width:ScreenWidth - 20] + 10;
+    }
+    if (imgArr.count != 0) {
+        height += ((ScreenWidth - 40)/3 + 10) * ((imgArr.count % 3 == 0) ? (imgArr.count / 3) : (imgArr.count / 3) + 1) + 10;
+    }
     
-    CGSize size              = [model.message boundingRectWithSize:CGSizeMake(ScreenWidth-20, CGFLOAT_MAX)
-                                                           options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-                                                        attributes:attribute
-                                                           context:nil].size;
-    NSArray *imgArr          = [model.attachments allValues];
-    //不加载图片 或者无图片 返回净值
-    if ([[ZLGlobal sharedInstence] downLoadImage] || model.attachments.count == 0) {
-        return size.height + 70+550;
-    }else{
-        return size.height + 70 + ((ScreenWidth - 40)/3 + 10) * ((imgArr.count % 3 == 0) ? (imgArr.count / 3) : (imgArr.count / 3) + 1)+550;
+    return height + 70;
+
+}
+
+- (void)attributedLabel:(TYAttributedLabel *)attributedLabel textStorageClicked:(id<TYTextStorageProtocol>)textStorage atPoint:(CGPoint)point{
+    if ([textStorage isKindOfClass:[TYLinkTextStorage class]]) {
+
+        id linkStr = ((TYLinkTextStorage*)textStorage).linkData;
+        if ([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:linkStr]]){
+            [[UIApplication sharedApplication]openURL:[NSURL URLWithString:linkStr]];
+        }
     }
 }
 

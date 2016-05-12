@@ -189,7 +189,7 @@
 //        [SVProgressHUD showErrorWithStatus:@"权限不足"];
 //        return;
 //    }
-    vc.title = model.subject;
+    vc.title = model.tid;
     [self.navigationController pushViewController:vc animated:YES];
     
 }

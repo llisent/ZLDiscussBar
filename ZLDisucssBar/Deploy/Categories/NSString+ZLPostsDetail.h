@@ -17,4 +17,6 @@
 
 - (NSString *)flattenHTML:(NSString *)str;
 
+- (TYTextContainer *)makeContainerWithType:(NSInteger)type;
+
 @end

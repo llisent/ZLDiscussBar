@@ -90,6 +90,8 @@
 		6AD52D791CD0BFBE00207D23 /* Plan in Resources */ = {isa = PBXBuildFile; fileRef = 6AD52D701CD0BFBE00207D23 /* Plan */; };
 		6AD52D7A1CD0BFBE00207D23 /* ZLCheckSecurityCodeVc.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD52D751CD0BFBE00207D23 /* ZLCheckSecurityCodeVc.m */; };
 		6AD52D7B1CD0BFBE00207D23 /* ZLMainLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AD52D771CD0BFBE00207D23 /* ZLMainLoginViewController.m */; };
+		6AFABF1A1CE45FA90042932B /* ZLPostDetailCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFABF181CE45FA90042932B /* ZLPostDetailCellView.m */; };
+		6AFABF1B1CE45FA90042932B /* ZLPostDetailCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AFABF191CE45FA90042932B /* ZLPostDetailCellView.xib */; };
 		DD0CFE181CD1AFCD0002531F /* ZLHomeGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = DD0CFE171CD1AFCD0002531F /* ZLHomeGuide.m */; };
 		DD0CFE221CD1B0750002531F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD0CFE1B1CD1B0750002531F /* AppDelegate.m */; };
 		DD0CFE231CD1B0750002531F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD0CFE1C1CD1B0750002531F /* Assets.xcassets */; };
@@ -214,6 +216,9 @@
 		6AD52D751CD0BFBE00207D23 /* ZLCheckSecurityCodeVc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCheckSecurityCodeVc.m; sourceTree = "<group>"; };
 		6AD52D761CD0BFBE00207D23 /* ZLMainLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLMainLoginViewController.h; sourceTree = "<group>"; };
 		6AD52D771CD0BFBE00207D23 /* ZLMainLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLMainLoginViewController.m; sourceTree = "<group>"; };
+		6AFABF171CE45FA90042932B /* ZLPostDetailCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPostDetailCellView.h; sourceTree = "<group>"; };
+		6AFABF181CE45FA90042932B /* ZLPostDetailCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPostDetailCellView.m; sourceTree = "<group>"; };
+		6AFABF191CE45FA90042932B /* ZLPostDetailCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLPostDetailCellView.xib; sourceTree = "<group>"; };
 		A46DC721D06C2CACD76BA209 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		DD0CFE161CD1AFCD0002531F /* ZLHomeGuide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLHomeGuide.h; sourceTree = "<group>"; };
 		DD0CFE171CD1AFCD0002531F /* ZLHomeGuide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHomeGuide.m; sourceTree = "<group>"; };
@@ -396,6 +401,9 @@
 				6A6851D81CE1815400087257 /* ZLPostDetailCell.m */,
 				6A8F60081CE2DBF0000C81D3 /* ZLPostDetailCellNew.h */,
 				6A8F60091CE2DBF0000C81D3 /* ZLPostDetailCellNew.m */,
+				6AFABF171CE45FA90042932B /* ZLPostDetailCellView.h */,
+				6AFABF181CE45FA90042932B /* ZLPostDetailCellView.m */,
+				6AFABF191CE45FA90042932B /* ZLPostDetailCellView.xib */,
 			);
 			path = PostsDetailCell;
 			sourceTree = "<group>";
@@ -717,6 +725,7 @@
 				6A881A4E1CE30843000B20DE /* smile8.gif in Resources */,
 				6A881A261CE30843000B20DE /* smile163.gif in Resources */,
 				DD0CFE2B1CD1B0F80002531F /* Info.plist in Resources */,
+				6AFABF1B1CE45FA90042932B /* ZLPostDetailCellView.xib in Resources */,
 				6A881A491CE30843000B20DE /* smile3.gif in Resources */,
 				6A881A4C1CE30843000B20DE /* smile6.gif in Resources */,
 				6A881A2E1CE30843000B20DE /* smile175.gif in Resources */,
@@ -805,6 +814,7 @@
 				DD0CFE291CD1B0B60002531F /* main.m in Sources */,
 				DD0CFE271CD1B0750002531F /* ViewController.m in Sources */,
 				DD0CFE391CD1B5AA0002531F /* ZLPersonalCenter.m in Sources */,
+				6AFABF1A1CE45FA90042932B /* ZLPostDetailCellView.m in Sources */,
 				6AA2DFB71CDCB1D4002067A0 /* ZLPostsDetailVC.m in Sources */,
 				6A8F600A1CE2DBF0000C81D3 /* ZLPostDetailCellNew.m in Sources */,
 				6AA2DFBF1CDCB5EC002067A0 /* ZLPostDetailCellNormal.m in Sources */,

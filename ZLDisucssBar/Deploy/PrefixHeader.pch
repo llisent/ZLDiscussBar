@@ -46,7 +46,12 @@
 
 typedef NS_ENUM(NSUInteger, HPGetInfoType) {
     HPGetInfoTypeLoadMore,
-    HPGetInfoTypeRefresh,
+    HPGetInfoTypeRefresh
+};
+
+typedef NS_ENUM(NSUInteger, PostDetailType) {
+    PostDetailTypeNormal,
+    PostDetailTypeReply
 };
 
 

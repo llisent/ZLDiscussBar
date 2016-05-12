@@ -20,13 +20,19 @@
 
 @property (nonatomic ,strong) NSString     *dateline;
 
+/** 本贴回复*/
 @property (nonatomic ,strong) NSString     *message;
 
 @property (nonatomic ,strong) NSDictionary *attachments;
 
-@property (nonatomic ,strong) NSString     *replyStr;
+/** 引用信息*/
+@property (nonatomic ,strong) NSString     *quoteStr;
 
 @property (nonatomic ,assign) BOOL         isReply;
+
+@property (nonatomic ,strong) TYTextContainer *container1;
+
+@property (nonatomic ,strong) TYTextContainer *container2;
 
 
 - (void)detectionModel;

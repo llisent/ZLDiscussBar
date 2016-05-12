@@ -24,14 +24,6 @@
                                     <constraint firstAttribute="width" constant="40" id="mu1-If-XWs"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMb-me-7Gf">
-                                <rect key="frame" x="10" y="60" width="564" height="251"/>
-                                <color key="backgroundColor" red="1" green="0.92819695723684215" blue="0.64548211348684215" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabeLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabeLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabeLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabeLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabeLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabeLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel</string>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ufv-eM-6Yt">
                                 <rect key="frame" x="62" y="10" width="45" height="18"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
@@ -56,31 +48,23 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oR8-nE-nd9" customClass="TYAttributedLabel">
+                                <rect key="frame" x="123" y="81" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="kS4-Lb-q14" firstAttribute="leading" secondItem="SWe-9z-PWw" secondAttribute="leading" constant="10" id="3Og-FY-hwe"/>
-                            <constraint firstAttribute="trailing" secondItem="nMb-me-7Gf" secondAttribute="trailing" constant="10" id="6V1-ba-PNU"/>
                             <constraint firstItem="yUr-l3-Jo7" firstAttribute="leading" secondItem="SWe-9z-PWw" secondAttribute="leading" constant="10" id="8Am-pA-fHQ"/>
                             <constraint firstItem="9tF-To-9Tq" firstAttribute="leading" secondItem="Ufv-eM-6Yt" secondAttribute="leading" id="BKz-UH-rbg"/>
                             <constraint firstItem="kS4-Lb-q14" firstAttribute="top" secondItem="SWe-9z-PWw" secondAttribute="top" constant="10" id="BO1-70-c9s"/>
                             <constraint firstAttribute="bottom" secondItem="yUr-l3-Jo7" secondAttribute="bottom" id="Ffa-Sj-dLW"/>
-                            <constraint firstItem="nMb-me-7Gf" firstAttribute="top" secondItem="kS4-Lb-q14" secondAttribute="bottom" constant="10" id="Kw8-Ec-2Yp"/>
                             <constraint firstItem="9tF-To-9Tq" firstAttribute="bottom" secondItem="kS4-Lb-q14" secondAttribute="bottom" id="Nzi-hp-PKO"/>
-                            <constraint firstItem="yUr-l3-Jo7" firstAttribute="top" secondItem="nMb-me-7Gf" secondAttribute="bottom" constant="10" id="OnY-3z-2io"/>
                             <constraint firstItem="Ufv-eM-6Yt" firstAttribute="top" secondItem="kS4-Lb-q14" secondAttribute="top" id="QY5-b7-adf"/>
                             <constraint firstAttribute="trailing" secondItem="yUr-l3-Jo7" secondAttribute="trailing" constant="10" id="Z0u-Ig-CJQ"/>
-                            <constraint firstItem="yUr-l3-Jo7" firstAttribute="trailing" secondItem="nMb-me-7Gf" secondAttribute="trailing" id="dIo-C2-HNP"/>
                             <constraint firstItem="Ufv-eM-6Yt" firstAttribute="leading" secondItem="kS4-Lb-q14" secondAttribute="trailing" constant="12" id="iRY-yp-EGA"/>
-                            <constraint firstItem="yUr-l3-Jo7" firstAttribute="leading" secondItem="nMb-me-7Gf" secondAttribute="leading" id="tgf-DC-L0b"/>
-                            <constraint firstItem="nMb-me-7Gf" firstAttribute="leading" secondItem="SWe-9z-PWw" secondAttribute="leading" constant="10" id="xZ1-nV-kMW"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="dIo-C2-HNP"/>
-                                <exclude reference="tgf-DC-L0b"/>
-                            </mask>
-                        </variation>
                     </view>
                 </subviews>
                 <constraints>
@@ -95,7 +79,6 @@
                 <outlet property="authorImg" destination="kS4-Lb-q14" id="rVv-gG-Plr"/>
                 <outlet property="imgBedCons" destination="OOf-Cb-bqH" id="98i-F7-iSg"/>
                 <outlet property="imgViewBed" destination="yUr-l3-Jo7" id="4r9-i5-BY6"/>
-                <outlet property="mainBody" destination="nMb-me-7Gf" id="OMw-lU-dF5"/>
                 <outlet property="time" destination="9tF-To-9Tq" id="rdM-rY-yYs"/>
             </connections>
             <point key="canvasLocation" x="17" y="358.5"/>

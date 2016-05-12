@@ -38,6 +38,6 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier userModel:(ZLPostDetailModel *)model;
 
-- (void)updateWithModel:(ZLPostDetailModel *)model;
+- (void)updateWithModel:(ZLPostDetailModel *)model returnBlock:(void(^)(TYTextContainer *tc))block;
 
 @end

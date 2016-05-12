@@ -136,7 +136,7 @@
     self.replyMessage.numberOfLines   = 0;
     self.message.numberOfLines        = 0;
 
-    self.replyMessage.text            = self.mainModel.replyStr;
+    self.replyMessage.text            = self.mainModel.quoteStr;
     self.message.text                 = self.mainModel.message;
     
     if (self.imgArr.count == 0) {
