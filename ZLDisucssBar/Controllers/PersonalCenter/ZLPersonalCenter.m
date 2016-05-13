@@ -8,6 +8,7 @@
 
 #import "ZLPersonalCenter.h"
 #import "ZLPersonalCenterView.h"
+#import "ZLPersonalCenterCell.h"
 
 @interface ZLPersonalCenter ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -62,45 +63,48 @@
     self.mainTableView                = [[UITableView alloc]initWithFrame:CGRectMake(0, -20, ScreenWidth, ScreenHeight - 29)];
     self.mainTableView.delegate       = self;
     self.mainTableView.dataSource     = self;
-    self.mainTableView.rowHeight      = 50;
-    [self.mainTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"myCell"];
-//    self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.mainTableView.rowHeight      = 45;
+    self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    [self.mainTableView registerNib:[UINib nibWithNibName:@"ZLPersonalCenterCell" bundle:nil] forCellReuseIdentifier:@"personalCell"];
+    
     [self.mainTableView setTableHeaderView:self.header];
     [self.view addSubview:self.mainTableView];
 }
 
 #pragma mark - **************** TableViewDelegate & DataSource
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-//    return 3;
-//}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myCell" forIndexPath:indexPath];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+    ZLPersonalCenterCell *cell = [tableView dequeueReusableCellWithIdentifier:@"personalCell" forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleGray;
     switch (indexPath.row) {
         case 0:
-            cell.textLabel.text = @"个人信息";
+            cell.titleLabel.text = @"个人信息";
+            cell.icon.image      = [UIImage imageNamed:@"person"];
             break;
         case 1:
-            cell.textLabel.text = @"我的帖子";
+            cell.titleLabel.text = @"我的帖子";
+            cell.icon.image      = [UIImage imageNamed:@"post"];
             break;
         case 2:
-            cell.textLabel.text = @"我的消息";
+            cell.titleLabel.text = @"我的消息";
+            cell.icon.image      = [UIImage imageNamed:@"message"];
             break;
         case 3:
-            cell.textLabel.text = @"我的回帖";
+            cell.titleLabel.text = @"我的回帖";
+            cell.icon.image      = [UIImage imageNamed:@"repost"];
             break;
         case 4:
-            cell.textLabel.text = @"设置";
+            cell.titleLabel.text = @"设置";
+            cell.icon.image      = [UIImage imageNamed:@"setting"];
             break;
         case 5:
-            cell.textLabel.text = @"更多";
+            cell.titleLabel.text = @"更多";
+            cell.icon.image      = [UIImage imageNamed:@"more"];
             break;
             
         default:

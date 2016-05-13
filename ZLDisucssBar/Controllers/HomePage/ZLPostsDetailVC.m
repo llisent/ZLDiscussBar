@@ -7,13 +7,11 @@
 //
 
 #import "ZLPostsDetailVC.h"
-#import "ZLPostDetailCellNormal.h"
-#import "ZLPostDetailCellReply.h"
 #import "ZLPostDetailModel.h"
 #import "ZLScrollImageVC.h"
 #import "ZLPostDetailCellView.h"
 
-@interface ZLPostsDetailVC ()<UITableViewDelegate, UITableViewDataSource, ZLPostDetailCellNormalDelegate>
+@interface ZLPostsDetailVC ()<UITableViewDelegate, UITableViewDataSource>
 
 /** TableView*/
 @property (nonatomic ,strong) UITableView    *mainTableView;
@@ -54,7 +52,11 @@
 }
 
 - (void)initData{
-    self.tid = @"3068759";
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        self.tid = @"3070779";
+    });
+    
     [[ZLNetworkManager sharedInstence]getDetailInfoWithPage:self.page tid:self.tid block:^(NSDictionary *dict) {
         NSArray *arr = dict[@"postlist"];
         if (self.dataArray.count !=0 && arr.count!= 10) {
@@ -63,6 +65,9 @@
         
         for (NSDictionary *dictx in arr) {
             ZLPostDetailModel *model = [ZLPostDetailModel mj_objectWithKeyValues:dictx];
+            if (!model.message) {
+                continue;
+            }
 
             NSInteger num1 = self.dataSet.count;
             [self.dataSet addObject:model.pid];
@@ -99,6 +104,7 @@
     self.mainTableView            = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
     self.mainTableView.delegate   = self;
     self.mainTableView.dataSource = self;
+    self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
     [self.mainTableView registerNib:[UINib nibWithNibName:@"ZLPostDetailCellView" bundle:nil] forCellReuseIdentifier:@"detailCell"];
 
@@ -120,7 +126,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ZLPostDetailModel *model  = self.dataArray[indexPath.row];
     ZLPostDetailCellView *cell = [tableView dequeueReusableCellWithIdentifier:@"detailCell" forIndexPath:indexPath];
-
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     
     [cell updateInfomationWith:model];
     
@@ -136,6 +143,8 @@
     {
         cell.quoteLabel.textContainer = nil;
         cell.replyLabel.textContainer = nil;
+        cell.quoteLabel.delegate = self;
+        cell.replyLabel.delegate = self;
         [cell.imageBedView removeAllSubviews];
     }
 
@@ -174,11 +183,18 @@
             [imageView sd_setImageWithURL:[NSURL URLWithString:url]];
             [cell.imageBedView addSubview:imageView];
             
+#warning 待修改    Error Domain=NSURLErrorDomain Code=404 "(null)" 控制图片404时状态
+
             SDWebImageDownloader *dl = [SDWebImageDownloader sharedDownloader];
             [dl downloadImageWithURL:[NSURL URLWithString:url] options:SDWebImageDownloaderLowPriority progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
                 imageView.image             = image;
                 UITapGestureRecognizer *ges = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
-                    
+                    ZLScrollImageVC *vc = [[ZLScrollImageVC alloc]init];
+                    vc.constomImage = image;
+                    vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                    [self.navigationController presentViewController:vc animated:YES completion:^{
+                        
+                    }];
                 }];
                 [imageView addGestureRecognizer:ges];
             }];
@@ -205,11 +221,6 @@
      *  3.考虑图片高度
      */
     
-    static CGFloat a;
-    
-    if (!indexPath.row) {
-        NSLog(@"12123123123");
-    }
     NSDictionary *dict       = self.textArray[indexPath.row];
     ZLPostDetailModel *model = self.dataArray[indexPath.row];
     NSArray *imgArr          = [NSArray array];
@@ -223,7 +234,6 @@
         imgArr = model.attachments.allValues;
     }
     
-    
     CGFloat height = 0.0f;
     height += [text1 getHeightWithFramesetter:nil width:ScreenWidth - 20];
     if (text2) {
@@ -232,10 +242,7 @@
     if (imgArr.count != 0) {
         height += ((ScreenWidth - 40)/3 + 10) * ((imgArr.count % 3 == 0) ? (imgArr.count / 3) : (imgArr.count / 3) + 1) + 10;
     }
-    a += height;
-    NSLog(@"%lf------%ld",a,indexPath.row);
-    NSLog(@"%lf",height+70);
-    return height + 70;
+    return height + 75;
 
 }
 
@@ -243,9 +250,31 @@
     if ([textStorage isKindOfClass:[TYLinkTextStorage class]]) {
 
         id linkStr = ((TYLinkTextStorage*)textStorage).linkData;
-        if ([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:linkStr]]){
-            [[UIApplication sharedApplication]openURL:[NSURL URLWithString:linkStr]];
+        
+        #warning 还有几种形式 待加入
+        NSRange range = [linkStr rangeOfString:@"http://www.zuanke8.com/thread-"];
+        
+        if (range.length != 0) {
+            NSString *url       = [linkStr stringByReplacingOccurrencesOfString:@"http://www.zuanke8.com/thread-" withString:@""];
+            NSRange range1      = [url rangeOfString:@"-"];
+            NSString *tidStr    = [url substringToIndex:range1.location];
+            ZLPostsDetailVC *vc = [[ZLPostsDetailVC alloc]init];
+            vc.tid              = tidStr;
+            [self.navigationController pushViewController:vc animated:YES];
+            
+            
+        }else{
+        
+            if ([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:linkStr]]){
+                [[UIApplication sharedApplication]openURL:[NSURL URLWithString:linkStr]];
+        
+            }
         }
+        
+        
+        
+        
+
     }
 }
 

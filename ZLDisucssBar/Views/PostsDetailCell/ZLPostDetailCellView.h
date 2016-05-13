@@ -12,15 +12,32 @@
 
 @interface ZLPostDetailCellView : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView       *avatar;
-@property (weak, nonatomic) IBOutlet UILabel           *author;
-@property (weak, nonatomic) IBOutlet UILabel           *time;
-@property (weak, nonatomic) IBOutlet TYAttributedLabel *quoteLabel;
-@property (weak, nonatomic) IBOutlet TYAttributedLabel *replyLabel;
-@property (weak, nonatomic) IBOutlet UIView            *imageBedView;
+/** 头像*/
+@property (weak, nonatomic  ) IBOutlet UIImageView       *avatar;
 
-@property (nonatomic ,strong) NSArray *imgArr;
+/** 作者*/
+@property (weak, nonatomic  ) IBOutlet UILabel           *author;
 
+/** 发布时间*/
+@property (weak, nonatomic  ) IBOutlet UILabel           *time;
+
+/** 引用Label*/
+@property (weak, nonatomic  ) IBOutlet TYAttributedLabel *quoteLabel;
+
+/** 回复Label*/
+@property (weak, nonatomic  ) IBOutlet TYAttributedLabel *replyLabel;
+
+/** 图床*/
+@property (weak, nonatomic  ) IBOutlet UIView            *imageBedView;
+
+/** 底层父View*/
+@property (weak, nonatomic  ) IBOutlet UIView            *floorView;
+
+
+@property (nonatomic ,strong) NSArray                    *imgArr;
+
+
+//依照数据更新布局
 - (void)updateInfomationWith:(ZLPostDetailModel *)model;
 
 @end

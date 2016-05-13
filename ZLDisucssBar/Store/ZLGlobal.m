@@ -31,9 +31,21 @@
     return [[NSUserDefaults standardUserDefaults]boolForKey:@"autoLogin"];
 }
 
+-(BOOL)downLoadImage{
+    return [[NSUserDefaults standardUserDefaults]boolForKey:@"downLoadImage"];
+}
+
+- (NSInteger)avatarMass{
+    return [[NSUserDefaults standardUserDefaults]integerForKey:@"avatarMass"];
+}
+
+- (BOOL)downLoadAvatar{
+    return [[NSUserDefaults standardUserDefaults]boolForKey:@"downLoadAvatar"];
+}
+
 #pragma mark - **************** 同步cookies
 - (void)synchronizeCookies{
-    NSData *cookiesData      = [NSKeyedArchiver archivedDataWithRootObject: [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]];
+    NSData *cookiesData      = [NSKeyedArchiver archivedDataWithRootObject:[[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject: cookiesData forKey: @"zuankeCookues"];
     [defaults synchronize];

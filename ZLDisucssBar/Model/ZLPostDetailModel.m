@@ -16,6 +16,14 @@
      *  检测效率 考虑加入线程组
      */
         // ------判断是否为回复贴 为Model属性赋值
+    
+    {
+        //忽略字符
+        self.message = [self.message stringByReplacingOccurrencesOfString:@"isconvert=1 " withString:@""];
+    }
+    
+    
+    
         NSRange ran = [self.message rangeOfString:@"</blockquote></div>"];
         ran.length ? (self.isReply = YES) : (self.isReply = NO);
     if (self.isReply) {
@@ -59,40 +67,45 @@
         if (self.isReply) {
             NSRange rang1 = [allValues rangeOfString:@"</blockquote></div><br />" options:NSBackwardsSearch];
             self.message  = [allValues substringWithRange:NSMakeRange(rang1.location+rang1.length,
-                                                                         self.message.length-rang1.location-rang1.length)];
+                                                                         allValues.length-rang1.location-rang1.length)];
         }
-        
-        //链接
     
-    if (!self.isReply) {
-        NSScanner *theScannerSecond;     //scanner
+    
+        //链接(被引用内容系统默认会转换 所以 只转换回复内容)1.引用 转换self.message  非引用 转allvalues
+        NSScanner *theScannerSecond;
         NSString  *textSecond;           //临时变量
         NSString  *url;
         NSMutableString *urlStr = [NSMutableString string];
-        
-        theScannerSecond = [NSScanner scannerWithString:allValues];
-        
-        
+        if (self.isReply) {
+            theScannerSecond = [NSScanner scannerWithString:self.message];
+        }else{
+            theScannerSecond = [NSScanner scannerWithString:allValues];
+        }
+    
         while ([theScannerSecond isAtEnd] == NO) {
             
             [theScannerSecond scanUpToString:@"<a href=\"" intoString:NULL];
             [theScannerSecond scanUpToString:@"\" " intoString:&textSecond];
             
             if (textSecond.length != 0) {
+                
                 [urlStr appendString:textSecond];
                 url = [textSecond stringByReplacingOccurrencesOfString:@"<a href=\"" withString:@""];
                 
                 [theScannerSecond scanUpToString:@"</a>" intoString:&textSecond];
                 [urlStr appendString:textSecond];
                 
-                
-                allValues = [allValues stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@</a>",urlStr] withString:url];
-                
+                NSString *result = [NSString stringWithFormat:@"%@</a>",urlStr];
+                if (self.isReply) {
+                    self.message = [self.message stringByReplacingOccurrencesOfString:result withString:url];
+                }else{
+                    allValues = [allValues stringByReplacingOccurrencesOfString:result withString:url];
+                }
                 [urlStr setString:@""];
                 textSecond = @"";
             }
         }
-    }
+
 
         // ------处理其他HTML标签
         
@@ -109,12 +122,18 @@
             [theScanner scanUpToString:@">" intoString:&text];
             
             allValues = [allValues stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>",text] withString:@""];
+            if (self.isReply) {
+                self.message = [self.message stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>",text] withString:@""];
+            }
         }
-        
-    
         // ------处理其他废弃转义符
         allValues  = [allValues stringByReplacingOccurrencesOfString:@"&nbsp;"  withString:@" "];
         allValues  = [allValues stringByReplacingOccurrencesOfString:@"&amp;"   withString:@"&"];
+    
+    if (self.isReply) {
+        self.message = [self.message stringByReplacingOccurrencesOfString:@"&nbsp;"  withString:@" "];
+        self.message = [self.message stringByReplacingOccurrencesOfString:@"&amp;"  withString:@"&"];
+    }
     
         if (self.isReply) {
             self.quoteStr = [allValues stringByReplacingOccurrencesOfString:self.message  withString:@""];
@@ -126,30 +145,5 @@
         }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @end

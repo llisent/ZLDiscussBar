@@ -9,10 +9,19 @@
 #import <UIKit/UIKit.h>
 
 @interface ZLPersonalCenterView : UIView
+
+/** 头像*/
 @property (weak, nonatomic) IBOutlet UIImageView *userImg;
-@property (weak, nonatomic) IBOutlet UILabel *userName;
-@property (weak, nonatomic) IBOutlet UILabel *userLevel;
-@property (weak, nonatomic) IBOutlet UILabel *userLntegral;
+
+/** 用户名*/
+@property (weak, nonatomic) IBOutlet UILabel     *userName;
+
+/** 用户组*/
+@property (weak, nonatomic) IBOutlet UILabel     *userLevel;
+
+/** 用户积分*/
+@property (weak, nonatomic) IBOutlet UILabel     *userLntegral;
+
 
 - (void)updateInfoWithDict:(NSDictionary *)dict;
 

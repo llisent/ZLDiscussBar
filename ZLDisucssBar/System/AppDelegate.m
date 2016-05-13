@@ -24,7 +24,7 @@
     self.window                    = [[UIWindow alloc]initWithFrame:ScreenBonds];
     HomeGuide *guide               = [[HomeGuide alloc]init];
     self.window.rootViewController = guide.tabBarController;
-    [self.window makeKeyWindow];
+    [self.window makeKeyWindow];    
     return YES;
 }
 

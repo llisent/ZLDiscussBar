@@ -18,27 +18,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.view.backgroundColor = [UIColor blackColor];
     [self creatConstomUI];
 }
 
 - (void)creatConstomUI{
-    UIScrollView *scroll = [[UIScrollView alloc]initWithFrame:ScreenBonds];
-    scroll.delegate = self;
-    scroll.maximumZoomScale = 2.0;
-    scroll.minimumZoomScale = 0.5;
+    UIScrollView *scroll    = [[UIScrollView alloc]initWithFrame:ScreenBonds];
+    scroll.delegate         = self;
+    scroll.maximumZoomScale = 2.5;
+    scroll.minimumZoomScale = 1;
     [self.view addSubview:scroll];
     
     self.imageView = [[UIImageView alloc]initWithImage:self.constomImage];
+    self.imageView.size = self.constomImage.size;
+    
     self.imageView.frame = CGRectMake(0, 0, ScreenWidth, ScreenWidth / self.constomImage.size.width * self.constomImage.size.height);
     self.imageView.center = self.view.center;
     [scroll addSubview:self.imageView];
     
     scroll.contentSize = self.constomImage.size;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
-        [self dismissViewControllerAnimated:YES completion:^{
-            
-        }];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }];
     [scroll addGestureRecognizer:tap];
     

@@ -42,7 +42,7 @@
                                 <color key="textColor" red="0.63137254901960782" green="0.62745098039215685" blue="0.65098039215686276" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_reply_count" translatesAutoresizingMaskIntoConstraints="NO" id="0V4-sp-FlR">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon_reply_count" translatesAutoresizingMaskIntoConstraints="NO" id="0V4-sp-FlR">
                                 <rect key="frame" x="442" y="13" width="16" height="16"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="150" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zhX-Ue-6hc">
@@ -87,7 +87,7 @@
                     <constraint firstAttribute="bottom" secondItem="2yP-2z-dUn" secondAttribute="bottom" constant="5" id="z5u-6s-EHH"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.9137254901960784" green="0.91764705882352937" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
                 <outlet property="author" destination="yCb-C7-1Op" id="fC5-8H-wcw"/>
                 <outlet property="avatarImageView" destination="uhq-pW-fdT" id="b45-w2-mew"/>

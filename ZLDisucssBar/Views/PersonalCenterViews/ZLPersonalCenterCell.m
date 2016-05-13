@@ -1,14 +1,14 @@
 //
-//  ZLPostDetailCellReply.m
+//  ZLPersonalCenterCell.m
 //  ZLDisucssBar
 //
-//  Created by Mrr on 16/5/6.
+//  Created by Mrr on 16/5/13.
 //  Copyright © 2016年 llisent. All rights reserved.
 //
 
-#import "ZLPostDetailCellReply.h"
+#import "ZLPersonalCenterCell.h"
 
-@implementation ZLPostDetailCellReply
+@implementation ZLPersonalCenterCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];

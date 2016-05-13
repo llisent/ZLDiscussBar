@@ -77,12 +77,12 @@
         self.imageBedView.hidden = NO;
         [self.imageBedView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.replyLabel.mas_bottom).offset(10);
-            make.bottom.equalTo(self).offset(-10);
+            make.bottom.mas_equalTo(self.floorView.mas_bottom).offset(-10);
         }];
     }else{
         self.imageBedView.hidden = YES;
         [self.replyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(self).offset(-10);
+            make.bottom.mas_equalTo(self.floorView.mas_bottom).offset(-10);
         }];
     }
 }
