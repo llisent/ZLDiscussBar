@@ -11,7 +11,7 @@
 #import "ZLScrollImageVC.h"
 #import "ZLPostDetailCellView.h"
 
-@interface ZLPostsDetailVC ()<UITableViewDelegate, UITableViewDataSource>
+@interface ZLPostsDetailVC ()<UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
 
 /** TableView*/
 @property (nonatomic ,strong) UITableView    *mainTableView;
@@ -101,7 +101,7 @@
 }
 
 - (void)creatConstomUI{
-    self.mainTableView            = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    self.mainTableView            = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-64)];
     self.mainTableView.delegate   = self;
     self.mainTableView.dataSource = self;
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -116,6 +116,16 @@
 }
 
 - (void)creatToolBar{
+    UIView *writeView         = [[UIView alloc]initWithFrame:CGRectMake(0, ScreenHeight-104, ScreenWidth, 40)];
+    writeView.backgroundColor = [UIColor lightGrayColor];
+    IQTextView *textView      = [[IQTextView alloc]initWithFrame:CGRectMake(5, 3, ScreenWidth - 10, 34)];
+    textView.delegate         = self;
+    textView.placeholder      = @"回复楼主";
+    textView.font             = [UIFont fontWithName:@"HelveticaNeue" size:15];
+    textView.textColor        = [UIColor colorWithWhite:0.149 alpha:1.000];
+    [writeView addSubview:textView];
+    [self.view addSubview:writeView];
+    
     //底部回复条;
 }
 
@@ -261,20 +271,12 @@
             ZLPostsDetailVC *vc = [[ZLPostsDetailVC alloc]init];
             vc.tid              = tidStr;
             [self.navigationController pushViewController:vc animated:YES];
-            
-            
         }else{
         
             if ([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:linkStr]]){
                 [[UIApplication sharedApplication]openURL:[NSURL URLWithString:linkStr]];
-        
             }
         }
-        
-        
-        
-        
-
     }
 }
 
@@ -286,6 +288,13 @@
         
     }];
 }
+
+- (void)textViewDidChange:(UITextView *)textView{
+    NSDictionary *attribute = @{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:15]};
+    CGSize contentSize      = [textView.text sizeWithAttributes:attribute];//计算文字长度
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

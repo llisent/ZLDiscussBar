@@ -76,7 +76,7 @@
 - (void)creatReloadBar{
     UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(ScreenWidth - 76, ScreenHeight - 64 - 49 - 10 - 66 , 66, 66)];
     bgView.layer.cornerRadius = 12;
-    bgView.backgroundColor = [UIColor colorWithWhite:0.784 alpha:0.619];
+    bgView.backgroundColor = [UIColor colorWithWhite:0.784 alpha:0.400];
     
     self.reloadBtn = [[UIButton alloc]initWithFrame:CGRectMake(4, 4, 58, 58)];
     [self.reloadBtn setImage:[UIImage imageNamed:@"pic_icon_fresh"] forState:UIControlStateNormal];
@@ -168,6 +168,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ZLCostomPostsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mainCell" forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     ZLPostsModel *model = self.dataArray[indexPath.row];
     [cell updateInformationWithModel:model];
     return cell;

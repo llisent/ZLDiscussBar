@@ -9,6 +9,7 @@
 #import "ZLPersonalCenter.h"
 #import "ZLPersonalCenterView.h"
 #import "ZLPersonalCenterCell.h"
+#import "ZLSettingViewController.h"
 
 @interface ZLPersonalCenter ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -111,6 +112,36 @@
             break;
     }
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (indexPath.row) {
+        case 0:
+            
+            break;
+        case 1:
+            
+            break;
+        case 2:
+            
+            break;
+        case 3:
+            
+            break;
+        case 4:{
+            ZLSettingViewController *setting = [[ZLSettingViewController alloc]init];
+            setting.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:setting animated:YES];
+        }
+            
+            break;
+        case 5:
+            
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

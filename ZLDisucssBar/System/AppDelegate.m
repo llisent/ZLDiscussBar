@@ -17,9 +17,25 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"ZLLogin" bundle:[NSBundle mainBundle]];
-//    UINavigationController *navi = [sb instantiateInitialViewController];
     ReadCookies
+    
+    [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"title_bg"] forBarMetrics:UIBarMetricsDefault];
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
+    
+    [[UINavigationBar appearance]setTitleTextAttributes:@{
+                                                          NSForegroundColorAttributeName:[UIColor whiteColor]
+                                                          }];
+    
+    [[UIBarButtonItem appearance]setTitleTextAttributes:@{
+                                                          NSForegroundColorAttributeName:[UIColor colorWithWhite:1.0 alpha:0.8]
+                                                          }
+                                               forState:UIControlStateNormal];
+    
+    UIImage *backImage = [UIImage imageNamed:@"back"];
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[backImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, backImage.size.width, 0, 0)]
+                                                      forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-233, 0) forBarMetrics:UIBarMetricsDefault];
 
     self.window                    = [[UIWindow alloc]initWithFrame:ScreenBonds];
     HomeGuide *guide               = [[HomeGuide alloc]init];
