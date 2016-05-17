@@ -35,8 +35,8 @@
     return [[NSUserDefaults standardUserDefaults]boolForKey:@"downLoadImage"];
 }
 
-- (NSInteger)avatarMass{
-    return [[NSUserDefaults standardUserDefaults]integerForKey:@"avatarMass"];
+- (NSString *)avatarMass{
+    return [[NSUserDefaults standardUserDefaults]objectForKey:@"avatarMass"];
 }
 
 - (BOOL)downLoadAvatar{

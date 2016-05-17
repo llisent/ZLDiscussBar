@@ -38,8 +38,14 @@
     }
     
     // ------头像
-    [self.avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://uc.zuanke8.com/avatar.php?uid=%@&size=big",model.authorid]]];
-    
+    NSString *mass = [[ZLGlobal sharedInstence]avatarMass];
+    if ([mass isEqualToString:@"big"] || [mass isEqualToString:@"small"]) {
+        NSString *iconUrl      = [NSString stringWithFormat:@"http://uc.zuanke8.com/avatar.php?uid=%@&size=%@",model.authorid,mass];
+        [self.avatar sd_setImageWithURL:[NSURL URLWithString:iconUrl]];
+    }else{
+        self.avatar.image = [UIImage imageNamed:@"noavatar_big.gif"];
+    }
+        
     // ------用户名 & 时间
     self.author.text = model.author;
     self.time.text   = model.dateline;

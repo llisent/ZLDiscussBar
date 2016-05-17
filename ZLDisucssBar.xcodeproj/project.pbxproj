@@ -73,6 +73,8 @@
 		6A881A4D1CE30843000B20DE /* smile7.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6A881A1D1CE30843000B20DE /* smile7.gif */; };
 		6A881A4E1CE30843000B20DE /* smile8.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6A881A1E1CE30843000B20DE /* smile8.gif */; };
 		6A881A4F1CE30843000B20DE /* smile9.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6A881A1F1CE30843000B20DE /* smile9.gif */; };
+		6A8DBBAE1CEB0EF7008542BA /* ZLPersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8DBBAC1CEB0EF7008542BA /* ZLPersonalInfoViewController.m */; };
+		6A8DBBAF1CEB0EF7008542BA /* ZLPersonalInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A8DBBAD1CEB0EF7008542BA /* ZLPersonalInfoViewController.xib */; };
 		6A8F600A1CE2DBF0000C81D3 /* ZLPostDetailCellNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8F60091CE2DBF0000C81D3 /* ZLPostDetailCellNew.m */; };
 		6AA2DFA61CDC8E90002067A0 /* bg1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6AA2DFA51CDC8E90002067A0 /* bg1.jpg */; };
 		6AA2DFA81CDC9FF6002067A0 /* icon_frs_reload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AA2DFA71CDC9FF6002067A0 /* icon_frs_reload@2x.png */; };
@@ -192,6 +194,9 @@
 		6A881A1D1CE30843000B20DE /* smile7.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = smile7.gif; sourceTree = "<group>"; };
 		6A881A1E1CE30843000B20DE /* smile8.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = smile8.gif; sourceTree = "<group>"; };
 		6A881A1F1CE30843000B20DE /* smile9.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = smile9.gif; sourceTree = "<group>"; };
+		6A8DBBAB1CEB0EF7008542BA /* ZLPersonalInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPersonalInfoViewController.h; sourceTree = "<group>"; };
+		6A8DBBAC1CEB0EF7008542BA /* ZLPersonalInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPersonalInfoViewController.m; sourceTree = "<group>"; };
+		6A8DBBAD1CEB0EF7008542BA /* ZLPersonalInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLPersonalInfoViewController.xib; sourceTree = "<group>"; };
 		6A8F60081CE2DBF0000C81D3 /* ZLPostDetailCellNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPostDetailCellNew.h; sourceTree = "<group>"; };
 		6A8F60091CE2DBF0000C81D3 /* ZLPostDetailCellNew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPostDetailCellNew.m; sourceTree = "<group>"; };
 		6AA2DFA51CDC8E90002067A0 /* bg1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg1.jpg; sourceTree = "<group>"; };
@@ -414,6 +419,16 @@
 			path = default;
 			sourceTree = "<group>";
 		};
+		6A8DBBAA1CEB0ED6008542BA /* PersonalInfo */ = {
+			isa = PBXGroup;
+			children = (
+				6A8DBBAB1CEB0EF7008542BA /* ZLPersonalInfoViewController.h */,
+				6A8DBBAC1CEB0EF7008542BA /* ZLPersonalInfoViewController.m */,
+				6A8DBBAD1CEB0EF7008542BA /* ZLPersonalInfoViewController.xib */,
+			);
+			path = PersonalInfo;
+			sourceTree = "<group>";
+		};
 		6AA2DFBB1CDCB5C3002067A0 /* PostsDetailCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -622,6 +637,7 @@
 		DD0CFE2F1CD1B5320002531F /* PersonalCenter */ = {
 			isa = PBXGroup;
 			children = (
+				6A8DBBAA1CEB0ED6008542BA /* PersonalInfo */,
 				6A69E9FF1CE96BC000A6BA95 /* Setting */,
 				DD0CFE371CD1B5AA0002531F /* ZLPersonalCenter.h */,
 				DD0CFE381CD1B5AA0002531F /* ZLPersonalCenter.m */,
@@ -726,6 +742,7 @@
 				6A69EA1B1CE9AD7700A6BA95 /* ZLAvatarMode.xib in Resources */,
 				6ABC3DB81CDC429F006BDC65 /* noavatar_big.gif in Resources */,
 				6A881A3B1CE30843000B20DE /* smile12.gif in Resources */,
+				6A8DBBAF1CEB0EF7008542BA /* ZLPersonalInfoViewController.xib in Resources */,
 				6A881A251CE30843000B20DE /* smile162.gif in Resources */,
 				DD0CFE251CD1B0750002531F /* LaunchScreen.storyboard in Resources */,
 				6A65F15C1CD9C8D300B69DF4 /* Tips in Resources */,
@@ -857,6 +874,7 @@
 				6A69EA0B1CE9778800A6BA95 /* ZLSettingViewController.m in Sources */,
 				6AD52D5E1CD0BF6C00207D23 /* CostomPickerView.m in Sources */,
 				6AD52D6A1CD0BF9E00207D23 /* ZLGlobal.m in Sources */,
+				6A8DBBAE1CEB0EF7008542BA /* ZLPersonalInfoViewController.m in Sources */,
 				6AD52D7A1CD0BFBE00207D23 /* ZLCheckSecurityCodeVc.m in Sources */,
 				6ABE1FA11CDB390600B9AD6E /* ZLPersonalCenterView.m in Sources */,
 				6A0187591CE07148003DA05B /* ZLPostDetailModel.m in Sources */,

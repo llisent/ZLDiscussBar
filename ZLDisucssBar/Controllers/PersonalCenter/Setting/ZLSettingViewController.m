@@ -20,7 +20,6 @@
     [super viewDidLoad];
     self.title = @"设置";
     [self performSelectorInBackground:@selector(checkMemory) withObject:nil];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -30,7 +29,7 @@
 
 - (void)checkMemory{
     NSUInteger a = [[SDImageCache sharedImageCache]getSize] / 1024 / 1024;
-    dispatch_sync(dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_main_queue(), ^{
         self.memorySizeLabel.text = [NSString stringWithFormat:@"%ldM",a];
     });
 }
@@ -47,18 +46,25 @@
 
 //清理缓存效果 -- 仿Weibo清理缓存
 - (IBAction)cleanCache:(id)sender {
+    
     UIView *cleanView          = [[UIView alloc]initWithFrame:ScreenBonds];
     cleanView.backgroundColor  = [UIColor clearColor];
-    UIView *hiddenView         = [[UIView alloc]initWithFrame:CGRectMake(0, ScreenHeight, ScreenWidth, 115)];
+    UIView *hiddenView         = [[UIView alloc]initWithFrame:CGRectMake(0, ScreenHeight, ScreenWidth, 100)];
     hiddenView.backgroundColor = [UIColor colorWithWhite:0.871 alpha:1.000];
-    UIButton *sureBtn          = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 55)];
+    UIButton *sureBtn          = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 48)];
     sureBtn.backgroundColor    = [UIColor whiteColor];
-    UIButton *cancalBtn        = [[UIButton alloc]initWithFrame:CGRectMake(0, 60, ScreenWidth, 55)];
+    UIButton *cancalBtn        = [[UIButton alloc]initWithFrame:CGRectMake(0, 52, ScreenWidth, 48)];
     cancalBtn.backgroundColor  = [UIColor whiteColor];
+    
     [sureBtn setTitle:@"确定" forState:UIControlStateNormal];
     [cancalBtn setTitle:@"取消" forState:UIControlStateNormal];
+    
+    sureBtn.titleLabel.font   = [UIFont fontWithName:@"HelveticaNeue" size:15];
+    cancalBtn.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:15];
+    
     [sureBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [cancalBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
     [sureBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
         [UIView animateWithDuration:0.3 animations:^{
             cleanView.backgroundColor  = [UIColor clearColor];
@@ -68,7 +74,11 @@
             if (cleanView.superview) {
                 [cleanView removeFromSuperview];
             }
-            NSLog(@"此处清理缓存");
+            __weak typeof(self)weakSelf = self;
+            [[SDImageCache sharedImageCache]clearDiskOnCompletion:^{
+                [SVProgressHUD showSuccessWithStatus:@"清理完毕" maskType:SVProgressHUDMaskTypeBlack];
+                [weakSelf checkMemory];
+            }];
         }];
         
     }];
@@ -102,7 +112,7 @@
     [[[UIApplication sharedApplication]keyWindow]addSubview:cleanView];
     [UIView animateWithDuration:0.3 animations:^{
         cleanView.backgroundColor  = [UIColor colorWithWhite:0.000 alpha:0.300];
-        hiddenView.top             = ScreenHeight - 115;
+        hiddenView.top             = ScreenHeight - 100;
     }];
 }
 

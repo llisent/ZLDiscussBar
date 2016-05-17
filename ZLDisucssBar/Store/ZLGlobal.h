@@ -26,7 +26,7 @@
 @property (nonatomic ,assign) BOOL downLoadImage;
 
 /** 加载头像质量*/
-@property (nonatomic ,assign) NSInteger avatorMass;
+@property (nonatomic ,strong) NSString *avatarMass;
 
 /** 是否加载头像*/
 @property (nonatomic ,assign) BOOL downLoadAvatar;

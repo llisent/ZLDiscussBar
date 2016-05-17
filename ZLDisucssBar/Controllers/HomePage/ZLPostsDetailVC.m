@@ -11,7 +11,7 @@
 #import "ZLScrollImageVC.h"
 #import "ZLPostDetailCellView.h"
 
-@interface ZLPostsDetailVC ()<UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
+@interface ZLPostsDetailVC ()<UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, TYAttributedLabelDelegate>
 
 /** TableView*/
 @property (nonatomic ,strong) UITableView    *mainTableView;
@@ -58,6 +58,8 @@
     });
     
     [[ZLNetworkManager sharedInstence]getDetailInfoWithPage:self.page tid:self.tid block:^(NSDictionary *dict) {
+        
+        [ZLGlobal sharedInstence].gachincoFormHash = dict[@"formhash"];
         NSArray *arr = dict[@"postlist"];
         if (self.dataArray.count !=0 && arr.count!= 10) {
             self.page--;
@@ -101,9 +103,9 @@
 }
 
 - (void)creatConstomUI{
-    self.mainTableView            = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-64)];
-    self.mainTableView.delegate   = self;
-    self.mainTableView.dataSource = self;
+    self.mainTableView                = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-64-50)];
+    self.mainTableView.delegate       = self;
+    self.mainTableView.dataSource     = self;
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
     [self.mainTableView registerNib:[UINib nibWithNibName:@"ZLPostDetailCellView" bundle:nil] forCellReuseIdentifier:@"detailCell"];
@@ -115,18 +117,54 @@
     [self.view addSubview:self.mainTableView];
 }
 
+//创建底部回复区
 - (void)creatToolBar{
-    UIView *writeView         = [[UIView alloc]initWithFrame:CGRectMake(0, ScreenHeight-104, ScreenWidth, 40)];
-    writeView.backgroundColor = [UIColor lightGrayColor];
-    IQTextView *textView      = [[IQTextView alloc]initWithFrame:CGRectMake(5, 3, ScreenWidth - 10, 34)];
-    textView.delegate         = self;
-    textView.placeholder      = @"回复楼主";
-    textView.font             = [UIFont fontWithName:@"HelveticaNeue" size:15];
-    textView.textColor        = [UIColor colorWithWhite:0.149 alpha:1.000];
+    //底部父View
+    UIView *writeView           = [[UIView alloc]init];
+    writeView.backgroundColor   = [UIColor colorWithWhite:0.922 alpha:1.000];
+
+    IQTextView *textView        = [[IQTextView alloc]initWithFrame:CGRectMake(10, 10, ScreenWidth - 80, 30)];
+    textView.delegate           = self;
+    textView.tag                = 1111;
+    textView.layer.cornerRadius = 8;
+    textView.clipsToBounds      = YES;
+    textView.delegate           = self;
+    textView.placeholder        = @"回复楼主";
+    textView.font               = [UIFont fontWithName:@"HelveticaNeue" size:15];
+    textView.textColor          = [UIColor colorWithWhite:0.149 alpha:1.000];
     [writeView addSubview:textView];
     [self.view addSubview:writeView];
+
+    UIButton *send              = [[UIButton alloc]init];
+    [send setTitle:@"发送" forState:UIControlStateNormal];
+    send.layer.cornerRadius     = 12;
+    send.clipsToBounds          = YES;
+    send.titleLabel.font        = [UIFont fontWithName:@"HelveticaNeue" size:15];
+    [send setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    send.backgroundColor        = [UIColor orangeColor];
+    [send addBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
+        [self replyPosts];
+    }];
+    [writeView addSubview:send];
     
-    //底部回复条;
+    [send mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(writeView);
+        make.left.mas_equalTo(textView.mas_right).offset(10);
+        make.right.equalTo(self.view).offset(-10);
+        make.height.mas_equalTo(@30);
+    }];
+    
+    [writeView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.view);
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view);
+        make.height.mas_equalTo(textView.mas_height).offset(20);
+    }];
+    
+    
+    IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
+    manager.placeholderFont = [UIFont fontWithName:@"placeholder" size:15];
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -134,17 +172,13 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    ZLPostDetailModel *model  = self.dataArray[indexPath.row];
-    ZLPostDetailCellView *cell = [tableView dequeueReusableCellWithIdentifier:@"detailCell" forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    ZLPostDetailModel *model   = self.dataArray[indexPath.row];
+    ZLPostDetailCellView *cell = [tableView dequeueReusableCellWithIdentifier:@"detailCell" forIndexPath:indexPath];
+    cell.selectionStyle        = UITableViewCellSelectionStyleNone;
     
     [cell updateInfomationWith:model];
-    
     [self deepAssignmentWithCell:cell Model:model rowNum:indexPath.row];
-    
-
-    
     return cell;
 }
 
@@ -153,8 +187,8 @@
     {
         cell.quoteLabel.textContainer = nil;
         cell.replyLabel.textContainer = nil;
-        cell.quoteLabel.delegate = self;
-        cell.replyLabel.delegate = self;
+        cell.quoteLabel.delegate      = self;
+        cell.replyLabel.delegate      = self;
         [cell.imageBedView removeAllSubviews];
     }
 
@@ -256,12 +290,19 @@
 
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ZLPostDetailModel *model = self.dataArray[indexPath.row];
+    IQTextView *textView     = [self.view viewWithTag:1111];
+    textView.placeholder     = [NSString stringWithFormat:@"回复%@",model.author];
+    [textView becomeFirstResponder];
+    
+}
+
 - (void)attributedLabel:(TYAttributedLabel *)attributedLabel textStorageClicked:(id<TYTextStorageProtocol>)textStorage atPoint:(CGPoint)point{
     if ([textStorage isKindOfClass:[TYLinkTextStorage class]]) {
 
         id linkStr = ((TYLinkTextStorage*)textStorage).linkData;
         
-        #warning 还有几种形式 待加入
         NSRange range = [linkStr rangeOfString:@"http://www.zuanke8.com/thread-"];
         
         if (range.length != 0) {
@@ -272,12 +313,19 @@
             vc.tid              = tidStr;
             [self.navigationController pushViewController:vc animated:YES];
         }else{
-        
             if ([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:linkStr]]){
                 [[UIApplication sharedApplication]openURL:[NSURL URLWithString:linkStr]];
             }
         }
     }
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+    CGSize constraintSize;
+    constraintSize.width  = textView.frame.size.width;
+    constraintSize.height = MAXFLOAT;
+    CGSize sizeFrame      = [textView sizeThatFits:constraintSize];
+    textView.frame        = CGRectMake(textView.frame.origin.x,textView.frame.origin.y,textView.frame.size.width,sizeFrame.height);
 }
 
 - (void)showImageWith:(UIImage *)img{
@@ -289,12 +337,23 @@
     }];
 }
 
-- (void)textViewDidChange:(UITextView *)textView{
-    NSDictionary *attribute = @{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:15]};
-    CGSize contentSize      = [textView.text sizeWithAttributes:attribute];//计算文字长度
+- (void)replyPosts{
+    IQTextView *textView = [self.view viewWithTag:1111];
+    [SVProgressHUD showWithStatus:@"发送中" maskType:SVProgressHUDMaskTypeBlack];
+    
+    [[ZLNetworkManager sharedInstence]userReplyWithTid:self.tid formHash:[ZLGlobal sharedInstence].gachincoFormHash message:textView.text block:^(NSDictionary *dict) {
+        [SVProgressHUD dismiss];
+        NSString *mess = dict[@"Message"][@"messageval"];
+        if ([mess isEqualToString:@"post_reply_succeed"]) {
+            [SVProgressHUD showSuccessWithStatus:@"发布成功" maskType:SVProgressHUDMaskTypeBlack];
+            [self initData];
+        }else{
+            [SVProgressHUD showErrorWithStatus:@"发布失败" maskType:SVProgressHUDMaskTypeBlack];
+        }
+    } failure:^(NSError *error) {
+        
+    }];
 }
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

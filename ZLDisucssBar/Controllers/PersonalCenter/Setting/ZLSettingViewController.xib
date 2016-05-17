@@ -95,22 +95,22 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iqm-QQ-Sap">
                             <rect key="frame" x="0.0" y="113" width="375" height="45"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="推送通知" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rMA-As-gsF">
-                                    <rect key="frame" x="12" y="15" width="56" height="17"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推送通知" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rMA-As-gsF">
+                                    <rect key="frame" x="12" y="14" width="56" height="17"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                     <color key="textColor" red="0.22352941179999999" green="0.22352941179999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav_icon_back" translatesAutoresizingMaskIntoConstraints="NO" id="WKM-ld-mHC">
-                                    <rect key="frame" x="353" y="14" width="12" height="18"/>
-                                </imageView>
+                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I39-YL-3pV">
+                                    <rect key="frame" x="316" y="7" width="51" height="31"/>
+                                </switch>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="WKM-ld-mHC" firstAttribute="centerY" secondItem="iqm-QQ-Sap" secondAttribute="centerY" id="1Hn-iu-rzR"/>
                                 <constraint firstAttribute="height" constant="45" id="67r-t8-gPM"/>
+                                <constraint firstAttribute="trailing" secondItem="I39-YL-3pV" secondAttribute="trailing" constant="10" id="69a-fa-zhc"/>
                                 <constraint firstItem="rMA-As-gsF" firstAttribute="leading" secondItem="iqm-QQ-Sap" secondAttribute="leading" constant="12" id="Ctc-iI-5hC"/>
-                                <constraint firstAttribute="trailing" secondItem="WKM-ld-mHC" secondAttribute="trailing" constant="10" id="P6t-i0-6QX"/>
+                                <constraint firstItem="I39-YL-3pV" firstAttribute="centerY" secondItem="rMA-As-gsF" secondAttribute="centerY" id="Q7J-Bx-70E"/>
                                 <constraint firstItem="rMA-As-gsF" firstAttribute="centerY" secondItem="iqm-QQ-Sap" secondAttribute="centerY" id="nTO-yr-OvT"/>
                             </constraints>
                         </view>
@@ -124,8 +124,8 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FKT-KZ-rhC">
                             <rect key="frame" x="0.0" y="159" width="375" height="45"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="通用设置" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXU-Hj-zi9">
-                                    <rect key="frame" x="12" y="15" width="56" height="17"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="通用设置(待完成)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hXU-Hj-zi9">
+                                    <rect key="frame" x="12" y="14" width="106" height="17"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                     <color key="textColor" red="0.22352941179999999" green="0.22352941179999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -153,8 +153,8 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VEg-vC-xsO">
                             <rect key="frame" x="0.0" y="205" width="375" height="45"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="清理缓存" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qp5-6m-Lxe">
-                                    <rect key="frame" x="12" y="15" width="56" height="17"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="清理缓存" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qp5-6m-Lxe">
+                                    <rect key="frame" x="12" y="14" width="56" height="17"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                     <color key="textColor" red="0.22352941179999999" green="0.22352941179999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>

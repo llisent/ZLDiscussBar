@@ -114,4 +114,28 @@
 }
 
 
+
+//回复测试
+- (void)userReplyWithTid:(NSString *)tid
+                formHash:(NSString *)hash
+                 message:(NSString *)msg
+                   block:(void (^)(NSDictionary *dict))success
+                 failure:(void (^)(NSError *error))failure{
+    NSString *url = [NSString stringWithFormat:@"http://www.zuanke8.com/api/mobile/index.php?charset=utf-8&module=sendreply&mobile=no&replysubmit=yes&version=3&tid=%@",tid];
+    NSDictionary *par = @{@"charset":@"utf-8",
+                          @"formhash":hash,
+                          @"message":msg,
+                          @"mobiletype":@"2"};
+    
+    
+    [netManager POST:url parameters:par success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        success(responseObject);
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        failure(error);
+    }];
+    
+    
+}
+
+
 @end

@@ -10,12 +10,13 @@
 #import "ZLPersonalCenterView.h"
 #import "ZLPersonalCenterCell.h"
 #import "ZLSettingViewController.h"
+#import "ZLPersonalInfoViewController.h"
 
 @interface ZLPersonalCenter ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic ,strong) ZLPersonalCenterView *header;
 
-@property (nonatomic ,strong) UITableView *mainTableView;
+@property (nonatomic ,strong) UITableView          *mainTableView;
 
 @end
 
@@ -81,7 +82,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ZLPersonalCenterCell *cell = [tableView dequeueReusableCellWithIdentifier:@"personalCell" forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleGray;
     switch (indexPath.row) {
         case 0:
             cell.titleLabel.text = @"个人信息";
@@ -116,8 +116,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
-        case 0:
-            
+        case 0:{
+            ZLPersonalInfoViewController *person = [[ZLPersonalInfoViewController alloc]init];
+            person.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:person animated:YES];
+        }
             break;
         case 1:
             

@@ -17,7 +17,42 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"头像模式";
-    // Do any additional setup after loading the view from its nib.
+    NSString *string = [[ZLGlobal sharedInstence]avatarMass];
+    if ([string isEqualToString:@"high"]) {
+        self.highMassImage.hidden   = NO;
+        self.normalMassImage.hidden = YES;
+        self.noImage.hidden         = YES;
+    }else if ([string isEqualToString:@"no"]){
+        self.highMassImage.hidden   = YES;
+        self.normalMassImage.hidden = YES;
+        self.noImage.hidden         = NO;
+    }else{
+        self.highMassImage.hidden   = YES;
+        self.normalMassImage.hidden = NO;
+        self.noImage.hidden         = YES;
+    }
+}
+- (IBAction)highMassOnClick:(id)sender {
+    self.highMassImage.hidden   = NO;
+    self.normalMassImage.hidden = YES;
+    self.noImage.hidden         = YES;
+    
+    [[NSUserDefaults standardUserDefaults]setValue:@"big" forKey:@"avatarMass"];
+}
+- (IBAction)normalMassOnClick:(id)sender {
+    self.highMassImage.hidden   = YES;
+    self.normalMassImage.hidden = NO;
+    self.noImage.hidden         = YES;
+    
+    [[NSUserDefaults standardUserDefaults]setValue:@"small" forKey:@"avatarMass"];
+}
+- (IBAction)noImageOnClick:(id)sender {
+    self.highMassImage.hidden   = YES;
+    self.normalMassImage.hidden = YES;
+    self.noImage.hidden         = NO;
+    
+    [[NSUserDefaults standardUserDefaults]setValue:@"no" forKey:@"avatarMass"];
+
 }
 
 - (void)didReceiveMemoryWarning {

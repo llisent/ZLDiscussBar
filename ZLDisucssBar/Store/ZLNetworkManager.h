@@ -51,4 +51,10 @@
                         block:(void (^)(NSDictionary *dict))success
                       failure:(void (^)(NSError *error))failure;
 
+- (void)userReplyWithTid:(NSString *)tid
+                formHash:(NSString *)hash
+                 message:(NSString *)msg
+                   block:(void (^)(NSDictionary *dict))success
+                 failure:(void (^)(NSError *error))failure;
+
 @end

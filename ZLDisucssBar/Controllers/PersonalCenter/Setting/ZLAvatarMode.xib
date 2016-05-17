@@ -7,6 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZLAvatarMode">
             <connections>
+                <outlet property="highMassImage" destination="1Gh-no-MfB" id="7Tj-pG-1ke"/>
+                <outlet property="noImage" destination="KlU-BO-vyc" id="4KI-z7-gbC"/>
+                <outlet property="normalMassImage" destination="qHg-CV-IvZ" id="Rsy-7N-ie3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -25,8 +28,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FQo-tQ-qJv">
                     <rect key="frame" x="0.0" y="21" width="375" height="45"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="高清头像(缓存高清头像)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tFH-jI-2D6">
-                            <rect key="frame" x="12" y="14" width="148" height="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="高清头像 (缓存高清头像)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tFH-jI-2D6">
+                            <rect key="frame" x="12" y="14" width="152" height="17"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                             <color key="textColor" red="0.22352941176470587" green="0.22352941176470587" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -36,6 +39,7 @@
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstItem="tFH-jI-2D6" firstAttribute="centerY" secondItem="FQo-tQ-qJv" secondAttribute="centerY" id="JVg-yW-ZJS"/>
                         <constraint firstAttribute="height" constant="45" id="Q6T-g3-hsw"/>
@@ -43,6 +47,9 @@
                         <constraint firstAttribute="trailing" secondItem="1Gh-no-MfB" secondAttribute="trailing" constant="12" id="eQR-7r-bcn"/>
                         <constraint firstItem="tFH-jI-2D6" firstAttribute="leading" secondItem="FQo-tQ-qJv" secondAttribute="leading" constant="12" id="x0K-hk-kbZ"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="jVQ-OA-aTx" appends="YES" id="qIi-Ii-nZT"/>
+                    </connections>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cqb-yp-XJs">
                     <rect key="frame" x="0.0" y="66" width="375" height="1"/>
@@ -54,8 +61,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TRV-Fr-ltZ">
                     <rect key="frame" x="0.0" y="67" width="375" height="45"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="普通头(缓存普通头像)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdZ-w5-Uwn">
-                            <rect key="frame" x="12" y="14" width="134" height="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="普通头像 (缓存普通头像--推荐)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdZ-w5-Uwn">
+                            <rect key="frame" x="12" y="14" width="191" height="17"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                             <color key="textColor" red="0.22352941176470587" green="0.22352941176470587" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -65,6 +72,7 @@
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="qHg-CV-IvZ" secondAttribute="trailing" constant="12" id="4Zk-FJ-enx"/>
                         <constraint firstItem="cdZ-w5-Uwn" firstAttribute="leading" secondItem="TRV-Fr-ltZ" secondAttribute="leading" constant="12" id="Hbb-OA-z8G"/>
@@ -72,6 +80,9 @@
                         <constraint firstItem="qHg-CV-IvZ" firstAttribute="centerY" secondItem="TRV-Fr-ltZ" secondAttribute="centerY" id="hDS-36-Vgd"/>
                         <constraint firstAttribute="height" constant="45" id="vEB-gQ-CzZ"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="T9D-wu-HHg" appends="YES" id="y97-Mc-E0d"/>
+                    </connections>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="azL-zT-7eq">
                     <rect key="frame" x="0.0" y="112" width="375" height="1"/>
@@ -83,8 +94,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WKH-Xu-tgq">
                     <rect key="frame" x="0.0" y="113" width="375" height="45"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="系统默认头像(节省流量)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqe-R1-pUQ">
-                            <rect key="frame" x="12" y="14" width="148" height="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="系统默认头像 (节省流量)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqe-R1-pUQ">
+                            <rect key="frame" x="12" y="14" width="152" height="17"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                             <color key="textColor" red="0.22352941176470587" green="0.22352941176470587" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -94,6 +105,7 @@
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="KlU-BO-vyc" secondAttribute="trailing" constant="12" id="8X2-bO-Kdb"/>
                         <constraint firstItem="KlU-BO-vyc" firstAttribute="centerY" secondItem="WKH-Xu-tgq" secondAttribute="centerY" id="Gvd-0g-WAe"/>
@@ -101,6 +113,9 @@
                         <constraint firstAttribute="height" constant="45" id="k3N-a7-SMa"/>
                         <constraint firstItem="xqe-R1-pUQ" firstAttribute="leading" secondItem="WKH-Xu-tgq" secondAttribute="leading" constant="12" id="wta-ZJ-wLv"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="v8q-AO-c4E" appends="YES" id="hD5-bM-2hT"/>
+                    </connections>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pQd-1E-dhY">
                     <rect key="frame" x="0.0" y="158" width="375" height="1"/>
@@ -136,6 +151,21 @@
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
         </view>
+        <tapGestureRecognizer id="jVQ-OA-aTx" userLabel="high">
+            <connections>
+                <action selector="highMassOnClick:" destination="-1" id="cWt-n0-yLJ"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="T9D-wu-HHg" userLabel="normal">
+            <connections>
+                <action selector="normalMassOnClick:" destination="-1" id="rGA-ie-yhm"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="v8q-AO-c4E" userLabel="no">
+            <connections>
+                <action selector="noImageOnClick:" destination="-1" id="T6N-Bw-Nae"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="common_icon_checkmark" width="16" height="12"/>

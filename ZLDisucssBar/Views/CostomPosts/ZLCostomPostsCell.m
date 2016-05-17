@@ -17,12 +17,18 @@
 
 #pragma mark - **************** 更新数据
 - (void)updateInformationWithModel:(ZLPostsModel *)model{
-    NSString *iconUrl      = [NSString stringWithFormat:@"http://uc.zuanke8.com/avatar.php?uid=%@&size=small",model.authorid];
+    NSString *mass = [[ZLGlobal sharedInstence]avatarMass];
+    if ([mass isEqualToString:@"big"] || [mass isEqualToString:@"small"]) {
+        NSString *iconUrl      = [NSString stringWithFormat:@"http://uc.zuanke8.com/avatar.php?uid=%@&size=%@",model.authorid,mass];
+        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:iconUrl]];
+    }else{
+        self.avatarImageView.image = [UIImage imageNamed:@"noavatar_big.gif"];
+    }
+    
     self.author.text       = model.author;
     self.title.text        = model.subject;
     self.reportNum.text    = model.replies;
     self.lastPostTime.text = model.dateline;
-    [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:iconUrl]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
