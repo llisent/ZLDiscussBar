@@ -42,7 +42,6 @@
         while ([theScannerFirst isAtEnd] == NO) {
             
             [theScannerFirst scanUpToString:@"<img" intoString:NULL];
-            
             [theScannerFirst scanUpToString:@"smilieid=\"" intoString:&textFirst];
             
             if (textFirst.length != 0) {
@@ -99,7 +98,7 @@
                 if (self.isReply) {
                     self.message = [self.message stringByReplacingOccurrencesOfString:result withString:url];
                 }else{
-                    allValues = [allValues stringByReplacingOccurrencesOfString:result withString:url];
+                    allValues    = [allValues stringByReplacingOccurrencesOfString:result withString:url];
                 }
                 [urlStr setString:@""];
                 textSecond = @"";

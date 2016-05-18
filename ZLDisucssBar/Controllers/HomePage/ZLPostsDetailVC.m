@@ -57,6 +57,8 @@
         self.tid = @"3070779";
     });
     
+//    [self.view showLoadingWithStatus:@"加载中"];
+
     [[ZLNetworkManager sharedInstence]getDetailInfoWithPage:self.page tid:self.tid block:^(NSDictionary *dict) {
         
         [ZLGlobal sharedInstence].gachincoFormHash = dict[@"formhash"];
@@ -325,7 +327,10 @@
     constraintSize.width  = textView.frame.size.width;
     constraintSize.height = MAXFLOAT;
     CGSize sizeFrame      = [textView sizeThatFits:constraintSize];
-    textView.frame        = CGRectMake(textView.frame.origin.x,textView.frame.origin.y,textView.frame.size.width,sizeFrame.height);
+    textView.frame        = CGRectMake(textView.frame.origin.x,
+                                       textView.frame.origin.y,
+                                       textView.frame.size.width,
+                                       sizeFrame.height);
 }
 
 - (void)showImageWith:(UIImage *)img{
@@ -345,10 +350,12 @@
         [SVProgressHUD dismiss];
         NSString *mess = dict[@"Message"][@"messageval"];
         if ([mess isEqualToString:@"post_reply_succeed"]) {
-            [SVProgressHUD showSuccessWithStatus:@"发布成功" maskType:SVProgressHUDMaskTypeBlack];
+            [SVProgressHUD showSuccessWithStatus:@"发布成功"
+                                        maskType:SVProgressHUDMaskTypeBlack];
             [self initData];
         }else{
-            [SVProgressHUD showErrorWithStatus:@"发布失败" maskType:SVProgressHUDMaskTypeBlack];
+            [SVProgressHUD showErrorWithStatus:@"发布失败"
+                                      maskType:SVProgressHUDMaskTypeBlack];
         }
     } failure:^(NSError *error) {
         

@@ -15,17 +15,18 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2yP-2z-dUn" userLabel="底层父View">
-                        <rect key="frame" x="0.0" y="0.0" width="493" height="168"/>
+                        <rect key="frame" x="0.0" y="0.0" width="493" height="170"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uhq-pW-fdT">
                                 <rect key="frame" x="10" y="10" width="40" height="40"/>
+                                <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="IER-GI-klK"/>
                                     <constraint firstAttribute="width" constant="40" id="nRl-fJ-06y"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yec-Ye-XVA">
-                                <rect key="frame" x="10" y="62" width="473" height="92"/>
+                                <rect key="frame" x="10" y="62" width="473" height="94"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <color key="textColor" red="0.070588235294117646" green="0.070588235294117646" blue="0.078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -42,7 +43,7 @@
                                 <color key="textColor" red="0.63137254901960782" green="0.62745098039215685" blue="0.65098039215686276" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon_reply_count" translatesAutoresizingMaskIntoConstraints="NO" id="0V4-sp-FlR">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_reply_count" translatesAutoresizingMaskIntoConstraints="NO" id="0V4-sp-FlR">
                                 <rect key="frame" x="442" y="13" width="16" height="16"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="150" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zhX-Ue-6hc">
@@ -84,7 +85,7 @@
                     <constraint firstItem="2yP-2z-dUn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="39a-9E-eKb"/>
                     <constraint firstAttribute="trailing" secondItem="2yP-2z-dUn" secondAttribute="trailing" id="CqL-Cc-GAM"/>
                     <constraint firstItem="2yP-2z-dUn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="SrE-ht-CKa"/>
-                    <constraint firstAttribute="bottom" secondItem="2yP-2z-dUn" secondAttribute="bottom" constant="5" id="z5u-6s-EHH"/>
+                    <constraint firstAttribute="bottom" secondItem="2yP-2z-dUn" secondAttribute="bottom" constant="3" id="z5u-6s-EHH"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -95,7 +96,7 @@
                 <outlet property="reportNum" destination="zhX-Ue-6hc" id="h1g-jQ-q2m"/>
                 <outlet property="title" destination="Yec-Ye-XVA" id="alM-sE-C7Q"/>
             </connections>
-            <point key="canvasLocation" x="391.5" y="168"/>
+            <point key="canvasLocation" x="469.5" y="157"/>
         </tableViewCell>
     </objects>
     <resources>

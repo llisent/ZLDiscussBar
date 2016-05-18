@@ -32,6 +32,8 @@
                                                           }
                                                forState:UIControlStateNormal];
     
+    [[UIBarButtonItem appearance]setTintColor:[UIColor whiteColor]];
+    
     UIImage *backImage = [UIImage imageNamed:@"back"];
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[backImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, backImage.size.width, 0, 0)]
                                                       forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];

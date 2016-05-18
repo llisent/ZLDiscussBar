@@ -37,6 +37,7 @@
 #import <MGSwipeButton.h>
 #import <MGSwipeTableCell.h>
 #import <SVProgressHUD.h>
+#import <JGProgressHUD/JGProgressHUD.h>
 #import <IQKeyboardManager/KeyboardManager.h>
 
 #import <SDImageCache.h>
@@ -44,6 +45,7 @@
 
 #pragma mark - **************** category
 #import "NSString+ZLPostsDetail.h"
+#import "UIView+ZLViewsExpand.h"
 
 typedef NS_ENUM(NSUInteger, HPGetInfoType) {
     HPGetInfoTypeLoadMore,

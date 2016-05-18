@@ -57,7 +57,7 @@
         /**
          *  更多TabBar自定义设置：比如：tabBarItem 的选中和不选中文字和背景图片属性、tabbar 背景图片属性
          */
-        // [[self class] customizeTabBarAppearance];
+         [self customizeTabBarAppearance:tabBarController];
         _tabBarController = tabBarController;
     }
     return _tabBarController;
@@ -76,13 +76,13 @@
                             };
     NSDictionary *dict2 = @{
                             CYLTabBarItemTitle : @"板块",
-                            CYLTabBarItemImage : @"account_normal",
-                            CYLTabBarItemSelectedImage : @"account_highlight",
+                            CYLTabBarItemImage : @"fishpond_normal",
+                            CYLTabBarItemSelectedImage : @"fishpond_highlight",
                             };
     NSDictionary *dict3 = @{
                             CYLTabBarItemTitle : @"书签",
-                            CYLTabBarItemImage : @"home_normal",
-                            CYLTabBarItemSelectedImage : @"home_highlight",
+                            CYLTabBarItemImage : @"message_normal",
+                            CYLTabBarItemSelectedImage : @"message_highlight",
                             };
     NSDictionary *dict4 = @{
                             CYLTabBarItemTitle : @"我的",
@@ -97,6 +97,26 @@
                                        dict4
                                        ];
     tabBarController.tabBarItemsAttributes = tabBarItemsAttributes;
+}
+
+- (void)customizeTabBarAppearance:(CYLTabBarController *)tabBarController{
+    NSMutableDictionary *normalAttrs = [NSMutableDictionary dictionary];
+    normalAttrs[NSForegroundColorAttributeName] = [UIColor grayColor];
+    
+    // set the text color for selected state
+    // 选中状态下的文字属性
+    NSMutableDictionary *selectedAttrs = [NSMutableDictionary dictionary];
+    selectedAttrs[NSForegroundColorAttributeName] = [UIColor colorWithWhite:0.149 alpha:1.000];
+    
+    // set the text Attributes
+    // 设置文字属性
+    UITabBarItem *tabBar = [UITabBarItem appearance];
+    [tabBar setTitleTextAttributes:normalAttrs forState:UIControlStateNormal];
+    [tabBar setTitleTextAttributes:selectedAttrs forState:UIControlStateSelected];
+    
+    [[UITabBar appearance] setBackgroundImage:[[UIImage alloc] init]];
+    [[UITabBar appearance] setBackgroundColor:[UIColor whiteColor]];
+    [[UITabBar appearance] setShadowImage:[UIImage imageNamed:@"tapbar_top_line"]];
 }
 
 

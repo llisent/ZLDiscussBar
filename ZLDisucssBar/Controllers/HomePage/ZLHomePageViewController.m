@@ -179,7 +179,7 @@
     ZLPostsModel *model = self.dataArray[indexPath.row];
     
     CGSize size = [model.subject boundingRectWithSize:CGSizeMake(ScreenWidth-20, CGFLOAT_MAX) options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attribute context:nil].size;
-    return size.height + 86;
+    return size.height + 84 ;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -197,8 +197,8 @@
 }
 
 - (void)test{
-    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithTitle:@"登陆" style:UIBarButtonItemStylePlain target:self action:@selector(login)];
-    [self.navigationItem setLeftBarButtonItem:left];
+    UIBarButtonItem *login = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"homePerson"] style:UIBarButtonItemStylePlain target:self action:@selector(login)];
+    [self.navigationItem setLeftBarButtonItem:login];
 }
 
 - (void)login{

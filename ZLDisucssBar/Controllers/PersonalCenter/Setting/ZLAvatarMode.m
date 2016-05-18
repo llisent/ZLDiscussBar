@@ -18,7 +18,7 @@
     [super viewDidLoad];
     self.title = @"头像模式";
     NSString *string = [[ZLGlobal sharedInstence]avatarMass];
-    if ([string isEqualToString:@"high"]) {
+    if ([string isEqualToString:@"big"]) {
         self.highMassImage.hidden   = NO;
         self.normalMassImage.hidden = YES;
         self.noImage.hidden         = YES;

@@ -20,6 +20,7 @@
     [super viewDidLoad];
     self.title = @"设置";
     [self performSelectorInBackground:@selector(checkMemory) withObject:nil];
+    [self checkNotice];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -32,6 +33,15 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         self.memorySizeLabel.text = [NSString stringWithFormat:@"%ldM",a];
     });
+}
+
+- (void)checkNotice{
+    BOOL notice = [[NSUserDefaults standardUserDefaults]boolForKey:@"notice"];
+    if (!notice) {
+        self.noticeSwitch.on = YES;
+    }else{
+        self.noticeSwitch.on = NO;
+    }
 }
 
 - (IBAction)pictureType:(id)sender {
@@ -119,6 +129,13 @@
 //退出
 - (IBAction)dropOut:(id)sender {
     
+}
+- (IBAction)clickNotice:(id)sender {
+    if (!self.noticeSwitch.isOn) {
+        [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"notice"];
+    }else{
+        [[NSUserDefaults standardUserDefaults]setBool:NO forKey:@"notice"];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

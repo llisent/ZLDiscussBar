@@ -30,7 +30,7 @@
         self.userLntegral.text = @"0果";
     }else{
         [self.userImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://uc.zuanke8.com/avatar.php?uid=%@&size=big",[[ZLUserInfo sharedInstence] userUID]]]
-                        placeholderImage:[UIImage imageNamed:@"noavatar_middle"]];
+                        placeholderImage:[UIImage imageNamed:@"noavatar_big.gif"]];
         self.userName.text     = [[ZLUserInfo sharedInstence] username];
         self.userLevel.text    = dict[@"space"][@"group"][@"grouptitle"];
         self.userLntegral.text = [NSString stringWithFormat:@"%@ 果果",dict[@"space"][@"credits"]];

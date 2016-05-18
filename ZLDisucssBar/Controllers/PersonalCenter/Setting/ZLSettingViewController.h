@@ -11,5 +11,6 @@
 @interface ZLSettingViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *memorySizeLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *noticeSwitch;
 
 @end

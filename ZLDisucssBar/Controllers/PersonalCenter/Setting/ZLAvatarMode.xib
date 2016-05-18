@@ -34,7 +34,7 @@
                             <color key="textColor" red="0.22352941176470587" green="0.22352941176470587" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="common_icon_checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="1Gh-no-MfB">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="common_icon_checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="1Gh-no-MfB">
                             <rect key="frame" x="347" y="16" width="16" height="12"/>
                         </imageView>
                     </subviews>
@@ -67,7 +67,7 @@
                             <color key="textColor" red="0.22352941176470587" green="0.22352941176470587" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="common_icon_checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="qHg-CV-IvZ">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="common_icon_checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="qHg-CV-IvZ">
                             <rect key="frame" x="347" y="16" width="16" height="12"/>
                         </imageView>
                     </subviews>
@@ -100,7 +100,7 @@
                             <color key="textColor" red="0.22352941176470587" green="0.22352941176470587" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="common_icon_checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="KlU-BO-vyc">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="common_icon_checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="KlU-BO-vyc">
                             <rect key="frame" x="347" y="16" width="16" height="12"/>
                         </imageView>
                     </subviews>

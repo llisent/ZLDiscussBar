@@ -15,6 +15,7 @@
 		6A40B4231CD1BB7A0096C14E /* ZLCostomPostsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A40B4211CD1BB7A0096C14E /* ZLCostomPostsCell.m */; };
 		6A40B4241CD1BB7A0096C14E /* ZLCostomPostsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A40B4221CD1BB7A0096C14E /* ZLCostomPostsCell.xib */; };
 		6A59F5151CDAECFB009AA073 /* ZLPostsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A59F5141CDAECFB009AA073 /* ZLPostsModel.m */; };
+		6A5B3C8D1CEC140A00CD7359 /* UIView+ZLViewsExpand.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A5B3C8C1CEC140A00CD7359 /* UIView+ZLViewsExpand.m */; };
 		6A6213C01CE5CA3000628D3D /* ZLPersonalCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6213BE1CE5CA3000628D3D /* ZLPersonalCenterCell.m */; };
 		6A6213C11CE5CA3000628D3D /* ZLPersonalCenterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A6213BF1CE5CA3000628D3D /* ZLPersonalCenterCell.xib */; };
 		6A65F15C1CD9C8D300B69DF4 /* Tips in Resources */ = {isa = PBXBuildFile; fileRef = 6A65F15B1CD9C8D300B69DF4 /* Tips */; };
@@ -131,6 +132,8 @@
 		6A57338E1CCF6D5A00202256 /* ZLDisucssBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZLDisucssBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A59F5131CDAECFB009AA073 /* ZLPostsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPostsModel.h; sourceTree = "<group>"; };
 		6A59F5141CDAECFB009AA073 /* ZLPostsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPostsModel.m; sourceTree = "<group>"; };
+		6A5B3C8B1CEC140A00CD7359 /* UIView+ZLViewsExpand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZLViewsExpand.h"; sourceTree = "<group>"; };
+		6A5B3C8C1CEC140A00CD7359 /* UIView+ZLViewsExpand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZLViewsExpand.m"; sourceTree = "<group>"; };
 		6A6213BD1CE5CA3000628D3D /* ZLPersonalCenterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPersonalCenterCell.h; sourceTree = "<group>"; };
 		6A6213BE1CE5CA3000628D3D /* ZLPersonalCenterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPersonalCenterCell.m; sourceTree = "<group>"; };
 		6A6213BF1CE5CA3000628D3D /* ZLPersonalCenterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLPersonalCenterCell.xib; sourceTree = "<group>"; };
@@ -282,6 +285,8 @@
 			children = (
 				6A0187541CE068F8003DA05B /* NSString+ZLPostsDetail.h */,
 				6A0187551CE068F8003DA05B /* NSString+ZLPostsDetail.m */,
+				6A5B3C8B1CEC140A00CD7359 /* UIView+ZLViewsExpand.h */,
+				6A5B3C8C1CEC140A00CD7359 /* UIView+ZLViewsExpand.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -861,6 +866,7 @@
 				6AFABF1A1CE45FA90042932B /* ZLPostDetailCellView.m in Sources */,
 				6AA2DFB71CDCB1D4002067A0 /* ZLPostsDetailVC.m in Sources */,
 				6A8F600A1CE2DBF0000C81D3 /* ZLPostDetailCellNew.m in Sources */,
+				6A5B3C8D1CEC140A00CD7359 /* UIView+ZLViewsExpand.m in Sources */,
 				6AD52D6B1CD0BF9E00207D23 /* ZLNetworkManager.m in Sources */,
 				DD0CFE3F1CD1B5CC0002531F /* ZLPlateViewController.m in Sources */,
 				6A0187621CE0A938003DA05B /* ZLScrollImageVC.m in Sources */,
