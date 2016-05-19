@@ -12,4 +12,8 @@
 
 - (void)showLoadingWithStatus:(NSString *)status;
 
+- (void)showSuccessWithStatus:(NSString *)status;
+
+- (void)showErrorWithStatus:(NSString *)status;
+
 @end

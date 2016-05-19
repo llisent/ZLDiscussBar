@@ -29,6 +29,7 @@
     self.title.text        = model.subject;
     self.reportNum.text    = model.replies;
     self.lastPostTime.text = model.dateline;
+    self.postsTid          = model.tid;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

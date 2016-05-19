@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ZLPlateCollectionCell">
+            <rect key="frame" x="0.0" y="0.0" width="243" height="228"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="243" height="228"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="money" translatesAutoresizingMaskIntoConstraints="NO" id="s2B-2k-Mdg">
+                        <rect key="frame" x="91" y="69" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="3Lc-v7-fpC"/>
+                            <constraint firstAttribute="width" constant="60" id="79P-kJ-xdg"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="说学逗唱" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pXP-Rx-NKU">
+                        <rect key="frame" x="91" y="149" width="60" height="18"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="s2B-2k-Mdg" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" constant="-15" id="9Wc-RY-q9o"/>
+                <constraint firstItem="pXP-Rx-NKU" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="ROa-N2-Ca8"/>
+                <constraint firstItem="s2B-2k-Mdg" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="cUh-2d-pDg"/>
+                <constraint firstItem="pXP-Rx-NKU" firstAttribute="top" secondItem="s2B-2k-Mdg" secondAttribute="bottom" constant="20" id="t6B-YC-Ubm"/>
+            </constraints>
+            <size key="customSize" width="243" height="228"/>
+            <connections>
+                <outlet property="imageView" destination="s2B-2k-Mdg" id="Xnh-gX-x6a"/>
+                <outlet property="name" destination="pXP-Rx-NKU" id="UaM-7u-v1n"/>
+            </connections>
+            <point key="canvasLocation" x="611.5" y="359"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="money" width="94" height="95"/>
+    </resources>
+</document>

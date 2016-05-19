@@ -7,8 +7,16 @@
 //
 
 #import "ZLPlateViewController.h"
+#import "ZLPlateCollectionCell.h"
+#import "ZLHomePageViewController.h"
 
-@interface ZLPlateViewController ()
+@interface ZLPlateViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
+
+@property (nonatomic ,strong) UICollectionView *plateCollectionView;
+
+@property (nonatomic ,strong) NSArray *pidArray;
+
+@property (nonatomic ,strong) NSArray *nameArray;
 
 @end
 
@@ -17,7 +25,59 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"全部板块";
+    self.pidArray = @[@"2",@"9",@"11",@"13",@"14",@"19",@"20",@"22",@"24",@"25",@"26",@"27",@"29",@"30",@"31",@"33"];
+    self.nameArray = @[@"免费赠品",@"新手",@"做任务赚果果",@"有奖活动",@"有奖调查",@"活动线报",@"赚品显摆",@"获奖名单",@"微博活动",@"赚品交换",@"求助咨询",@"活动秘籍",@"区域活动",@"抢楼秒杀",@"果果换物",@"论坛纠纷"];
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self creatConstomUI];
 }
+
+- (void)creatConstomUI{
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    flowLayout.itemSize                    = CGSizeMake((ScreenWidth- 2) / 3, (ScreenWidth - 2) / 3);
+    flowLayout.minimumLineSpacing          = 1;
+    flowLayout.minimumInteritemSpacing     = 1;
+    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    
+    self.plateCollectionView            = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-64) collectionViewLayout:flowLayout];
+    self.plateCollectionView.dataSource = self;
+    self.plateCollectionView.delegate   = self;
+    [self.plateCollectionView setBackgroundColor:[UIColor clearColor]];
+    
+
+    [self.plateCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"collectionCell"];
+    [self.plateCollectionView registerNib:[UINib nibWithNibName:@"ZLPlateCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"collectionCell"];
+    [self.view addSubview:self.plateCollectionView];
+}
+
+#pragma mark - **************** CollectionDelegate & DataSource
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return 16;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    ZLPlateCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"collectionCell" forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor lightGrayColor];
+    cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"cat%ld",indexPath.row+1]];
+    cell.name.text = self.nameArray[indexPath.row];
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    ZLHomePageViewController *vc = [[ZLHomePageViewController alloc]init];
+    vc.title                     = self.nameArray[indexPath.row];
+    vc.plateFid                  = self.pidArray[indexPath.row];
+    vc.hidesBottomBarWhenPushed  = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -13,10 +13,10 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        self = [[NSBundle mainBundle]loadNibNamed:@"ZLPersonalCenterView" owner:self options:nil][0];
-        self.frame = frame;
+        self                            = [[NSBundle mainBundle]loadNibNamed:@"ZLPersonalCenterView" owner:self options:nil][0];
+        self.frame                      = frame;
         self.userImg.layer.cornerRadius = 30;
-        self.userImg.clipsToBounds = YES;
+        self.userImg.clipsToBounds      = YES;
     }
     return self;
 }

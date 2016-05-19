@@ -25,6 +25,9 @@
 /** 回复数*/
 @property (weak, nonatomic) IBOutlet UILabel     *reportNum;
 
+/** 帖子ID便于收藏使用*/
+@property (nonatomic ,strong) NSString *postsTid;
+
 
 
 #pragma mark - **************** 更新数据

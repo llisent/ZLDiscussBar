@@ -15,4 +15,6 @@
 
 @interface ZLHomePageViewController : UIViewController
 
+@property (nonatomic ,strong) NSString *plateFid;
+
 @end

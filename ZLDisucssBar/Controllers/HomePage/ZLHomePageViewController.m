@@ -12,7 +12,7 @@
 #import "ZLPostsDetailVC.h"
 
 
-@interface ZLHomePageViewController ()<UITableViewDataSource ,UITableViewDelegate>
+@interface ZLHomePageViewController ()<UITableViewDataSource ,UITableViewDelegate ,MGSwipeTableCellDelegate>
 
 @property (nonatomic ,strong) UITableView    *mainTableView;
 @property (nonatomic ,assign) NSInteger      page;
@@ -30,7 +30,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"赚客大家谈";
+    if (!self.title) {
+        self.title = @"赚客大家谈";
+    }
+    
     self.edgesForExtendedLayout               = UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
 
@@ -45,14 +48,23 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 //    self.hidesBottomBarWhenPushed = YES;
-    [self test];
-
+    if (!self.plateFid) {
+        [self test];
+    }
 }
 
 #pragma mark - **************** UI
 - (void)creatConstomUI{
     self.view.backgroundColor         = [UIColor whiteColor];
-    self.mainTableView                = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-64-49)];
+    self.mainTableView                = [[UITableView alloc]init];
+    if (!self.plateFid){
+        //正常
+        self.mainTableView.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight - 64 - 49);
+    }else{
+        //跳转
+        self.mainTableView.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight - 64);
+    }
+    
     self.mainTableView.delegate       = self;
     self.mainTableView.dataSource     = self;
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -74,7 +86,15 @@
 
 #pragma mark - **************** 旋转按钮
 - (void)creatReloadBar{
-    UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(ScreenWidth - 76, ScreenHeight - 64 - 49 - 10 - 66 , 66, 66)];
+    UIView *bgView = [[UIView alloc]init];
+    if (!self.plateFid){
+        //正常
+        bgView.frame = CGRectMake(ScreenWidth - 76, ScreenHeight - 64 - 49 - 10 - 66 , 66, 66);
+    }else{
+        //跳转
+        bgView.frame = CGRectMake(ScreenWidth - 76, ScreenHeight - 64 - 10 - 66 , 66, 66);
+    }
+    
     bgView.layer.cornerRadius = 12;
     bgView.backgroundColor = [UIColor colorWithWhite:0.784 alpha:0.400];
     
@@ -121,7 +141,7 @@
 
 #pragma mark - **************** 数据
 - (void)initData{
-    [[ZLNetworkManager sharedInstence]getInfoWithFid:@"15" page:_page block:^(NSDictionary *dict) {
+    [[ZLNetworkManager sharedInstence]getInfoWithFid:(self.plateFid ? self.plateFid : @"15") page:_page block:^(NSDictionary *dict) {
 
         NSString *formHash = dict[@"formhash"];
         if (formHash) {
@@ -168,32 +188,51 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ZLCostomPostsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mainCell" forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    ZLPostsModel *model = self.dataArray[indexPath.row];
+    cell.selectionStyle     = UITableViewCellSelectionStyleNone;
+    ZLPostsModel *model     = self.dataArray[indexPath.row];
     [cell updateInformationWithModel:model];
+    
+    //加入侧滑收藏按钮 (3D)
+    cell.leftButtons = @[[MGSwipeButton buttonWithTitle:@"收藏" backgroundColor:[UIColor greenColor]]];
+    cell.leftSwipeSettings.transition = MGSwipeTransition3D;
+    cell.delegate = self;
+
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *attribute = @{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:15]};
-    ZLPostsModel *model = self.dataArray[indexPath.row];
     
-    CGSize size = [model.subject boundingRectWithSize:CGSizeMake(ScreenWidth-20, CGFLOAT_MAX) options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attribute context:nil].size;
+    NSDictionary *attribute = @{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:15]};
+    ZLPostsModel *model     = self.dataArray[indexPath.row];
+    CGSize size             = [model.subject boundingRectWithSize:CGSizeMake(ScreenWidth-20, CGFLOAT_MAX) options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attribute context:nil].size;
     return size.height + 84 ;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ZLPostsModel *model = self.dataArray[indexPath.row];
-    ZLPostsDetailVC * vc = [[ZLPostsDetailVC alloc]init];
-    vc.tid = model.tid;
-//    if (model.readperm > [[ZLUserInfo sharedInstence]readaccess]) {
-//        [SVProgressHUD showErrorWithStatus:@"权限不足"];
-//        return;
-//    }
-    vc.title = model.tid;
+    
+    ZLPostsModel *model         = self.dataArray[indexPath.row];
+    ZLPostsDetailVC * vc        = [[ZLPostsDetailVC alloc]init];
+    vc.tid                      = model.tid;
+    vc.title                    = model.tid;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
     
+}
+
+-(BOOL) swipeTableCell:(ZLCostomPostsCell*)cell tappedButtonAtIndex:(NSInteger) index direction:(MGSwipeDirection)direction fromExpansion:(BOOL) fromExpansion{
+#warning 判断登陆
+    [[ZLNetworkManager sharedInstence]favouriteWithTid:cell.postsTid block:^(NSDictionary *dict) {
+        if ([dict[@"messageval"] isEqualToString:@"favorite_do_success"]) {
+            [self.view showSuccessWithStatus:@"收藏成功"];
+        }else if ([dict[@"messageval"] isEqualToString:@"favorite_repeat"]){
+            [self.view showErrorWithStatus:@"已经收藏过了哦"];
+        }else{
+            [self.view showErrorWithStatus:@"收藏失败"];
+        }
+    } failure:^(NSError *error) {
+        
+    }];
+    return YES;
 }
 
 - (void)test{

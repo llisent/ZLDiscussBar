@@ -57,4 +57,9 @@
                    block:(void (^)(NSDictionary *dict))success
                  failure:(void (^)(NSError *error))failure;
 
+- (void)favouriteWithTid:(NSString *)tid
+                   block:(void (^)(NSDictionary *dict))success
+                 failure:(void (^)(NSError *error))failure;
+
+
 @end

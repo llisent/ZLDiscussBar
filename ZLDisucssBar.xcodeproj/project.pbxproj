@@ -83,6 +83,8 @@
 		6AA2DFB71CDCB1D4002067A0 /* ZLPostsDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA2DFB61CDCB1D4002067A0 /* ZLPostsDetailVC.m */; };
 		6AA2DFBA1CDCB2D2002067A0 /* ZLHandlePostsTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA2DFB91CDCB2D2002067A0 /* ZLHandlePostsTools.m */; };
 		6AA718B11CDA007F000F0CBE /* ZLBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AA718B01CDA007F000F0CBE /* ZLBaseViewController.m */; };
+		6AB2D9941CED985400D57BC4 /* ZLPlateCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AB2D9921CED985400D57BC4 /* ZLPlateCollectionCell.m */; };
+		6AB2D9951CED985400D57BC4 /* ZLPlateCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AB2D9931CED985400D57BC4 /* ZLPlateCollectionCell.xib */; };
 		6ABC3DB61CDC429F006BDC65 /* noavatar_middle.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6ABC3DB31CDC429F006BDC65 /* noavatar_middle.gif */; };
 		6ABC3DB71CDC429F006BDC65 /* noavatar_small.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6ABC3DB41CDC429F006BDC65 /* noavatar_small.gif */; };
 		6ABC3DB81CDC429F006BDC65 /* noavatar_big.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6ABC3DB51CDC429F006BDC65 /* noavatar_big.gif */; };
@@ -211,6 +213,9 @@
 		6AA2DFB91CDCB2D2002067A0 /* ZLHandlePostsTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLHandlePostsTools.m; sourceTree = "<group>"; };
 		6AA718AF1CDA007F000F0CBE /* ZLBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLBaseViewController.h; sourceTree = "<group>"; };
 		6AA718B01CDA007F000F0CBE /* ZLBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLBaseViewController.m; sourceTree = "<group>"; };
+		6AB2D9911CED985400D57BC4 /* ZLPlateCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPlateCollectionCell.h; sourceTree = "<group>"; };
+		6AB2D9921CED985400D57BC4 /* ZLPlateCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPlateCollectionCell.m; sourceTree = "<group>"; };
+		6AB2D9931CED985400D57BC4 /* ZLPlateCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLPlateCollectionCell.xib; sourceTree = "<group>"; };
 		6ABC3DB31CDC429F006BDC65 /* noavatar_middle.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = noavatar_middle.gif; sourceTree = "<group>"; };
 		6ABC3DB41CDC429F006BDC65 /* noavatar_small.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = noavatar_small.gif; sourceTree = "<group>"; };
 		6ABC3DB51CDC429F006BDC65 /* noavatar_big.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = noavatar_big.gif; sourceTree = "<group>"; };
@@ -457,6 +462,16 @@
 			path = ParentClass;
 			sourceTree = "<group>";
 		};
+		6AB2D9901CED983100D57BC4 /* PlateViews */ = {
+			isa = PBXGroup;
+			children = (
+				6AB2D9911CED985400D57BC4 /* ZLPlateCollectionCell.h */,
+				6AB2D9921CED985400D57BC4 /* ZLPlateCollectionCell.m */,
+				6AB2D9931CED985400D57BC4 /* ZLPlateCollectionCell.xib */,
+			);
+			path = PlateViews;
+			sourceTree = "<group>";
+		};
 		6ABE1F9E1CDB38F000B9AD6E /* PersonalCenterViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -473,6 +488,7 @@
 		6AD52D591CD0BF6C00207D23 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6AB2D9901CED983100D57BC4 /* PlateViews */,
 				6A01875A1CE096A4003DA05B /* ShowImage */,
 				6AA2DFBB1CDCB5C3002067A0 /* PostsDetailCell */,
 				6ABE1F9E1CDB38F000B9AD6E /* PersonalCenterViews */,
@@ -775,6 +791,7 @@
 				6AFABF1B1CE45FA90042932B /* ZLPostDetailCellView.xib in Resources */,
 				6A881A491CE30843000B20DE /* smile3.gif in Resources */,
 				6A69EA161CE9AD6400A6BA95 /* ZLPictureMode.xib in Resources */,
+				6AB2D9951CED985400D57BC4 /* ZLPlateCollectionCell.xib in Resources */,
 				6A881A4C1CE30843000B20DE /* smile6.gif in Resources */,
 				6A881A2E1CE30843000B20DE /* smile175.gif in Resources */,
 				6A881A281CE30843000B20DE /* smile166.gif in Resources */,
@@ -860,6 +877,7 @@
 				6AA2DFBA1CDCB2D2002067A0 /* ZLHandlePostsTools.m in Sources */,
 				6A40B4231CD1BB7A0096C14E /* ZLCostomPostsCell.m in Sources */,
 				DD0CFE291CD1B0B60002531F /* main.m in Sources */,
+				6AB2D9941CED985400D57BC4 /* ZLPlateCollectionCell.m in Sources */,
 				DD0CFE271CD1B0750002531F /* ViewController.m in Sources */,
 				DD0CFE391CD1B5AA0002531F /* ZLPersonalCenter.m in Sources */,
 				6A6213C01CE5CA3000628D3D /* ZLPersonalCenterCell.m in Sources */,

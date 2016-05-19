@@ -14,4 +14,12 @@
     [SVProgressHUD showWithStatus:status maskType:SVProgressHUDMaskTypeBlack];
 }
 
+- (void)showSuccessWithStatus:(NSString *)status{
+    [SVProgressHUD showSuccessWithStatus:status maskType:SVProgressHUDMaskTypeBlack];
+}
+
+- (void)showErrorWithStatus:(NSString *)status{
+    [SVProgressHUD showErrorWithStatus:status maskType:SVProgressHUDMaskTypeBlack];
+}
+
 @end

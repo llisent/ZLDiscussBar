@@ -133,8 +133,27 @@
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         failure(error);
     }];
+}
+
+- (void)favouriteWithTid:(NSString *)tid block:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure{
     
+    NSString *url = [NSString stringWithFormat:@"http://www.zuanke8.com/api/mobile/index.php?charset=utf-8&module=favthread&mobile=no&favoritesubmit=true&id=%@&version=3",tid];
     
+//    
+//    
+//    NSDictionary *par = @{@"charset":@"utf-8",
+//                          @"mobile":@"no",
+//                          @"favouritesubmit":@"true",
+//                          @"id":tid,
+//                          @"version":@"3",
+//                          @"module":@"favthread"};
+    NSDictionary *par = @{@"formhash":[ZLGlobal sharedInstence].gachincoFormHash};
+    
+    [netManager POST:url parameters:par success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        success(responseObject[@"Message"]);
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        failure(error);
+    }];
 }
 
 
