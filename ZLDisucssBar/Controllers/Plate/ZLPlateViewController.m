@@ -61,7 +61,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     ZLPlateCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"collectionCell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor lightGrayColor];
+    cell.backgroundColor = [UIColor colorWithRed:0.159 green:0.530 blue:0.660 alpha:0.700];
     cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"cat%ld",indexPath.row+1]];
     cell.name.text = self.nameArray[indexPath.row];
     return cell;

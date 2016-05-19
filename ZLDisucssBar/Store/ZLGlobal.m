@@ -47,13 +47,13 @@
 - (void)synchronizeCookies{
     NSData *cookiesData      = [NSKeyedArchiver archivedDataWithRootObject:[[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject: cookiesData forKey: @"zuankeCookues"];
+    [defaults setObject: cookiesData forKey: @"zuankeCookies"];
     [defaults synchronize];
 }
 
 #pragma mark - **************** 设置cookies
 - (void)setHttpCookies{
-    id cookie = [[NSUserDefaults standardUserDefaults] objectForKey:@"zuankeCookues"];
+    id cookie = [[NSUserDefaults standardUserDefaults] objectForKey:@"zuankeCookies"];
     if (!cookie) {
         return;
     }
