@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="281" id="KGk-i7-Jjw" customClass="ZLBookMarkCell">
+            <rect key="frame" x="0.0" y="0.0" width="443" height="134"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="443" height="133"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZY0-G5-FIB" userLabel="daddyView">
+                        <rect key="frame" x="0.0" y="0.0" width="443" height="130"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="摸索明白了，也就是将现在日期时间与１９７０年１月１日的时间差，并转换为秒！，呵呵" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w5n-8h-Vh6">
+                                <rect key="frame" x="10" y="10" width="423" height="35"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015.05.05" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WDO-8Q-4CV">
+                                <rect key="frame" x="10" y="53" width="66" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="ZCZ-Q3-fp7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTs-JE-EBq">
+                                <rect key="frame" x="402" y="53" width="31" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="MZI-jU-UTn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="w5n-8h-Vh6" secondAttribute="trailing" constant="10" id="Bbb-P1-ISK"/>
+                            <constraint firstItem="GTs-JE-EBq" firstAttribute="top" secondItem="WDO-8Q-4CV" secondAttribute="top" id="HSQ-bu-o41"/>
+                            <constraint firstItem="w5n-8h-Vh6" firstAttribute="leading" secondItem="ZY0-G5-FIB" secondAttribute="leading" constant="10" id="NCS-oI-Td3"/>
+                            <constraint firstItem="w5n-8h-Vh6" firstAttribute="top" secondItem="ZY0-G5-FIB" secondAttribute="top" constant="10" id="P05-A3-r2O"/>
+                            <constraint firstItem="WDO-8Q-4CV" firstAttribute="leading" secondItem="ZY0-G5-FIB" secondAttribute="leading" constant="10" id="VML-A1-Mod"/>
+                            <constraint firstItem="GTs-JE-EBq" firstAttribute="trailing" secondItem="w5n-8h-Vh6" secondAttribute="trailing" id="XHW-3v-kJ1"/>
+                            <constraint firstItem="WDO-8Q-4CV" firstAttribute="top" secondItem="w5n-8h-Vh6" secondAttribute="bottom" constant="8" id="hzH-nk-bN3"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ZY0-G5-FIB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Jqr-t1-auy"/>
+                    <constraint firstItem="ZY0-G5-FIB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Qzc-to-hr7"/>
+                    <constraint firstAttribute="bottom" secondItem="ZY0-G5-FIB" secondAttribute="bottom" constant="3" id="bJk-0e-wrn"/>
+                    <constraint firstAttribute="trailing" secondItem="ZY0-G5-FIB" secondAttribute="trailing" id="cYS-iO-nCx"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <connections>
+                <outlet property="dateline" destination="WDO-8Q-4CV" id="4Gn-Ag-6hO"/>
+                <outlet property="replies" destination="GTs-JE-EBq" id="nCi-tf-g2n"/>
+                <outlet property="title" destination="w5n-8h-Vh6" id="Grd-si-qAi"/>
+            </connections>
+            <point key="canvasLocation" x="483.5" y="290"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -209,24 +209,27 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    // ------此处将所选加入记录
     ZLPostsModel *model         = self.dataArray[indexPath.row];
+    [[ZLGlobal sharedInstence]saveModelWith:model];
     ZLPostsDetailVC * vc        = [[ZLPostsDetailVC alloc]init];
     vc.tid                      = model.tid;
     vc.title                    = model.tid;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
-    
 }
 
--(BOOL) swipeTableCell:(ZLCostomPostsCell*)cell tappedButtonAtIndex:(NSInteger) index direction:(MGSwipeDirection)direction fromExpansion:(BOOL) fromExpansion{
+- (BOOL)swipeTableCell:(ZLCostomPostsCell*)cell tappedButtonAtIndex:(NSInteger) index direction:(MGSwipeDirection)direction fromExpansion:(BOOL)fromExpansion{
 #warning 判断登陆
     [[ZLNetworkManager sharedInstence]favouriteWithTid:cell.postsTid block:^(NSDictionary *dict) {
         if ([dict[@"messageval"] isEqualToString:@"favorite_do_success"]) {
+            
             [self.view showSuccessWithStatus:@"收藏成功"];
         }else if ([dict[@"messageval"] isEqualToString:@"favorite_repeat"]){
+            
             [self.view showErrorWithStatus:@"已经收藏过了哦"];
         }else{
+            
             [self.view showErrorWithStatus:@"收藏失败"];
         }
     } failure:^(NSError *error) {

@@ -101,7 +101,7 @@
                                                           
                                                           [self.navigationController dismissViewControllerAnimated:YES completion:^{
                                                               
-                                                              [SVProgressHUD showSuccessWithStatus:@"登陆成功"];
+                                                              [SVProgressHUD showSuccessWithStatus:@"登陆成功" maskType:SVProgressHUDMaskTypeBlack];
                                                                                                                             
                                                               SaveCookies
                                                           }];

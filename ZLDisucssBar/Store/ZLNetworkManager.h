@@ -46,20 +46,57 @@
                      block:(void (^)(NSDictionary *dict))success
                    failure:(void (^)(NSError *error))failure;
 
+#pragma mark - ****************
 - (void)getDetailInfoWithPage:(NSInteger)page
                           tid:(NSString *)tid
                         block:(void (^)(NSDictionary *dict))success
                       failure:(void (^)(NSError *error))failure;
 
+#pragma mark - **************** 回复作者
 - (void)userReplyWithTid:(NSString *)tid
                 formHash:(NSString *)hash
                  message:(NSString *)msg
                    block:(void (^)(NSDictionary *dict))success
                  failure:(void (^)(NSError *error))failure;
 
+#pragma mark - **************** 收藏帖子
 - (void)favouriteWithTid:(NSString *)tid
                    block:(void (^)(NSDictionary *dict))success
                  failure:(void (^)(NSError *error))failure;
+
+#pragma mark - **************** 获取用户的收藏帖子
+- (void)getFavoriteThreadWithPage:(NSString *)page
+                            block:(void (^)(NSDictionary *dict))success
+                           failure:(void (^)(NSError *error))failure;
+
+
+#pragma mark - **************** 评分-beta1
+- (void)rateSomeOneWith:(NSString *)tid
+                    pid:(NSString *)pid
+              faceValue:(NSString *)faceValue
+                 reason:(NSString *)reason
+                  block:(void (^)(NSString *str))success
+                failure:(void (^)(NSError *error))failure;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @end

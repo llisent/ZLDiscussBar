@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ZLPostsModel.h"
 
 @interface ZLGlobal : NSObject
 
@@ -41,6 +42,13 @@
 
 #pragma mark - **************** 设置cookies
 - (void)setHttpCookies;
+
+
+#pragma mark - **************** 归档解归档
+- (void)saveModelWith:(ZLPostsModel *)model;
+
+#pragma mark - **************** 获取历史记录
+- (NSArray *)readArchive;
 
 
 @end

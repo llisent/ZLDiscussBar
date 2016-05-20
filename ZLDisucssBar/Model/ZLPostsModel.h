@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ZLPostsModel : NSObject
+@interface ZLPostsModel : NSObject <NSCoding>
 
 /** 作者*/
 @property (nonatomic ,strong) NSString *author;

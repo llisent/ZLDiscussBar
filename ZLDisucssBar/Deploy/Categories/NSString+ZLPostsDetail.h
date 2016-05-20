@@ -19,4 +19,6 @@
 
 - (TYTextContainer *)makeContainerWithType:(NSInteger)type;
 
+- (NSString *)checkRateResult;
+
 @end

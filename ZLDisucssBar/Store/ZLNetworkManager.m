@@ -157,4 +157,64 @@
 }
 
 
+- (void)getFavoriteThreadWithPage:(NSString *)page
+                            block:(void (^)(NSDictionary *dict))success
+                          failure:(void (^)(NSError *error))failure{
+
+    NSString *url = [NSString stringWithFormat:@"http://www.zuanke8.com/api/mobile/index.php?charset=utf-8&module=myfavthread&mobile=no&version=3&page=%@",page];
+    [netManager GET:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        success(responseObject[@"Variables"]);
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        
+    }];
+}
+
+- (void)rateSomeOneWith:(NSString *)tid
+                    pid:(NSString *)pid
+              faceValue:(NSString *)faceValue
+                 reason:(NSString *)reason
+                  block:(void (^)(NSString *str))success
+                failure:(void (^)(NSError *error))failure{
+    NSString *refrer = [NSString stringWithFormat:@"http://www.zuanke8.com/forum.php?mod=viewthread&tid=%@&page=0#pid%@",tid,pid];
+    NSDictionary *par = @{@"formhash":[ZLGlobal sharedInstence].gachincoFormHash,
+                          @"tid":tid,
+                          @"pid":pid,
+                          @"refrer":refrer,
+                          @"handlekey":@"rate",
+                          @"score1":[NSString stringWithFormat:@"+%@",faceValue],
+                          @"reason":@""};
+    
+    AFHTTPRequestOperationManager *rateManager    = [AFHTTPRequestOperationManager manager];
+    rateManager.responseSerializer                = [AFHTTPResponseSerializer serializer];
+    rateManager.requestSerializer.timeoutInterval = 10;
+    
+    [rateManager POST:@"http://www.zuanke8.com/forum.php?mod=misc&action=rate&ratesubmit=yes&infloat=yes&inajax=1" parameters:par success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        
+        NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding (kCFStringEncodingGB_18030_2000);
+        NSString *rawString=[[NSString alloc]initWithData:responseObject encoding:enc];
+        success(rawString);
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @end

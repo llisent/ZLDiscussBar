@@ -80,4 +80,44 @@
     
 }
 
+
+- (NSString *)checkRateResult{
+    NSRange ran1 = [self rangeOfString:@"感谢您的参与"];
+    if (ran1.length != 0) {
+        return @"评分成功";
+    }
+    NSRange ran2 = [self rangeOfString:@"评分数超过限制"];
+    if (ran2.length != 0) {
+        return @"24小时内评分超过限制";
+    }
+    NSRange ran3 = [self rangeOfString:@"后才能对该用户评分"];
+    if (ran3.length != 0) {
+        return @"最近给他评过分咯";
+    }
+    NSRange ran4 = [self rangeOfString:@"您所在的用户组"];
+    if (ran4.length != 0) {
+        return @"用户级别不足";
+    }
+    return @"评分失败";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @end

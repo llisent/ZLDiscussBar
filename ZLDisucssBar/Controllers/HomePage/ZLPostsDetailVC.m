@@ -28,6 +28,8 @@
 
 @property (nonatomic ,strong) NSMutableArray *textArray;
 
+@property (nonatomic ,strong) NSString       *authorPid;
+
 @end
 
 @implementation ZLPostsDetailVC
@@ -49,20 +51,43 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self creatRate];
 }
 
-- (void)initData{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        self.tid = @"3070779";
-    });
-    
+- (void)creatRate{
+    UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithTitle:@"评分" style:UIBarButtonItemStylePlain target:self action:@selector(rateAuthor)];
+    self.navigationItem.rightBarButtonItem = right;
+}
+
+- (void)rateAuthor{
+    if (!self.authorPid) {
+        return;
+    }
+    [[ZLNetworkManager sharedInstence]rateSomeOneWith:self.tid pid:self.authorPid faceValue:@"1" reason:@"" block:^(NSString *str) {
+        NSString *returnStr = [str checkRateResult];
+        if ([returnStr isEqualToString:@"评分成功"]) {
+            [self.view showSuccessWithStatus:returnStr];
+        }else{
+            [self.view showErrorWithStatus:returnStr];
+        }
+    } failure:^(NSError *error) {
+        [self.view showErrorWithStatus:@"网络错误"];
+    }];
+}
+
+- (void)initData{    
 //    [self.view showLoadingWithStatus:@"加载中"];
 
     [[ZLNetworkManager sharedInstence]getDetailInfoWithPage:self.page tid:self.tid block:^(NSDictionary *dict) {
         
         [ZLGlobal sharedInstence].gachincoFormHash = dict[@"formhash"];
         NSArray *arr = dict[@"postlist"];
+        
+        if (!self.authorPid) {
+            NSDictionary *dic = arr.firstObject;
+            self.authorPid = dic[@"pid"];
+        }
+        
         if (self.dataArray.count !=0 && arr.count!= 10) {
             self.page--;
         }

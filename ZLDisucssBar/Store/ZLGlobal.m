@@ -64,4 +64,37 @@
     }
 }
 
+#pragma mark - **************** 归档解归档
+- (void)saveModelWith:(ZLPostsModel *)model{
+    NSString *docPath     = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+    NSString *path        = [docPath stringByAppendingPathComponent:@"userRecord.zuan"];
+    NSMutableArray *array = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+    
+    if (!array) {
+        array = [NSMutableArray array];
+    }
+    if (array.count == 25) {
+        [array removeLastObject];
+    }
+    for (ZLPostsModel *mod in array) {
+        if ([model.tid isEqualToString:mod.tid]) {
+            return;
+        }
+    }
+    [array insertObject:model atIndex:0];
+    [NSKeyedArchiver archiveRootObject:array toFile:path];
+}
+
+#pragma mark - **************** 获取历史记录
+- (NSArray *)readArchive{
+    NSString *docPath     = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+    NSString *path        = [docPath stringByAppendingPathComponent:@"userRecord.zuan"];
+    NSArray  *array       = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+    if (!array) {
+        return [NSArray array];
+    }
+    return array;
+}
+
+
 @end
