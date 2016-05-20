@@ -210,11 +210,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     // ------此处将所选加入记录
-    ZLPostsModel *model         = self.dataArray[indexPath.row];
+    ZLPostsModel *model  = self.dataArray[indexPath.row];
     [[ZLGlobal sharedInstence]saveModelWith:model];
-    ZLPostsDetailVC * vc        = [[ZLPostsDetailVC alloc]init];
-    vc.tid                      = model.tid;
-    vc.title                    = model.tid;
+    ZLPostsDetailVC * vc = [[ZLPostsDetailVC alloc]init];
+    vc.tid               = model.tid;
+    vc.title             = model.tid;
+    vc.tidType           = self.plateFid;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }

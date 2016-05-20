@@ -46,6 +46,7 @@
     [self initData];
     [self creatConstomUI];
     [self creatToolBar];
+    [self textMe];
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
@@ -55,8 +56,60 @@
 }
 
 - (void)creatRate{
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithTitle:@"点击" style:UIBarButtonItemStylePlain target:self action:@selector(hahaha)];
+    
+    
+    
+    
+    
+    
     UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithTitle:@"评分" style:UIBarButtonItemStylePlain target:self action:@selector(rateAuthor)];
-    self.navigationItem.rightBarButtonItem = right;
+    self.navigationItem.rightBarButtonItem = rightItem;
+}
+
+- (void)hahaha{
+    UIView *views = [self.view viewWithTag:11111];
+    [UIView animateWithDuration:0.3 animations:^{
+        if (views.height == 0) {
+            [self.tidType isEqual:@"31"] ? (views.height = 137) : (views.height = 91);
+        }else{
+            views.height = 0;
+        }
+    }];
+}
+
+- (void)textMe{
+    UIView *costomView         = [[UIView alloc]initWithFrame:CGRectMake(ScreenWidth - 130, 0, 130, 0)];
+    costomView.tag             = 11111;
+    costomView.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.550];
+
+    UIButton *useWeb           = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 130, 45)];
+    [useWeb setTitle:@"网页打开" forState:UIControlStateNormal];
+    useWeb.titleLabel.font     = [UIFont fontWithName:@"HelveticaNeue-Medium" size:14];
+
+    UIView *line1              = [[UIView alloc]initWithFrame:CGRectMake(10, 45, 110, 1)];
+    line1.backgroundColor      = [UIColor colorWithWhite:1.000 alpha:0.900];
+
+    UIButton *rate             = [[UIButton alloc]initWithFrame:CGRectMake(0, 46, 130, 45)];
+    [rate setTitle:@"评分" forState:UIControlStateNormal];
+    rate.titleLabel.font       = [UIFont fontWithName:@"HelveticaNeue-Medium" size:14];
+    
+    if ([self.tidType  isEqual: @"31"]) {
+        UIView *line2         = [[UIView alloc]initWithFrame:CGRectMake(10, 91, 110, 1)];
+        line2.backgroundColor = [UIColor colorWithWhite:1.000 alpha:0.900];
+        [costomView addSubview:line2];
+        
+        UIButton *buyit             = [[UIButton alloc]initWithFrame:CGRectMake(0, 92, 130, 45)];
+        [buyit setTitle:@"购买" forState:UIControlStateNormal];
+        buyit.titleLabel.font       = [UIFont fontWithName:@"HelveticaNeue-Medium" size:14];
+        [costomView addSubview:buyit];
+    }
+    
+    [costomView addSubview:useWeb];
+    [costomView addSubview:rate];
+    [costomView addSubview:line1];
+    [self.view addSubview:costomView];
+
 }
 
 - (void)rateAuthor{

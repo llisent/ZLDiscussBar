@@ -13,4 +13,7 @@
 //帖子ID
 @property (nonatomic ,strong) NSString *tid;
 
+//源自
+@property (nonatomic ,strong) NSString *tidType;
+
 @end
