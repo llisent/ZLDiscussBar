@@ -11,7 +11,7 @@
 #import "ZLScrollImageVC.h"
 #import "ZLPostDetailCellView.h"
 
-@interface ZLPostsDetailVC ()<UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, TYAttributedLabelDelegate>
+@interface ZLPostsDetailVC ()<UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, TYAttributedLabelDelegate, UIAlertViewDelegate>
 
 /** TableView*/
 @property (nonatomic ,strong) UITableView    *mainTableView;
@@ -27,6 +27,7 @@
 
 
 @property (nonatomic ,strong) NSMutableArray *textArray;
+
 
 @property (nonatomic ,strong) NSString       *authorPid;
 
@@ -46,7 +47,7 @@
     [self initData];
     [self creatConstomUI];
     [self creatToolBar];
-    [self textMe];
+    [self creatNaviToolBar];
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
@@ -56,53 +57,82 @@
 }
 
 - (void)creatRate{
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithTitle:@"点击" style:UIBarButtonItemStylePlain target:self action:@selector(hahaha)];
-    
-    
-    
-    
-    
-    
-    UIBarButtonItem *right = [[UIBarButtonItem alloc]initWithTitle:@"评分" style:UIBarButtonItemStylePlain target:self action:@selector(rateAuthor)];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithTitle:@"点击" style:UIBarButtonItemStylePlain target:self action:@selector(naviToolBarOnClick)];
     self.navigationItem.rightBarButtonItem = rightItem;
 }
 
-- (void)hahaha{
+- (void)naviToolBarOnClick{
     UIView *views = [self.view viewWithTag:11111];
     [UIView animateWithDuration:0.3 animations:^{
-        if (views.height == 0) {
-            [self.tidType isEqual:@"31"] ? (views.height = 137) : (views.height = 91);
+        if (views.top == 0) {
+            [self.tidType isEqual:@"31"] ? (views.top = - 137) : (views.top = -91);
         }else{
-            views.height = 0;
+            views.top = 0;
         }
     }];
 }
 
-- (void)textMe{
-    UIView *costomView         = [[UIView alloc]initWithFrame:CGRectMake(ScreenWidth - 130, 0, 130, 0)];
+- (void)creatNaviToolBar{
+    //创建工具视图
+    UIView *costomView         = [[UIView alloc]initWithFrame:CGRectMake(ScreenWidth - 130, -91, 130, 91)];
     costomView.tag             = 11111;
     costomView.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.550];
 
+    //网页打开帖子
     UIButton *useWeb           = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 130, 45)];
     [useWeb setTitle:@"网页打开" forState:UIControlStateNormal];
     useWeb.titleLabel.font     = [UIFont fontWithName:@"HelveticaNeue-Medium" size:14];
-
+    [useWeb addBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
+        //网页打开帖子
+        [self naviToolBarOnClick];
+        NSString *urlStr = [NSString stringWithFormat:@"http://www.zuanke8.com/thread-%@-1-1.html",self.tid];
+        if ([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:urlStr]]) {
+            [[UIApplication sharedApplication]openURL:[NSURL URLWithString:urlStr]];
+        }else{
+            [self.view showErrorWithStatus:@"失败,请检查后重试"];
+        }
+    }];
+    
+    //分割线
     UIView *line1              = [[UIView alloc]initWithFrame:CGRectMake(10, 45, 110, 1)];
     line1.backgroundColor      = [UIColor colorWithWhite:1.000 alpha:0.900];
 
+    //给帖子评分
     UIButton *rate             = [[UIButton alloc]initWithFrame:CGRectMake(0, 46, 130, 45)];
     [rate setTitle:@"评分" forState:UIControlStateNormal];
     rate.titleLabel.font       = [UIFont fontWithName:@"HelveticaNeue-Medium" size:14];
+    [rate addBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
+        //给帖子评分
+        [self naviToolBarOnClick];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"确定给该贴作者一个积分的评分么?" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
+        [alert show];
+    }];
     
+    //果果换物
     if ([self.tidType  isEqual: @"31"]) {
+        //分割线
         UIView *line2         = [[UIView alloc]initWithFrame:CGRectMake(10, 91, 110, 1)];
         line2.backgroundColor = [UIColor colorWithWhite:1.000 alpha:0.900];
         [costomView addSubview:line2];
         
+        //购买
         UIButton *buyit             = [[UIButton alloc]initWithFrame:CGRectMake(0, 92, 130, 45)];
         [buyit setTitle:@"购买" forState:UIControlStateNormal];
         buyit.titleLabel.font       = [UIFont fontWithName:@"HelveticaNeue-Medium" size:14];
+        [buyit addBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
+            //立即购买
+            [self naviToolBarOnClick];
+            [[ZLNetworkManager sharedInstence]userPurchaseWithUid:@"1" block:^(NSString *str) {
+                NSLog(@"%@",str);
+            } failure:^(NSError *error) {
+                
+            }];
+        }];
         [costomView addSubview:buyit];
+        
+        //更新视图大小
+        costomView.height = 137;
+        costomView.top = -137;
     }
     
     [costomView addSubview:useWeb];
@@ -194,6 +224,8 @@
         self.page++;
         [self initData];
     }];
+    
+    self.mainTableView.mj_footer.automaticallyHidden = YES;
     [self.view addSubview:self.mainTableView];
 }
 
@@ -438,6 +470,13 @@
     } failure:^(NSError *error) {
         
     }];
+}
+
+//alert
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0) {
+        [self rateAuthor];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

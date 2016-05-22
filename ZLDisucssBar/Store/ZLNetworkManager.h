@@ -79,7 +79,10 @@
                 failure:(void (^)(NSError *error))failure;
 
 
-
+//需考虑下没有问题的情况
+- (void)userPurchaseWithUid:(NSString *)uid
+                      block:(void (^)(NSString *str))success
+                    failure:(void (^)(NSError *error))failure;
 
 
 

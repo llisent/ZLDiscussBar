@@ -12,7 +12,7 @@
 #import "ZLPostsDetailVC.h"
 
 
-@interface ZLHomePageViewController ()<UITableViewDataSource ,UITableViewDelegate ,MGSwipeTableCellDelegate>
+@interface ZLHomePageViewController ()<UITableViewDataSource ,UITableViewDelegate ,MGSwipeTableCellDelegate ,ZLNoNetWorkViewDelegate>
 
 @property (nonatomic ,strong) UITableView    *mainTableView;
 @property (nonatomic ,assign) NSInteger      page;
@@ -20,6 +20,7 @@
 @property (nonatomic ,strong) NSMutableArray *dataArray;
 @property (nonatomic ,strong) NSMutableSet   *dataSet;
 @property (nonatomic ,strong) UIButton       *reloadBtn;
+@property (nonatomic ,strong) ZLNoNetWorkView * noNetWorkView;
 
 @property (nonatomic ,assign) BOOL isLocked;
 
@@ -56,6 +57,11 @@
 #pragma mark - **************** UI
 - (void)creatConstomUI{
     self.view.backgroundColor         = [UIColor whiteColor];
+    
+    self.noNetWorkView = [[ZLNoNetWorkView alloc]initWithFrame:ScreenBonds];
+    self.noNetWorkView.delegate = self;
+    
+    
     self.mainTableView                = [[UITableView alloc]init];
     if (!self.plateFid){
         //正常
@@ -79,6 +85,7 @@
         self.type = HPGetInfoTypeLoadMore;
         [self initData];
     }];
+    self.mainTableView.mj_footer.automaticallyHidden = YES;
     
     [self.view addSubview: self.mainTableView];
     [self creatReloadBar];
@@ -143,6 +150,10 @@
 - (void)initData{
     [[ZLNetworkManager sharedInstence]getInfoWithFid:(self.plateFid ? self.plateFid : @"15") page:_page block:^(NSDictionary *dict) {
 
+        if (self.noNetWorkView.superview) {
+            [self.noNetWorkView removeFromSuperview];
+        }
+        
         NSString *formHash = dict[@"formhash"];
         if (formHash) {
             [[ZLGlobal sharedInstence]setGachincoFormHash:formHash];
@@ -174,6 +185,12 @@
         [self endRotation];
         [self.mainTableView reloadData];
     } failure:^(NSError *error) {
+        if (self.dataArray.count == 0) {
+            [self.view addSubview:self.noNetWorkView];
+        }
+        if (!self.noNetWorkView.superview) {
+            [self.view showErrorWithStatus:@"加载失败"];
+        }
         [self endingRefreshing];
         self.isLocked = NO;
         [self endRotation];
@@ -193,7 +210,7 @@
     [cell updateInformationWithModel:model];
     
     //加入侧滑收藏按钮 (3D)
-    cell.leftButtons = @[[MGSwipeButton buttonWithTitle:@"收藏" backgroundColor:[UIColor greenColor]]];
+    cell.leftButtons = @[[MGSwipeButton buttonWithTitle:@"收藏" backgroundColor:[UIColor lightGrayColor]]];
     cell.leftSwipeSettings.transition = MGSwipeTransition3D;
     cell.delegate = self;
 
@@ -250,6 +267,10 @@
     
     [self.navigationController presentViewController:navi animated:YES completion:^{
     }];
+}
+
+- (void)refreshCurrentVc{
+    [self initData];
 }
 
 - (void)didReceiveMemoryWarning {

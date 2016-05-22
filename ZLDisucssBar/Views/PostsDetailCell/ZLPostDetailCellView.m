@@ -39,11 +39,15 @@
     
     // ------头像
     NSString *mass = [[ZLGlobal sharedInstence]avatarMass];
-    if ([mass isEqualToString:@"big"] || [mass isEqualToString:@"small"]) {
-        NSString *iconUrl      = [NSString stringWithFormat:@"http://uc.zuanke8.com/avatar.php?uid=%@&size=%@",model.authorid,mass];
-        [self.avatar sd_setImageWithURL:[NSURL URLWithString:iconUrl]];
+    if ([mass isEqualToString:@"big"] || [mass isEqualToString:@"small"] || [mass isEqualToString:@"no"]) {
+        if ([mass isEqualToString:@"no"]) {
+            self.avatar.image = [UIImage imageNamed:@"noavatar_big.gif"];
+        }else{
+            NSString *iconUrl      = [NSString stringWithFormat:@"http://uc.zuanke8.com/avatar.php?uid=%@&size=%@",model.authorid,mass];
+            [self.avatar sd_setImageWithURL:[NSURL URLWithString:iconUrl]];
+        }
     }else{
-        self.avatar.image = [UIImage imageNamed:@"noavatar_big.gif"];
+        [self.avatar sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://uc.zuanke8.com/avatar.php?uid=%@&size=small",model.authorid]]];
     }
         
     // ------用户名 & 时间

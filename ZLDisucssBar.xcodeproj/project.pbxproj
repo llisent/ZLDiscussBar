@@ -118,6 +118,8 @@
 		DD0CFE391CD1B5AA0002531F /* ZLPersonalCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = DD0CFE381CD1B5AA0002531F /* ZLPersonalCenter.m */; };
 		DD0CFE3C1CD1B5C10002531F /* ZLBookMarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD0CFE3B1CD1B5C10002531F /* ZLBookMarkViewController.m */; };
 		DD0CFE3F1CD1B5CC0002531F /* ZLPlateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD0CFE3E1CD1B5CC0002531F /* ZLPlateViewController.m */; };
+		DDAD60DF1CEF58AE00871307 /* ZLNoNetWorkView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDAD60DE1CEF58AE00871307 /* ZLNoNetWorkView.m */; };
+		DDAD60E11CEF58B700871307 /* NoNetWorkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDAD60E01CEF58B700871307 /* NoNetWorkView.xib */; };
 		DEA8EFBC198F5306FF87411E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 25F6952E7470A261D32E444E /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -275,6 +277,9 @@
 		DD0CFE3B1CD1B5C10002531F /* ZLBookMarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLBookMarkViewController.m; sourceTree = "<group>"; };
 		DD0CFE3D1CD1B5CC0002531F /* ZLPlateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPlateViewController.h; sourceTree = "<group>"; };
 		DD0CFE3E1CD1B5CC0002531F /* ZLPlateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPlateViewController.m; sourceTree = "<group>"; };
+		DDAD60DD1CEF58AE00871307 /* ZLNoNetWorkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLNoNetWorkView.h; sourceTree = "<group>"; };
+		DDAD60DE1CEF58AE00871307 /* ZLNoNetWorkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLNoNetWorkView.m; sourceTree = "<group>"; };
+		DDAD60E01CEF58B700871307 /* NoNetWorkView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoNetWorkView.xib; sourceTree = "<group>"; };
 		FE22E2889640E3BC978B20CD /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -514,6 +519,7 @@
 		6AD52D591CD0BF6C00207D23 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DDAD60DC1CEF588D00871307 /* CommonViews */,
 				6A6C89531CEEB9D6009DBA29 /* BookMarkViews */,
 				6AB2D9901CED983100D57BC4 /* PlateViews */,
 				6A01875A1CE096A4003DA05B /* ShowImage */,
@@ -706,6 +712,16 @@
 			path = HomePage;
 			sourceTree = "<group>";
 		};
+		DDAD60DC1CEF588D00871307 /* CommonViews */ = {
+			isa = PBXGroup;
+			children = (
+				DDAD60DD1CEF58AE00871307 /* ZLNoNetWorkView.h */,
+				DDAD60DE1CEF58AE00871307 /* ZLNoNetWorkView.m */,
+				DDAD60E01CEF58B700871307 /* NoNetWorkView.xib */,
+			);
+			path = CommonViews;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -800,6 +816,7 @@
 				6A69EA0C1CE9778800A6BA95 /* ZLSettingViewController.xib in Resources */,
 				6AA2DFA81CDC9FF6002067A0 /* icon_frs_reload@2x.png in Resources */,
 				6A6C89581CEEB9F5009DBA29 /* ZLBookMarkCell.xib in Resources */,
+				DDAD60E11CEF58B700871307 /* NoNetWorkView.xib in Resources */,
 				6A881A2A1CE30843000B20DE /* smile170.gif in Resources */,
 				6A881A431CE30843000B20DE /* smile2.gif in Resources */,
 				6A881A3F1CE30843000B20DE /* smile16.gif in Resources */,
@@ -924,6 +941,7 @@
 				6A69EA1A1CE9AD7700A6BA95 /* ZLAvatarMode.m in Sources */,
 				DD0CFE181CD1AFCD0002531F /* ZLHomeGuide.m in Sources */,
 				6AD52D6C1CD0BF9E00207D23 /* ZLUserInfo.m in Sources */,
+				DDAD60DF1CEF58AE00871307 /* ZLNoNetWorkView.m in Sources */,
 				6AD52D7B1CD0BFBE00207D23 /* ZLMainLoginViewController.m in Sources */,
 				6A69EA151CE9AD6400A6BA95 /* ZLPictureMode.m in Sources */,
 				6A6C89571CEEB9F5009DBA29 /* ZLBookMarkCell.m in Sources */,
@@ -1032,11 +1050,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PREFIX_HEADER = /Users/mrr/Desktop/ZLDiscussBar/ZLDisucssBar/Deploy/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = /Users/llisent/ZLDiscussBar/ZLDisucssBar/Deploy/PrefixHeader.pch;
 				INFOPLIST_FILE = ZLDisucssBar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cc.51ios.ZLDisucssBar;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.51ios.ZLDisucssBar1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1049,11 +1067,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PREFIX_HEADER = /Users/mrr/Desktop/ZLDiscussBar/ZLDisucssBar/Deploy/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = /Users/llisent/ZLDiscussBar/ZLDisucssBar/Deploy/PrefixHeader.pch;
 				INFOPLIST_FILE = ZLDisucssBar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cc.51ios.ZLDisucssBar;
+				PRODUCT_BUNDLE_IDENTIFIER = cc.51ios.ZLDisucssBar1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

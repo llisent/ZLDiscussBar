@@ -198,7 +198,34 @@
     }];
 }
 
-
+- (void)userPurchaseWithUid:(NSString *)uid
+                      block:(void (^)(NSString *str))success
+                    failure:(void (^)(NSError *error))failure{
+    
+    uid = @"3075350";
+    AFHTTPRequestOperationManager *purManager = [AFHTTPRequestOperationManager manager];
+    purManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    purManager.requestSerializer.timeoutInterval = 10;
+    [purManager.requestSerializer setValue:[NSString stringWithFormat:@"http://www.zuanke8.com/thread-%@-1-1.html",uid] forHTTPHeaderField:@"Referer"];
+    
+    //deadValue
+    NSDictionary *par = @{@"formhash":[ZLGlobal sharedInstence].gachincoFormHash,
+                          @"quickforward":@"yes",
+                          @"handlekey":@"ls",
+                          @"questionid":@"5",
+                          @"answer":@"acer",
+                          @"confirmsubmit":@"true"};
+    NSString *url = [NSString stringWithFormat:@"http://www.zuanke8.com/plugin.php?id=ejew_auction1:buy&tid=%@&confirmsubmit=yes&infloat=yes&inajax=1",uid];
+    
+    [purManager POST:url parameters:par success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding (kCFStringEncodingGB_18030_2000);
+        NSString *rawString=[[NSString alloc]initWithData:responseObject encoding:enc];
+        success(rawString);
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        
+    }];
+    
+}
 
 
 

@@ -94,6 +94,9 @@
 #pragma mark - **************** 加载收藏数据
 - (void)initFavoriteData{
     //加载收藏记录 (NET)
+    if (![[ZLGlobal sharedInstence]isLogin]) {
+        return;
+    }
     [[ZLNetworkManager sharedInstence]getFavoriteThreadWithPage:self.page block:^(NSDictionary *dict) {
         NSArray *array = dict[@"list"];
         for (NSDictionary *modelDic in array) {

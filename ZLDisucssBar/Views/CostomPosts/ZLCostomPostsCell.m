@@ -18,11 +18,15 @@
 #pragma mark - **************** 更新数据
 - (void)updateInformationWithModel:(ZLPostsModel *)model{
     NSString *mass = [[ZLGlobal sharedInstence]avatarMass];
-    if ([mass isEqualToString:@"big"] || [mass isEqualToString:@"small"]) {
-        NSString *iconUrl      = [NSString stringWithFormat:@"http://uc.zuanke8.com/avatar.php?uid=%@&size=%@",model.authorid,mass];
-        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:iconUrl]];
+    if ([mass isEqualToString:@"big"] || [mass isEqualToString:@"small"] || [mass isEqualToString:@"no"]) {
+        if ([mass isEqualToString:@"no"]) {
+            self.avatarImageView.image = [UIImage imageNamed:@"noavatar_big.gif"];
+        }else{
+            NSString *iconUrl      = [NSString stringWithFormat:@"http://uc.zuanke8.com/avatar.php?uid=%@&size=%@",model.authorid,mass];
+            [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:iconUrl]];
+        }
     }else{
-        self.avatarImageView.image = [UIImage imageNamed:@"noavatar_big.gif"];
+        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://uc.zuanke8.com/avatar.php?uid=%@&size=small",model.authorid]]];
     }
     
     self.author.text       = model.author;
