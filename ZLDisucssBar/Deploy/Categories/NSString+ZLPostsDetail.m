@@ -101,6 +101,31 @@
     return @"评分失败";
 }
 
+- (NSString *)checkExchangeResult{
+    return self;
+}
+
+
+#pragma mark - **************** 检出出售信息 待优化
+- (ZLPurchaseModel *)checkOutPurchaseInfo{
+    ZLPurchaseModel *model = [[ZLPurchaseModel alloc]init];
+    NSString *sourceStr    = [self stringByReplacingOccurrencesOfString:@"\\\\\\" withString:@"\\"];
+    NSRange rangPrice      = [self rangeOfString:@"price\\\";i:"];
+    
+    sourceStr = [sourceStr substringWithRange:NSMakeRange(rangPrice.location + rangPrice.length, sourceStr.length - rangPrice.location - rangPrice.length)];
+    
+    NSMutableString *num = [NSMutableString string];
+    for (int i = 0; i <sourceStr.length - 1; i++) {
+        NSString *sub = [sourceStr substringWithRange:NSMakeRange(i, 1)];
+        if (![sub isEqualToString:@";"]) {
+            [num appendString:sub];
+        }else{
+            break;
+        }
+    }
+    model.price = num;
+    return model;
+}
 
 
 

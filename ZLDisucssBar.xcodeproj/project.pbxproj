@@ -31,6 +31,7 @@
 		6A6C89581CEEB9F5009DBA29 /* ZLBookMarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A6C89561CEEB9F5009DBA29 /* ZLBookMarkCell.xib */; };
 		6A6C895C1CEEEE3B009DBA29 /* ZLRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6C895A1CEEEE3B009DBA29 /* ZLRecordCell.m */; };
 		6A6C895D1CEEEE3B009DBA29 /* ZLRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A6C895B1CEEEE3B009DBA29 /* ZLRecordCell.xib */; };
+		6A8250C91CF2D54500F5DA23 /* ZLPurchaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8250C81CF2D54500F5DA23 /* ZLPurchaseModel.m */; };
 		6A881A201CE30843000B20DE /* smile155.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6A8819EF1CE30843000B20DE /* smile155.gif */; };
 		6A881A211CE30843000B20DE /* smile156.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6A8819F01CE30843000B20DE /* smile156.gif */; };
 		6A881A221CE30843000B20DE /* smile157.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6A8819F11CE30843000B20DE /* smile157.gif */; };
@@ -166,6 +167,8 @@
 		6A6C89591CEEEE3B009DBA29 /* ZLRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLRecordCell.h; sourceTree = "<group>"; };
 		6A6C895A1CEEEE3B009DBA29 /* ZLRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLRecordCell.m; sourceTree = "<group>"; };
 		6A6C895B1CEEEE3B009DBA29 /* ZLRecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLRecordCell.xib; sourceTree = "<group>"; };
+		6A8250C71CF2D54500F5DA23 /* ZLPurchaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPurchaseModel.h; sourceTree = "<group>"; };
+		6A8250C81CF2D54500F5DA23 /* ZLPurchaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPurchaseModel.m; sourceTree = "<group>"; };
 		6A8819EF1CE30843000B20DE /* smile155.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = smile155.gif; sourceTree = "<group>"; };
 		6A8819F01CE30843000B20DE /* smile156.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = smile156.gif; sourceTree = "<group>"; };
 		6A8819F11CE30843000B20DE /* smile157.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = smile157.gif; sourceTree = "<group>"; };
@@ -573,6 +576,8 @@
 				6A0187581CE07148003DA05B /* ZLPostDetailModel.m */,
 				6A6C89501CEEB67D009DBA29 /* ZLFavuriteModel.h */,
 				6A6C89511CEEB67D009DBA29 /* ZLFavuriteModel.m */,
+				6A8250C71CF2D54500F5DA23 /* ZLPurchaseModel.h */,
+				6A8250C81CF2D54500F5DA23 /* ZLPurchaseModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -938,6 +943,7 @@
 				6A0187621CE0A938003DA05B /* ZLScrollImageVC.m in Sources */,
 				6A59F5151CDAECFB009AA073 /* ZLPostsModel.m in Sources */,
 				6A6C89521CEEB67D009DBA29 /* ZLFavuriteModel.m in Sources */,
+				6A8250C91CF2D54500F5DA23 /* ZLPurchaseModel.m in Sources */,
 				6A69EA1A1CE9AD7700A6BA95 /* ZLAvatarMode.m in Sources */,
 				DD0CFE181CD1AFCD0002531F /* ZLHomeGuide.m in Sources */,
 				6AD52D6C1CD0BF9E00207D23 /* ZLUserInfo.m in Sources */,
@@ -1050,7 +1056,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PREFIX_HEADER = /Users/llisent/ZLDiscussBar/ZLDisucssBar/Deploy/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = /Users/mrr/Desktop/ZLDiscussBar/ZLDisucssBar/Deploy/PrefixHeader.pch;
 				INFOPLIST_FILE = ZLDisucssBar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1067,7 +1073,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PREFIX_HEADER = /Users/llisent/ZLDiscussBar/ZLDisucssBar/Deploy/PrefixHeader.pch;
+				GCC_PREFIX_HEADER = /Users/mrr/Desktop/ZLDiscussBar/ZLDisucssBar/Deploy/PrefixHeader.pch;
 				INFOPLIST_FILE = ZLDisucssBar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

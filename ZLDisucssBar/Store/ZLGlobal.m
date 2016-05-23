@@ -43,6 +43,10 @@
     return [[NSUserDefaults standardUserDefaults]boolForKey:@"downLoadAvatar"];
 }
 
+- (NSString *)shieldID{
+    return [[NSUserDefaults standardUserDefaults]stringForKey:@"shieldID"];
+}
+
 #pragma mark - **************** 同步cookies
 - (void)synchronizeCookies{
     NSData *cookiesData      = [NSKeyedArchiver archivedDataWithRootObject:[[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]];

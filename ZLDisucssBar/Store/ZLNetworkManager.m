@@ -202,9 +202,9 @@
                       block:(void (^)(NSString *str))success
                     failure:(void (^)(NSError *error))failure{
     
-    uid = @"3075350";
-    AFHTTPRequestOperationManager *purManager = [AFHTTPRequestOperationManager manager];
-    purManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+//    uid = @"3075350";
+    AFHTTPRequestOperationManager *purManager    = [AFHTTPRequestOperationManager manager];
+    purManager.responseSerializer                = [AFHTTPResponseSerializer serializer];
     purManager.requestSerializer.timeoutInterval = 10;
     [purManager.requestSerializer setValue:[NSString stringWithFormat:@"http://www.zuanke8.com/thread-%@-1-1.html",uid] forHTTPHeaderField:@"Referer"];
     

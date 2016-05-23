@@ -23,7 +23,6 @@
     }
     
     
-    
         NSRange ran = [self.message rangeOfString:@"</blockquote></div>"];
         ran.length ? (self.isReply = YES) : (self.isReply = NO);
     if (self.isReply) {
@@ -135,7 +134,7 @@
     }
     
         if (self.isReply) {
-            self.quoteStr = [allValues stringByReplacingOccurrencesOfString:self.message  withString:@""];
+            self.quoteStr   = [allValues stringByReplacingOccurrencesOfString:self.message  withString:@""];
             self.container2 = [self.quoteStr makeContainerWithType:0];
             self.container1 = [self.message makeContainerWithType:1];
         }else{

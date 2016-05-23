@@ -59,36 +59,35 @@
 #pragma mark - **************** 初始化UI
 - (void)creatConstomUI{
     // ------创建Scroll
-    self.mainScroll                   = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
-    self.mainScroll.pagingEnabled     = YES;
-    self.mainScroll.scrollEnabled     = YES;
-    self.mainScroll.delegate          = self;
-    self.mainScroll.contentSize       = CGSizeMake(ScreenWidth * 2, ScreenHeight - 64 - 49);
+    self.mainScroll                       = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    self.mainScroll.pagingEnabled         = YES;
+    self.mainScroll.scrollEnabled         = YES;
+    self.mainScroll.delegate              = self;
+    self.mainScroll.bounces               = NO;
+    self.mainScroll.contentSize           = CGSizeMake(ScreenWidth * 2, ScreenHeight - 64 - 49);
     [self.view addSubview:self.mainScroll];
 
     // ------创建收藏TableView
-    self.favoriteTableView            = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-64-49)];
-    self.favoriteTableView.delegate   = self;
-    self.favoriteTableView.dataSource = self;
+    self.favoriteTableView                = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-64-49)];
+    self.favoriteTableView.delegate       = self;
+    self.favoriteTableView.dataSource     = self;
     self.favoriteTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.favoriteTableView registerNib:[UINib nibWithNibName:@"ZLBookMarkCell" bundle:nil] forCellReuseIdentifier:@"favorite"];
     [self.mainScroll addSubview:self.favoriteTableView];
 
     // ------创建记录TableView
-    self.recordTableView              = [[UITableView alloc]initWithFrame:CGRectMake(ScreenWidth, 0, ScreenWidth, ScreenHeight - 64 - 49)];
-    self.recordTableView.delegate     = self;
-    self.recordTableView.dataSource   = self;
-    self.recordTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.recordTableView                  = [[UITableView alloc]initWithFrame:CGRectMake(ScreenWidth, 0, ScreenWidth, ScreenHeight - 64 - 49)];
+    self.recordTableView.delegate         = self;
+    self.recordTableView.dataSource       = self;
+    self.recordTableView.separatorStyle   = UITableViewCellSeparatorStyleNone;
     [self.recordTableView registerNib:[UINib nibWithNibName:@"ZLRecordCell" bundle:nil] forCellReuseIdentifier:@"record"];
     [self.mainScroll addSubview:self.recordTableView];
 }
 
 #pragma mark - **************** 加载数据
 - (void)initData{
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [self initFavoriteData];
-        [self initRecordData];
-    });
+    [self initFavoriteData];
+    [self initRecordData];
 }
 
 #pragma mark - **************** 加载收藏数据
@@ -99,6 +98,7 @@
     }
     [[ZLNetworkManager sharedInstence]getFavoriteThreadWithPage:self.page block:^(NSDictionary *dict) {
         NSArray *array = dict[@"list"];
+        
         for (NSDictionary *modelDic in array) {
             ZLFavuriteModel *model = [ZLFavuriteModel mj_objectWithKeyValues:modelDic];
             [self.favoriteArray addObject:model];

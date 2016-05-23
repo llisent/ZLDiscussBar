@@ -10,26 +10,30 @@
 #import "ZLPostDetailModel.h"
 #import "ZLScrollImageVC.h"
 #import "ZLPostDetailCellView.h"
+#import "ZLPurchaseModel.h"
 
 @interface ZLPostsDetailVC ()<UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, TYAttributedLabelDelegate, UIAlertViewDelegate>
 
 /** TableView*/
-@property (nonatomic ,strong) UITableView    *mainTableView;
+@property (nonatomic ,strong) UITableView     *mainTableView;
 
 /** 数据源*/
-@property (nonatomic ,strong) NSMutableArray *dataArray;
+@property (nonatomic ,strong) NSMutableArray  *dataArray;
 
 /** 防重复集*/
-@property (nonatomic ,strong) NSMutableSet   *dataSet;
+@property (nonatomic ,strong) NSMutableSet    *dataSet;
 
 /** 页码*/
-@property (nonatomic ,assign) NSInteger      page;
+@property (nonatomic ,assign) NSInteger       page;
 
+/** 帖子数据*/
+@property (nonatomic ,strong) NSMutableArray  *textArray;
 
-@property (nonatomic ,strong) NSMutableArray *textArray;
+/** 作者帖子编码*/
+@property (nonatomic ,strong) NSString        *authorPid;
 
-
-@property (nonatomic ,strong) NSString       *authorPid;
+/** 出售信息*/
+@property (nonatomic ,strong) ZLPurchaseModel *sellModel;
 
 @end
 
@@ -38,17 +42,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.dataArray = [NSMutableArray array];
-    self.dataSet   = [NSMutableSet set];
-    self.textArray = [NSMutableArray array];
-    self.page      = 1;
-    
-    
-    [self initData];
-    [self creatConstomUI];
-    [self creatToolBar];
-    [self creatNaviToolBar];
-    self.view.backgroundColor = [UIColor whiteColor];
+    [self initProperty];        // ------数据初始化
+    [self initData];            // ------加载帖子数据
+    [self creatConstomUI];      // ------创建UI
+    [self creatToolBar];        // ------创建工具按钮
+    [self creatNaviToolBar];    // ------创建回帖工具
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -56,11 +54,24 @@
     [self creatRate];
 }
 
+#pragma mark - **************** 初始化
+- (void)initProperty{
+    self.page      = 1;
+    self.dataSet   = [NSMutableSet set];
+    self.dataArray = [NSMutableArray array];
+    self.textArray = [NSMutableArray array];
+}
+
+#pragma mark - **************** 创建工具按钮
 - (void)creatRate{
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithTitle:@"点击" style:UIBarButtonItemStylePlain target:self action:@selector(naviToolBarOnClick)];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithTitle:@"工具"
+                                                                 style:UIBarButtonItemStylePlain
+                                                                target:self
+                                                                action:@selector(naviToolBarOnClick)];
     self.navigationItem.rightBarButtonItem = rightItem;
 }
 
+#pragma mark - **************** 展开/隐藏工具栏
 - (void)naviToolBarOnClick{
     UIView *views = [self.view viewWithTag:11111];
     [UIView animateWithDuration:0.3 animations:^{
@@ -72,6 +83,7 @@
     }];
 }
 
+#pragma mark - **************** 创建工具UI
 - (void)creatNaviToolBar{
     //创建工具视图
     UIView *costomView         = [[UIView alloc]initWithFrame:CGRectMake(ScreenWidth - 130, -91, 130, 91)];
@@ -80,8 +92,9 @@
 
     //网页打开帖子
     UIButton *useWeb           = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 130, 45)];
-    [useWeb setTitle:@"网页打开" forState:UIControlStateNormal];
     useWeb.titleLabel.font     = [UIFont fontWithName:@"HelveticaNeue-Medium" size:14];
+    [useWeb setTitle:@"网页打开" forState:UIControlStateNormal];
+    
     [useWeb addBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
         //网页打开帖子
         [self naviToolBarOnClick];
@@ -99,17 +112,22 @@
 
     //给帖子评分
     UIButton *rate             = [[UIButton alloc]initWithFrame:CGRectMake(0, 46, 130, 45)];
-    [rate setTitle:@"评分" forState:UIControlStateNormal];
     rate.titleLabel.font       = [UIFont fontWithName:@"HelveticaNeue-Medium" size:14];
+    [rate setTitle:@"评分" forState:UIControlStateNormal];
+    
     [rate addBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
         //给帖子评分
         [self naviToolBarOnClick];
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"确定给该贴作者一个积分的评分么?" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示"
+                                                       message:@"确定给该贴作者一个积分的评分?"
+                                                      delegate:self
+                                             cancelButtonTitle:@"确定"
+                                             otherButtonTitles:@"取消", nil];
         [alert show];
     }];
     
     //果果换物
-    if ([self.tidType  isEqual: @"31"]) {
+    if ([self.tidType isEqual: @"31"]) {
         //分割线
         UIView *line2         = [[UIView alloc]initWithFrame:CGRectMake(10, 91, 110, 1)];
         line2.backgroundColor = [UIColor colorWithWhite:1.000 alpha:0.900];
@@ -117,22 +135,27 @@
         
         //购买
         UIButton *buyit             = [[UIButton alloc]initWithFrame:CGRectMake(0, 92, 130, 45)];
-        [buyit setTitle:@"购买" forState:UIControlStateNormal];
         buyit.titleLabel.font       = [UIFont fontWithName:@"HelveticaNeue-Medium" size:14];
+        [buyit setTitle:@"购买" forState:UIControlStateNormal];
+        
         [buyit addBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
             //立即购买
             [self naviToolBarOnClick];
-            [[ZLNetworkManager sharedInstence]userPurchaseWithUid:@"1" block:^(NSString *str) {
-                NSLog(@"%@",str);
-            } failure:^(NSError *error) {
-                
-            }];
+            if (self.sellModel) {
+                NSString *message = [NSString stringWithFormat:@"售价:%@果果 确认购买?",self.sellModel.price];
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:([self.sellModel.sellType isEqualToString:@"1"] ? @"担保交易" : @"自动发货")
+                                                               message:message
+                                                              delegate:self
+                                                     cancelButtonTitle:@"确定"
+                                                     otherButtonTitles:@"取消", nil];
+                [alert show];
+            }
         }];
         [costomView addSubview:buyit];
         
         //更新视图大小
         costomView.height = 137;
-        costomView.top = -137;
+        costomView.top    = -137;
     }
     
     [costomView addSubview:useWeb];
@@ -142,6 +165,17 @@
 
 }
 
+#pragma mark - **************** 立即购买
+- (void)purchaseNow{
+    [[ZLNetworkManager sharedInstence]userPurchaseWithUid:self.tid block:^(NSString *str) {
+        NSLog(@"%@",str);
+        
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
+#pragma mark - **************** 给作者评分
 - (void)rateAuthor{
     if (!self.authorPid) {
         return;
@@ -158,17 +192,32 @@
     }];
 }
 
-- (void)initData{    
-//    [self.view showLoadingWithStatus:@"加载中"];
-
+#pragma mark - **************** 初始化数据
+- (void)initData{
     [[ZLNetworkManager sharedInstence]getDetailInfoWithPage:self.page tid:self.tid block:^(NSDictionary *dict) {
         
         [ZLGlobal sharedInstence].gachincoFormHash = dict[@"formhash"];
+        
+        if ([self.tidType isEqualToString:@"31"]) {
+            
+            NSDictionary *dictionary = dict[@"thread"];
+            NSString *str1           = dictionary[@"ejew_auction1"];
+            NSString *str2           = dictionary[@"ejew_auction3"];
+            
+            if (str1.length > 10) {
+                self.sellModel          = [str1 checkOutPurchaseInfo];
+                self.sellModel.sellType = @"1";
+            }else{
+                self.sellModel          = [str2 checkOutPurchaseInfo];
+                self.sellModel.sellType = @"3";
+            }
+        }
+        
         NSArray *arr = dict[@"postlist"];
         
         if (!self.authorPid) {
             NSDictionary *dic = arr.firstObject;
-            self.authorPid = dic[@"pid"];
+            self.authorPid    = dic[@"pid"];
         }
         
         if (self.dataArray.count !=0 && arr.count!= 10) {
@@ -213,6 +262,7 @@
 }
 
 - (void)creatConstomUI{
+    self.view.backgroundColor         = [UIColor whiteColor];
     self.mainTableView                = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-64-50)];
     self.mainTableView.delegate       = self;
     self.mainTableView.dataSource     = self;
@@ -229,7 +279,7 @@
     [self.view addSubview:self.mainTableView];
 }
 
-//创建底部回复区
+#pragma mark - **************** 创建底部回复区
 - (void)creatToolBar{
     //底部父View
     UIView *writeView           = [[UIView alloc]init];
@@ -279,6 +329,7 @@
     
 }
 
+#pragma mark - **************** TableViewDelegate & DataSouce
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataArray.count;
 }
@@ -292,6 +343,47 @@
     [cell updateInfomationWith:model];
     [self deepAssignmentWithCell:cell Model:model rowNum:indexPath.row];
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    /**
+     *  返回cell的高度
+     *  1.净值1 = 60
+     *  2.考虑是否为回复贴（如果是返回值为两个）
+     *  3.考虑图片高度
+     */
+
+    NSDictionary *dict       = self.textArray[indexPath.row];
+    ZLPostDetailModel *model = self.dataArray[indexPath.row];
+    NSArray *imgArr          = [NSArray array];
+
+    TYTextContainer *text1   = dict[@"a"];
+    TYTextContainer *text2   = dict[@"b"];
+    
+    if ([[ZLGlobal sharedInstence]downLoadImage]) {
+        imgArr = @[];
+    }else{
+        imgArr = model.attachments.allValues;
+    }
+    
+    CGFloat height = 0.0f;
+    height += [text1 getHeightWithFramesetter:nil width:ScreenWidth - 20];
+    if (text2) {
+        height += [text2 getHeightWithFramesetter:nil width:ScreenWidth - 20] + 10;
+    }
+    if (imgArr.count != 0) {
+        height += ((ScreenWidth - 40)/3 + 10) * ((imgArr.count % 3 == 0) ? (imgArr.count / 3) : (imgArr.count / 3) + 1) + 10;
+    }
+    return height + 75;
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    ZLPostDetailModel *model = self.dataArray[indexPath.row];
+    IQTextView *textView     = [self.view viewWithTag:1111];
+    textView.placeholder     = [NSString stringWithFormat:@"回复%@",model.author];
+    [textView becomeFirstResponder];
+    
 }
 
 - (void)deepAssignmentWithCell:(ZLPostDetailCellView *)cell Model:(ZLPostDetailModel *)model rowNum:(NSUInteger)row{
@@ -367,49 +459,7 @@
     [cell layoutIfNeeded];
 }
 
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    /**
-     *  返回cell的高度
-     *  1.净值1 = 60
-     *  2.考虑是否为回复贴（如果是返回值为两个）
-     *  3.考虑图片高度
-     */
-    
-    NSDictionary *dict       = self.textArray[indexPath.row];
-    ZLPostDetailModel *model = self.dataArray[indexPath.row];
-    NSArray *imgArr          = [NSArray array];
-    
-    TYTextContainer *text1     = dict[@"a"];
-    TYTextContainer *text2     = dict[@"b"];
-    
-    if ([[ZLGlobal sharedInstence]downLoadImage]) {
-        imgArr = @[];
-    }else{
-        imgArr = model.attachments.allValues;
-    }
-    
-    CGFloat height = 0.0f;
-    height += [text1 getHeightWithFramesetter:nil width:ScreenWidth - 20];
-    if (text2) {
-        height += [text2 getHeightWithFramesetter:nil width:ScreenWidth - 20] + 10;
-    }
-    if (imgArr.count != 0) {
-        height += ((ScreenWidth - 40)/3 + 10) * ((imgArr.count % 3 == 0) ? (imgArr.count / 3) : (imgArr.count / 3) + 1) + 10;
-    }
-    return height + 75;
-
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ZLPostDetailModel *model = self.dataArray[indexPath.row];
-    IQTextView *textView     = [self.view viewWithTag:1111];
-    textView.placeholder     = [NSString stringWithFormat:@"回复%@",model.author];
-    [textView becomeFirstResponder];
-    
-}
-
+#pragma mark - **************** TYAttributedLabel代理(点击网址跳转)
 - (void)attributedLabel:(TYAttributedLabel *)attributedLabel textStorageClicked:(id<TYTextStorageProtocol>)textStorage atPoint:(CGPoint)point{
     if ([textStorage isKindOfClass:[TYLinkTextStorage class]]) {
 
@@ -432,6 +482,7 @@
     }
 }
 
+#pragma mark - **************** TextViewDelegate (自动展开行)
 - (void)textViewDidChange:(UITextView *)textView {
     CGSize constraintSize;
     constraintSize.width  = textView.frame.size.width;
@@ -443,6 +494,7 @@
                                        sizeFrame.height);
 }
 
+#pragma mark - **************** 展示图片
 - (void)showImageWith:(UIImage *)img{
     ZLScrollImageVC *vc = [[ZLScrollImageVC alloc]init];
     vc.constomImage = img;
@@ -452,6 +504,7 @@
     }];
 }
 
+#pragma mark - **************** 回帖
 - (void)replyPosts{
     IQTextView *textView = [self.view viewWithTag:1111];
     [SVProgressHUD showWithStatus:@"发送中" maskType:SVProgressHUDMaskTypeBlack];
@@ -472,10 +525,14 @@
     }];
 }
 
-//alert
+#pragma mark - **************** AlertDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0) {
-        [self rateAuthor];
+        if ([alertView.title isEqualToString:@"提示"]) {
+            [self rateAuthor];
+        }else{
+            [self purchaseNow];
+        }
     }
 }
 

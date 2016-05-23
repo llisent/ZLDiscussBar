@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ZLPurchaseModel.h"
 
 @interface NSString (ZLPostsDetail)
 
@@ -20,5 +21,10 @@
 - (TYTextContainer *)makeContainerWithType:(NSInteger)type;
 
 - (NSString *)checkRateResult;
+
+- (NSString *)checkExchangeResult;
+
+- (ZLPurchaseModel *)checkOutPurchaseInfo;
+
 
 @end
