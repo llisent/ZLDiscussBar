@@ -18,7 +18,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     ReadCookies
+    [self initCorrelationSetting];
     
+    
+    
+    
+    
+    self.window                    = [[UIWindow alloc]initWithFrame:ScreenBonds];
+    HomeGuide *guide               = [[HomeGuide alloc]init];
+    self.window.rootViewController = guide.tabBarController;
+    [self.window makeKeyWindow];    
+    return YES;
+}
+
+- (void)initCorrelationSetting{
     [[UINavigationBar appearance]setBackgroundImage:[UIImage imageNamed:@"title_bg"] forBarMetrics:UIBarMetricsDefault];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
@@ -38,12 +51,6 @@
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[backImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, backImage.size.width, 0, 0)]
                                                       forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-233, 0) forBarMetrics:UIBarMetricsDefault];
-
-    self.window                    = [[UIWindow alloc]initWithFrame:ScreenBonds];
-    HomeGuide *guide               = [[HomeGuide alloc]init];
-    self.window.rootViewController = guide.tabBarController;
-    [self.window makeKeyWindow];    
-    return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -7,9 +7,10 @@
 //
 
 #import "CYLTabBarController.h"
-
 #import "CYLTabBar.h"
+#import "CYLPlusButton.h"
 #import <objc/runtime.h>
+
 NSUInteger CYLTabbarItemsCount = 0;
 
 @interface UIViewController (CYLTabBarControllerItemInternal)
@@ -53,7 +54,7 @@ NSUInteger CYLTabbarItemsCount = 0;
         _viewControllers = [viewControllers copy];
         if (_tabBarItemsAttributes) {
             if (_tabBarItemsAttributes.count != _viewControllers.count) {
-                [NSException raise:@"CYLTabBarController" format:@"The count of CYLTabBarControllers is not equal to the count of tabBarItemsAttributes.【中文】设置_tabBarItemsAttributes属性时，请确保元素个数与控制器的个数相同，并在方法`-setViewControllers:`之前设置"];
+                [NSException raise:@"CYLTabBarController" format:@"The count of CYLTabBarControllers is not equal to the count of tabBarItemsAttributes.【Chinese】设置_tabBarItemsAttributes属性时，请确保元素个数与控制器的个数相同，并在方法`-setViewControllers:`之前设置"];
             }
         }
         CYLTabbarItemsCount = [viewControllers count];
@@ -96,6 +97,41 @@ NSUInteger CYLTabbarItemsCount = 0;
     viewController.tabBarItem.selectedImage = selectedImage;
     
     [self addChildViewController:viewController];
+}
+
++ (BOOL)havePlusButton {
+    if (CYLExternPlusButton) {
+        return YES;
+    }
+    return NO;
+}
+
++ (NSUInteger)allItemsInTabBarCount {
+    NSUInteger allItemsInTabBar = CYLTabbarItemsCount;
+    if ([CYLTabBarController havePlusButton]) {
+        allItemsInTabBar += 1;
+    }
+    return allItemsInTabBar;
+}
+
+- (id<UIApplicationDelegate>)appDelegate {
+    return [UIApplication sharedApplication].delegate;
+}
+
+- (UIWindow *)rootWindow {
+    UIWindow *result = nil;
+    
+    do {
+        if ([self.appDelegate respondsToSelector:@selector(window)]) {
+            result = [self.appDelegate window];
+        }
+        
+        if (result) {
+            break;
+        }
+    } while (NO);
+    
+    return result;
 }
 
 @end

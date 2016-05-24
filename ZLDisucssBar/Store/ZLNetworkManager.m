@@ -52,7 +52,7 @@
     [netManager POST:url parameters:par1 success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         success(responseObject);
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-        
+        failure(error);
     }];
 }
 
@@ -198,34 +198,55 @@
     }];
 }
 
-- (void)userPurchaseWithUid:(NSString *)uid
-                      block:(void (^)(NSString *str))success
-                    failure:(void (^)(NSError *error))failure{
+- (void)userPurchaseWithUid:(NSString *)uid type:(NSString *)type block:(void (^)(NSString *))success failure:(void (^)(NSError *))failure{
     
-//    uid = @"3075350";
     AFHTTPRequestOperationManager *purManager    = [AFHTTPRequestOperationManager manager];
     purManager.responseSerializer                = [AFHTTPResponseSerializer serializer];
     purManager.requestSerializer.timeoutInterval = 10;
     [purManager.requestSerializer setValue:[NSString stringWithFormat:@"http://www.zuanke8.com/thread-%@-1-1.html",uid] forHTTPHeaderField:@"Referer"];
     
-    //deadValue
     NSDictionary *par = @{@"formhash":[ZLGlobal sharedInstence].gachincoFormHash,
                           @"quickforward":@"yes",
                           @"handlekey":@"ls",
                           @"questionid":@"5",
                           @"answer":@"acer",
                           @"confirmsubmit":@"true"};
-    NSString *url = [NSString stringWithFormat:@"http://www.zuanke8.com/plugin.php?id=ejew_auction1:buy&tid=%@&confirmsubmit=yes&infloat=yes&inajax=1",uid];
+    NSString *url = [NSString stringWithFormat:@"http://www.zuanke8.com/plugin.php?id=ejew_auction%@:buy&tid=%@&confirmsubmit=yes&infloat=yes&inajax=1",type,uid];
     
     [purManager POST:url parameters:par success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding (kCFStringEncodingGB_18030_2000);
         NSString *rawString=[[NSString alloc]initWithData:responseObject encoding:enc];
         success(rawString);
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-        
+        failure(error);
     }];
     
 }
+
+
+#pragma mark - **************** 通用模块访问(我的帖子 & 我的消息)
+- (void)generalAccessWith:(NSString *)thread
+                     page:(NSString *)page
+                    block:(void (^)(NSDictionary *dict))success
+                  failure:(void (^)(NSError *error))failure{
+    
+    NSString *urlStr = @"";
+    
+    [netManager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        
+    }];
+}
+
+
+
+
+
+
+
+
+
 
 
 

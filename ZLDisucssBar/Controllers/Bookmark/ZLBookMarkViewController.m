@@ -80,7 +80,7 @@
     self.recordTableView.delegate         = self;
     self.recordTableView.dataSource       = self;
     self.recordTableView.separatorStyle   = UITableViewCellSeparatorStyleNone;
-    [self.recordTableView registerNib:[UINib nibWithNibName:@"ZLRecordCell" bundle:nil] forCellReuseIdentifier:@"record"];
+    [self.recordTableView registerNib:[UINib nibWithNibName:@"ZLBookMarkCell" bundle:nil] forCellReuseIdentifier:@"record"];
     [self.mainScroll addSubview:self.recordTableView];
 }
 
@@ -153,8 +153,9 @@
         return cell;
     }else{
         ZLPostsModel *model = self.recordArray[indexPath.row];
-        ZLRecordCell *cell  = [tableView dequeueReusableCellWithIdentifier:@"record" forIndexPath:indexPath];
-        cell.contentLabel.text = model.subject;
+        ZLBookMarkCell *cell  = [tableView dequeueReusableCellWithIdentifier:@"record" forIndexPath:indexPath];
+        cell.replies.hidden = YES;
+        [cell updateRecordWith:model];
         return cell;
     }
 }
@@ -171,9 +172,7 @@
     }
     NSDictionary *attribute = @{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:15]};
     CGSize size             = [heightStr boundingRectWithSize:CGSizeMake(ScreenWidth-20, CGFLOAT_MAX) options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attribute context:nil].size;
-    if (tableView == self.recordTableView) {
-        return size.height + 18;
-    }
+
     return size.height +44 ;
 }
 

@@ -35,7 +35,6 @@
 /** 屏蔽ID*/
 @property (nonatomic ,strong) NSString     *shieldID;
 
-
 + (instancetype)sharedInstence;
 
 

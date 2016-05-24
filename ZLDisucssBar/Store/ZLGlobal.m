@@ -11,6 +11,7 @@
 @implementation ZLGlobal
 
 + (instancetype)sharedInstence{
+    
     static ZLGlobal *global = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -20,30 +21,37 @@
 }
 
 - (BOOL)isLogin{
+    
     return [[NSUserDefaults standardUserDefaults]boolForKey:@"isLogin"];
 }
 
 - (BOOL)autoFill{
+    
     return [[NSUserDefaults standardUserDefaults]boolForKey:@"autoFill"];
 }
 
 - (BOOL)autoLogin{
+    
     return [[NSUserDefaults standardUserDefaults]boolForKey:@"autoLogin"];
 }
 
 -(BOOL)downLoadImage{
+    
     return [[NSUserDefaults standardUserDefaults]boolForKey:@"downLoadImage"];
 }
 
 - (NSString *)avatarMass{
+    
     return [[NSUserDefaults standardUserDefaults]objectForKey:@"avatarMass"];
 }
 
 - (BOOL)downLoadAvatar{
+    
     return [[NSUserDefaults standardUserDefaults]boolForKey:@"downLoadAvatar"];
 }
 
 - (NSString *)shieldID{
+    
     return [[NSUserDefaults standardUserDefaults]stringForKey:@"shieldID"];
 }
 

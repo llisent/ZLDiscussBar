@@ -10,6 +10,7 @@
 #import "ZLCostomPostsCell.h"
 #import "ZLPostsModel.h"
 #import "ZLPostsDetailVC.h"
+#import "ZLPostingViewController.h"
 
 
 @interface ZLHomePageViewController ()<UITableViewDataSource ,UITableViewDelegate ,MGSwipeTableCellDelegate ,ZLNoNetWorkViewDelegate>
@@ -259,6 +260,16 @@
 - (void)test{
     UIBarButtonItem *login = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"homePerson"] style:UIBarButtonItemStylePlain target:self action:@selector(login)];
     [self.navigationItem setLeftBarButtonItem:login];
+    
+    UIBarButtonItem *postedItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"icon_fatie"] style:UIBarButtonItemStylePlain target:self action:@selector(startPost)];
+    [self.navigationItem setRightBarButtonItem:postedItem];
+}
+
+- (void)startPost{
+    ZLPostingViewController *vc = [[ZLPostingViewController alloc]init];
+    vc.title = @"发帖";
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)login{

@@ -74,38 +74,37 @@
                                                            url:url
                                                       formhash:[ZLGlobal sharedInstence].gachincoFormHash block:^(NSDictionary *dic) {
                                                           //登陆信息
-                                                          NSString *messageval = dic[@"Message"][@"messageval"];
-                                                          NSLog(@"登陆信息---%@",messageval);
-                                                          if ([messageval isEqualToString:@"login_succeed"]) {
-                                                              // ------登陆成功
-                                                          }else if ([messageval isEqualToString:@"login_question_empty"]){
-                                                              // ------答案缺失
+                                                          NSDictionary *messDic = dic[@"Message"];
+                                                          NSString *messageval  = dic[@"Message"][@"messageval"];
+                                                          NSLog(@"登陆信息---%@ ---%@",messageval,messDic[@"messagestr"]);
+                                                          
+                                                          NSRange succRange = [messageval rangeOfString:@"succeed"];
+                                                          if (succRange.length != 0) {
+                                                              user.userUID    = dic[@"Variables"][@"member_uid"];
+                                                              user.username   = dic[@"Variables"][@"member_username"];
+                                                              user.readaccess = dic[@"Variables"][@"readaccess"];
+                                                              [[NSUserDefaults standardUserDefaults]setBool:YES forKey:@"isLogin"];
                                                               
-                                                          }else if ([messageval isEqualToString:@"login_invalid"]){
-                                                              // 账户或密码错误
+                                                              //归档存储用户信息
+                                                              NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+                                                              NSString *path    = [docPath stringByAppendingPathComponent:@"user.info"];
+                                                              [NSKeyedArchiver archiveRootObject:user toFile:path];
+
+                                                              //发送通知
+                                                              [[NSNotificationCenter defaultCenter]postNotificationName:@"UserLoginNotification" object:nil];
+                                                              
+                                                              
+                                                              [self.navigationController dismissViewControllerAnimated:YES completion:^{
+                                                                  
+                                                                  [self.view showSuccessWithStatus:@"登陆成功"];
+                                                                  
+                                                                  SaveCookies
+                                                              }];
+                                                          }else{
+                                                              [self.view showErrorWithStatus:messDic[@"messagestr"]];
+                                                              return ;
                                                           }
 
-                                                          user.userUID    = dic[@"Variables"][@"member_uid"];
-                                                          user.username   = dic[@"Variables"][@"member_username"];
-                                                          user.readaccess = dic[@"Variables"][@"readaccess"];
-                                                          
-                                                          //归档存储用户信息
-                                                          NSString *docPath=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
-                                                              NSString *path=[docPath stringByAppendingPathComponent:@"user.info"];
-                                                               NSLog(@"path=%@",path);
-                                                         [NSKeyedArchiver archiveRootObject:user toFile:path];
-                                                          
-                                                          //发送通知
-                                                          [[NSNotificationCenter defaultCenter]postNotificationName:@"UserLoginNotification" object:nil];
-                                                          
-                                                          
-                                                          [self.navigationController dismissViewControllerAnimated:YES completion:^{
-                                                              
-                                                              [SVProgressHUD showSuccessWithStatus:@"登陆成功" maskType:SVProgressHUDMaskTypeBlack];
-                                                                                                                            
-                                                              SaveCookies
-                                                          }];
-        
     } failure:^(NSError *error) {
         
     }];

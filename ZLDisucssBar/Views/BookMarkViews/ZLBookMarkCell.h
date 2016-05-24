@@ -8,17 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "ZLFavuriteModel.h"
+#import "ZLPostsModel.h"
 
 @interface ZLBookMarkCell : UITableViewCell
 
 @property (weak, nonatomic  ) IBOutlet UILabel  *title;
 @property (weak, nonatomic  ) IBOutlet UILabel  *dateline;
-@property (weak, nonatomic  ) IBOutlet UILabel  *author;
 @property (weak, nonatomic  ) IBOutlet UILabel  *replies;
 
 @property (nonatomic ,strong) NSString *tid;
 
 
 - (void)updateFavoriteWith:(ZLFavuriteModel *)model;
+
+- (void)updateRecordWith:(ZLPostsModel *)model;
 
 @end

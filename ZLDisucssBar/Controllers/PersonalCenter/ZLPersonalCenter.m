@@ -45,7 +45,7 @@
     NSString *userID = [[ZLUserInfo sharedInstence] userUID];
     if (userID.length > 0) {
         //已登录
-        [[ZLNetworkManager sharedInstence]getUserInfoWithUid:[ZLUserInfo sharedInstence].userUID block:^(NSDictionary *dict) {
+        [[ZLNetworkManager sharedInstence]getUserInfoWithUid:[ZLUserInfo sharedInstence].userUID block:^(NSDictionary *dict){
             [self.header updateInfoWithDict:dict];
         } failure:^(NSError *error) {
             
@@ -129,7 +129,11 @@
         case 2:
             
             break;
-        case 3:
+        case 3:{
+            SVWebViewController *sv = [[SVWebViewController alloc]initWithAddress:@"http://www.zuanke8.com/forum.php?mod=guide&view=my&type=reply"];
+            sv.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:sv animated:YES];
+        }
             
             break;
         case 4:{

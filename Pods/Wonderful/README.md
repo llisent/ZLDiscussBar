@@ -4,7 +4,7 @@
 [![Language](http://img.shields.io/badge/language-OC-yellow.svg?style=flat
 )](https://en.wikipedia.org/wiki/Objective-C)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://mit-license.org)
-![CocoaPods Version](https://img.shields.io/badge/pod-v1.0.0-brightgreen.svg)
+![CocoaPods Version](https://img.shields.io/badge/pod-v1.2.0-brightgreen.svg)
 
 	一个关于色彩的库
 
@@ -16,7 +16,7 @@
 <br />
 ####Demo程序截图
 _建议使用iPhone6运行Demo程序_<br />
-![image](https://github.com/dsxNiubility/Wonderful/raw/master/screenshots/1001.png)<br />
+<img src="https://github.com/dsxNiubility/Wonderful/raw/master/screenshots/1001.png" alt="Drawing" width="375px" /><br />
 
 ####一、UIColor+Wonderful
 1.这个分类里扩充了更多的颜色扩展，以后随手写个小Demo再也不需要redColor buleColor了。<br />
@@ -29,8 +29,8 @@ _建议使用iPhone6运行Demo程序_<br />
 		self.view.backgroundColor = Wonderful_YelloeColor4;
 		self.view.backgroundColor = Wonderful_BrownColor4;
 <br />
-![image](https://github.com/dsxNiubility/Wonderful/raw/master/screenshots/1003.png)
-![image](https://github.com/dsxNiubility/Wonderful/raw/master/screenshots/1005.png)<br />
+<img src="https://github.com/dsxNiubility/Wonderful/raw/master/screenshots/1003.png" alt="Drawing" width="375px" />
+<img src="https://github.com/dsxNiubility/Wonderful/raw/master/screenshots/1005.png" alt="Drawing" width="375px" /><br />
 
 ####二、UIColor+Separate
 1.提供颜色分离方案，可以将任何颜色的rgb喝alpha的值取出。<br />
@@ -83,7 +83,7 @@ _建议使用iPhone6运行Demo程序_<br />
 	};
 	
 4.支持增加传入一个数组，然后搭建一个多个颜色过渡的view。<br />
-![image](https://github.com/dsxNiubility/Wonderful/raw/master/screenshots/1006.png)<br />
+<img src="https://github.com/dsxNiubility/Wonderful/raw/master/screenshots/1006.png" alt="Drawing" width="375px" /><br />
 
 ####四、SXMarquee
 1.实现任何样式的跑马灯。<br />
@@ -93,11 +93,12 @@ _建议使用iPhone6运行Demo程序_<br />
 	[mar3 start];
 
 2.跑马灯的背景可以设置任何颜色，这个是基于颜色过渡view做的。<br />
-3.跑马灯可以实现点击拖动，或者绑定更多点击事件。
+3.跑马灯可以实现点击拖动，或者绑定更多点击事件。<br />
+![image](https://github.com/dsxNiubility/Wonderful/raw/master/screenshots/004.gif)<br />
 
 ####五、SXColorLabel
 1.把text里重要的内容用特殊符号包起来，就会特殊显示<br />
-![image](https://github.com/dsxNiubility/Wonderful/raw/master/screenshots/1002.png)<br />
+<img src="https://github.com/dsxNiubility/Wonderful/raw/master/screenshots/1002.png" alt="Drawing" width="375px" /><br />
 	
 	
 2.如果用<>包起来，就会显示高亮颜色。如果用[]包起来，就会显示高亮的字体。

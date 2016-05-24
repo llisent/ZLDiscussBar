@@ -22,6 +22,12 @@
     self.replies.text  = model.replies;
 }
 
+- (void)updateRecordWith:(ZLPostsModel *)model{
+    self.dateline.text = model.author;
+    self.title.text    = model.subject;
+    self.tid           = model.tid;
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

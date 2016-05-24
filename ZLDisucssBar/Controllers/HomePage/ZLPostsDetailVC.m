@@ -64,10 +64,9 @@
 
 #pragma mark - **************** 创建工具按钮
 - (void)creatRate{
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithTitle:@"工具"
-                                                                 style:UIBarButtonItemStylePlain
-                                                                target:self
-                                                                action:@selector(naviToolBarOnClick)];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"icon_xiala"] style:UIBarButtonItemStylePlain target:self action:@selector(naviToolBarOnClick)];
+    
+    
     self.navigationItem.rightBarButtonItem = rightItem;
 }
 
@@ -99,11 +98,9 @@
         //网页打开帖子
         [self naviToolBarOnClick];
         NSString *urlStr = [NSString stringWithFormat:@"http://www.zuanke8.com/thread-%@-1-1.html",self.tid];
-        if ([[UIApplication sharedApplication]canOpenURL:[NSURL URLWithString:urlStr]]) {
-            [[UIApplication sharedApplication]openURL:[NSURL URLWithString:urlStr]];
-        }else{
-            [self.view showErrorWithStatus:@"失败,请检查后重试"];
-        }
+        
+        SVWebViewController *web = [[SVWebViewController alloc]initWithAddress:urlStr];
+        [self.navigationController pushViewController:web animated:YES];
     }];
     
     //分割线
@@ -142,8 +139,8 @@
             //立即购买
             [self naviToolBarOnClick];
             if (self.sellModel) {
-                NSString *message = [NSString stringWithFormat:@"售价:%@果果 确认购买?",self.sellModel.price];
-                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:([self.sellModel.sellType isEqualToString:@"1"] ? @"担保交易" : @"自动发货")
+                NSString *message  = [NSString stringWithFormat:@"售价:%@果果 确认购买?",self.sellModel.price];
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:([self.sellModel.sellType isEqualToString:@"3"] ? @"担保交易" : @"自动发货")
                                                                message:message
                                                               delegate:self
                                                      cancelButtonTitle:@"确定"
@@ -167,9 +164,11 @@
 
 #pragma mark - **************** 立即购买
 - (void)purchaseNow{
-    [[ZLNetworkManager sharedInstence]userPurchaseWithUid:self.tid block:^(NSString *str) {
+    if (!self.tid || !self.sellModel.sellType) {
+        return;
+    }
+    [[ZLNetworkManager sharedInstence]userPurchaseWithUid:self.tid type:self.sellModel.sellType block:^(NSString *str) {
         NSLog(@"%@",str);
-        
     } failure:^(NSError *error) {
         
     }];
@@ -206,10 +205,10 @@
             
             if (str1.length > 10) {
                 self.sellModel          = [str1 checkOutPurchaseInfo];
-                self.sellModel.sellType = @"1";
+                self.sellModel.sellType = @"1"; //自动发货
             }else{
                 self.sellModel          = [str2 checkOutPurchaseInfo];
-                self.sellModel.sellType = @"3";
+                self.sellModel.sellType = @"3"; //担保交易
             }
         }
         

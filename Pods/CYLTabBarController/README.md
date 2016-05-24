@@ -16,8 +16,9 @@
   2.  [第二步：设置CYLTabBarController的两个数组：控制器数组和TabBar属性数组](https://github.com/ChenYilong/CYLTabBarController#第二步设置cyltabbarcontroller的两个数组控制器数组和tabbar属性数组) 
   3.  [第三步：将CYLTabBarController设置为window的RootViewController](https://github.com/ChenYilong/CYLTabBarController#第三步将cyltabbarcontroller设置为window的rootviewcontroller) 
   4.  [第四步（可选）：创建自定义的形状不规则加号按钮](https://github.com/ChenYilong/CYLTabBarController#第四步可选创建自定义的形状不规则加号按钮) 
- 2.  [补充说明](https://github.com/ChenYilong/CYLTabBarController#补充说明) 
- 2.  [Q-A](https://github.com/ChenYilong/CYLTabBarController#q-a) 
+ 4.  [在 Swift 项目中使用 CYLTabBarController](https://github.com/ChenYilong/CYLTabBarController#在-swift-项目中使用-cyltabbarcontroller) 
+ 5.  [补充说明](https://github.com/ChenYilong/CYLTabBarController#补充说明) 
+ 6.  [Q-A](https://github.com/ChenYilong/CYLTabBarController#q-a) 
 
 
 
@@ -34,7 +35,7 @@
 
 
 
-（学习交流群：523070828）
+（学习交流群：465239521）
 
 
 
@@ -72,7 +73,7 @@ pod 'CYLTabBarController'
 
 然后使用 `cocoaPods` 进行安装：
 
-如果尚未安装 Cocoapods, 运行以下命令进行安装:
+如果尚未安装 CocoaPods, 运行以下命令进行安装:
 
 
  ```Objective-C
@@ -208,7 +209,9 @@ pod update
  ```
 
 
+### 在 Swift 项目中使用 CYLTabBarController
 
+参考： [《从头开始swift2.1 仿搜材通项目（三） 主流框架Tabbed的搭建》]( http://www.jianshu.com/p/c5bc2eae0f55?nomobile=yes ) 
 
 ### 补充说明
 如果想更进一步的自定义 `TabBar` 样式可在 `-application:didFinishLaunchingWithOptions:` 方法中设置
