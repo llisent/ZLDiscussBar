@@ -16,6 +16,7 @@
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="3Zh-Ij-NpK">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="190"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="182" id="Jtt-Y1-A5r"/>
                             </constraints>
@@ -58,6 +59,7 @@
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstItem="hsI-3q-HuB" firstAttribute="top" secondItem="iix-ip-p0C" secondAttribute="top" constant="40" id="2O5-53-Lo7"/>
                         <constraint firstItem="hsI-3q-HuB" firstAttribute="centerX" secondItem="iix-ip-p0C" secondAttribute="centerX" id="5BD-hl-oKo"/>
@@ -75,6 +77,9 @@
                         <constraint firstAttribute="bottom" secondItem="3Zh-Ij-NpK" secondAttribute="bottom" id="vBV-Cp-Ay2"/>
                         <constraint firstItem="ggi-jW-AeE" firstAttribute="top" secondItem="hsI-3q-HuB" secondAttribute="bottom" constant="16" id="vdZ-4N-Rl8"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="sbD-8Y-d8q" appends="YES" id="gD4-xf-UZw"/>
+                    </connections>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -86,6 +91,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <connections>
+                <outlet property="contentView" destination="iix-ip-p0C" id="LRq-7W-6gT"/>
                 <outlet property="userImg" destination="hsI-3q-HuB" id="NUm-ty-5V9"/>
                 <outlet property="userLevel" destination="fUj-ab-Qyz" id="q7u-s3-Ur2"/>
                 <outlet property="userLntegral" destination="Mue-Qa-vQF" id="ycN-UG-spl"/>
@@ -93,6 +99,11 @@
             </connections>
             <point key="canvasLocation" x="352" y="348"/>
         </view>
+        <tapGestureRecognizer id="sbD-8Y-d8q">
+            <connections>
+                <action selector="clickOnView:" destination="iN0-l3-epB" id="Iyj-c4-ADa"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="bg1.jpg" width="904" height="901"/>

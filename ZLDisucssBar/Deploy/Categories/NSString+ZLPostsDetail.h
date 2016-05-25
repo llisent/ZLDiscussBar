@@ -26,5 +26,8 @@
 
 - (ZLPurchaseModel *)checkOutPurchaseInfo;
 
+#pragma mark - **************** 过滤标题转义字符
+- (NSString *)filtrationHtml;
+
 
 @end

@@ -25,16 +25,23 @@
     if (!dict) {
         //未登陆
         self.userImg.image     = [UIImage imageNamed:@"noavatar_middle.gif"];
-        self.userName.text     = @"未登录";
+        self.userName.text     = @"请点击登录";
         self.userLevel.text    = @"游客";
         self.userLntegral.text = @"0果";
+        self.contentView.userInteractionEnabled = YES;
     }else{
         [self.userImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://uc.zuanke8.com/avatar.php?uid=%@&size=big",[[ZLUserInfo sharedInstence] userUID]]]
                         placeholderImage:[UIImage imageNamed:@"noavatar_big.gif"]];
         self.userName.text     = [[ZLUserInfo sharedInstence] username];
         self.userLevel.text    = dict[@"space"][@"group"][@"grouptitle"];
         self.userLntegral.text = [NSString stringWithFormat:@"%@ 果果",dict[@"space"][@"credits"]];
+        self.contentView.userInteractionEnabled = NO;
     }
 }
+
+- (IBAction)clickOnView:(id)sender {
+    self.loginBlock();
+}
+
 
 @end

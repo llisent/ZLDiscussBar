@@ -242,7 +242,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PzZ-9m-hkl">
                                 <rect key="frame" x="11" y="11" width="46" height="30"/>
-                                <state key="normal" title="返回"/>
+                                <state key="normal" title="哈哈"/>
                                 <connections>
                                     <action selector="backOnClick:" destination="c9B-Yf-Yif" eventType="touchUpInside" id="fJb-rY-tWL"/>
                                 </connections>

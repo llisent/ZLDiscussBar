@@ -127,7 +127,14 @@
     return model;
 }
 
-
+- (NSString *)filtrationHtml{
+    NSString *returnStr;
+    returnStr = [self stringByReplacingOccurrencesOfString:@"&lt;" withString:@"<"];
+    returnStr = [returnStr stringByReplacingOccurrencesOfString:@"&gt;" withString:@">"];
+    returnStr = [returnStr stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+    returnStr = [returnStr stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
+    return returnStr;
+}
 
 
 

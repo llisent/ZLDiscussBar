@@ -23,4 +23,11 @@
 #define TOCK   NSLog(@"Time: %f", -[startTime timeIntervalSinceNow]);
 
 
+//
+#define UserLogin   @"UserLoginNotification"
+#define UserExit    @"UserExitNotification"
+
+
+
+
 #endif /* Macros_h */

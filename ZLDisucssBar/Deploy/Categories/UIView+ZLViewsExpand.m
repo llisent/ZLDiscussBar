@@ -22,4 +22,12 @@
     [SVProgressHUD showErrorWithStatus:status maskType:SVProgressHUDMaskTypeBlack];
 }
 
+- (void)showJGErrorWithStatus:(NSString *)status{
+    JGProgressHUD *HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    HUD.textLabel.text = status;
+    HUD.indicatorView  = [[JGProgressHUDErrorIndicatorView alloc] init];
+    [HUD showInView:self];
+    [HUD dismissAfterDelay:1.0];
+}
+
 @end

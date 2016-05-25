@@ -22,6 +22,10 @@
 /** 用户积分*/
 @property (weak, nonatomic) IBOutlet UILabel     *userLntegral;
 
+@property (weak, nonatomic) IBOutlet UIView *contentView;
+
+@property (nonatomic, copy) void (^loginBlock)();
+
 
 - (void)updateInfoWithDict:(NSDictionary *)dict;
 

@@ -9,6 +9,7 @@
 #import "ZLPlateViewController.h"
 #import "ZLPlateCollectionCell.h"
 #import "ZLHomePageViewController.h"
+#import "ZLPlateCell.h"
 
 @interface ZLPlateViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -25,8 +26,37 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"全部板块";
-    self.pidArray = @[@"2",@"9",@"11",@"13",@"14",@"19",@"20",@"22",@"24",@"25",@"26",@"27",@"29",@"30",@"31",@"33"];
-    self.nameArray = @[@"免费赠品",@"新手",@"做任务赚果果",@"有奖活动",@"有奖调查",@"活动线报",@"赚品显摆",@"获奖名单",@"微博活动",@"赚品交换",@"求助咨询",@"活动秘籍",@"区域活动",@"抢楼秒杀",@"果果换物",@"论坛纠纷"];
+    self.pidArray = @[@"15",
+                      @"11",
+                      @"13",
+                      @"14",
+                      @"19",
+                      @"20",
+                      @"22",
+                      @"24",
+                      @"25",
+                      @"26",
+                      @"27",
+                      @"29",
+                      @"30",
+                      @"31",
+                      @"2"];
+
+    self.nameArray = @[@"赚客大家谈",
+                       @"做任务赚果果",
+                       @"有奖活动",
+                       @"有奖调查",
+                       @"活动线报",
+                       @"赚品显摆",
+                       @"获奖名单",
+                       @"微博活动",
+                       @"赚品交换",
+                       @"求助咨询"
+                       ,@"活动秘籍",
+                       @"区域活动",
+                       @"抢楼秒杀",
+                       @"果果换物",
+                       @"免费赠品"];
     
     self.view.backgroundColor = [UIColor whiteColor];
     [self creatConstomUI];
@@ -34,9 +64,11 @@
 
 - (void)creatConstomUI{
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    flowLayout.itemSize                    = CGSizeMake((ScreenWidth- 2) / 3, (ScreenWidth - 2) / 3);
-    flowLayout.minimumLineSpacing          = 1;
-    flowLayout.minimumInteritemSpacing     = 1;
+//    flowLayout.itemSize                    = CGSizeMake((ScreenWidth- 2) / 3, (ScreenWidth - 2) / 3);
+    flowLayout.itemSize                    = CGSizeMake((ScreenWidth - 15)/2, 45);
+    flowLayout.minimumLineSpacing          = 5;
+    flowLayout.minimumInteritemSpacing     = 5;
+    flowLayout.sectionInset                = UIEdgeInsetsMake(5, 5, 0, 5);
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     
     self.plateCollectionView            = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-64) collectionViewLayout:flowLayout];
@@ -44,9 +76,7 @@
     self.plateCollectionView.delegate   = self;
     [self.plateCollectionView setBackgroundColor:[UIColor clearColor]];
     
-
-    [self.plateCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"collectionCell"];
-    [self.plateCollectionView registerNib:[UINib nibWithNibName:@"ZLPlateCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"collectionCell"];
+    [self.plateCollectionView registerNib:[UINib nibWithNibName:@"ZLPlateCell" bundle:nil] forCellWithReuseIdentifier:@"collectionCell"];
     [self.view addSubview:self.plateCollectionView];
 }
 
@@ -56,14 +86,12 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 16;
+    return self.nameArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    ZLPlateCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"collectionCell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor colorWithRed:0.159 green:0.530 blue:0.660 alpha:0.700];
-    cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"cat%ld",indexPath.row+1]];
-    cell.name.text = self.nameArray[indexPath.row];
+    ZLPlateCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"collectionCell" forIndexPath:indexPath];
+    cell.title.text = self.nameArray[indexPath.row];
     return cell;
 }
 
@@ -77,7 +105,6 @@
     vc.hidesBottomBarWhenPushed  = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

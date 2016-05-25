@@ -167,6 +167,7 @@
             [self.dataSet removeAllObjects];
             for (NSDictionary *item in data) {
                 ZLPostsModel *model = [ZLPostsModel mj_objectWithKeyValues:item];
+                 model.subject =  [model.subject filtrationHtml];
                 [self.dataArray addObject:model];
                 [self.dataSet addObject:model.tid];
             }
@@ -174,6 +175,7 @@
             //上拉--判断set 不重复则将model加入数组中
             for (NSDictionary *item in data) {
                 ZLPostsModel *model = [ZLPostsModel mj_objectWithKeyValues:item];
+                model.subject =  [model.subject filtrationHtml];
                 NSInteger num1 = self.dataSet.count;
                 [self.dataSet addObject:model.tid];
                 if (self.dataSet.count != num1) {

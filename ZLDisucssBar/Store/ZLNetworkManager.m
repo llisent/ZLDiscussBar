@@ -230,12 +230,17 @@
                     block:(void (^)(NSDictionary *dict))success
                   failure:(void (^)(NSError *error))failure{
     
-    NSString *urlStr = @"";
+    NSString *urlStr;
+    if ([page isEqualToString:@"1"]) {
+        urlStr = [NSString stringWithFormat:@"http://www.zuanke8.com/api/mobile/index.php?charset=utf-8&module=%@&mobile=no&version=3",thread];
+    }else{
+        urlStr = [NSString stringWithFormat:@"http://www.zuanke8.com/api/mobile/index.php?charset=utf-8&module=%@&mobile=no&version=3&page=%@",thread,page];
+    }
     
     [netManager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-        
+        success(responseObject[@"Variables"]);
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-        
+        failure(error);
     }];
 }
 

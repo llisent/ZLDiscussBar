@@ -88,7 +88,7 @@
 
 #pragma mark - **************** 通用模块访问(我的帖子 & 我的消息)
 - (void)generalAccessWith:(NSString *)thread
-                    count:(NSString *)pageCount
+                     page:(NSString *)page
                     block:(void (^)(NSDictionary *dict))success
                   failure:(void (^)(NSError *error))failure;
 

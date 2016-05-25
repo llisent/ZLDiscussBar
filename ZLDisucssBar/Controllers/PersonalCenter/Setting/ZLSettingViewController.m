@@ -128,6 +128,26 @@
 
 //退出
 - (IBAction)dropOut:(id)sender {
+    /*
+     退出登录 更改islogin状态
+     发送通知 更新个人中心状态
+     删除cookies
+     删除历史记录
+     删除一些配置
+     */
+    //发送通知
+    
+    http://www.zuanke8.com//connect.php?mod=login&op=init&mobile=no&oauth_style=mobile&referer=Mobile_Android
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"UserLoginNotification" object:nil];
+    
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        
+        [self.view showSuccessWithStatus:@"登陆成功"];
+        
+        SaveCookies
+    }];
+
     
 }
 - (IBAction)clickNotice:(id)sender {

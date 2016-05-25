@@ -16,4 +16,7 @@
 
 - (void)showErrorWithStatus:(NSString *)status;
 
+- (void)showJGErrorWithStatus:(NSString *)status;
+
+
 @end

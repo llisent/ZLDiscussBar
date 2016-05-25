@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ZLFavuriteModel.h"
 #import "ZLPostsModel.h"
+#import "ZLMyThreadModel.h"
 
 @interface ZLBookMarkCell : UITableViewCell
 
@@ -22,5 +23,7 @@
 - (void)updateFavoriteWith:(ZLFavuriteModel *)model;
 
 - (void)updateRecordWith:(ZLPostsModel *)model;
+
+- (void)updateMythreadWith:(ZLMyThreadModel *)model;
 
 @end

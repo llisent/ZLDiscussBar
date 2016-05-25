@@ -91,7 +91,7 @@
                                                               [NSKeyedArchiver archiveRootObject:user toFile:path];
 
                                                               //发送通知
-                                                              [[NSNotificationCenter defaultCenter]postNotificationName:@"UserLoginNotification" object:nil];
+                                                              [[NSNotificationCenter defaultCenter]postNotificationName:UserLogin object:nil];
                                                               
                                                               
                                                               [self.navigationController dismissViewControllerAnimated:YES completion:^{

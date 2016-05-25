@@ -28,6 +28,11 @@
     self.tid           = model.tid;
 }
 
+- (void)updateMythreadWith:(ZLMyThreadModel *)model{
+    self.dateline.text = model.dateline;
+    self.title.text    = model.subject;
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
