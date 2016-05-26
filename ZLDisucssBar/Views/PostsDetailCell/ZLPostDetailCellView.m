@@ -13,6 +13,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.floorView.layer.cornerRadius = 5;
+    self.floorView.clipsToBounds = YES;
 }
 
 - (void)updateInfomationWith:(ZLPostDetailModel *)model{

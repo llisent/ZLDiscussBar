@@ -24,10 +24,10 @@
 - (void)updateInfoWithDict:(NSDictionary *)dict{
     if (!dict) {
         //未登陆
-        self.userImg.image     = [UIImage imageNamed:@"noavatar_middle.gif"];
-        self.userName.text     = @"请点击登录";
-        self.userLevel.text    = @"游客";
-        self.userLntegral.text = @"0果果";
+        self.userImg.image                      = [UIImage imageNamed:@"noavatar_middle.gif"];
+        self.userName.text                      = @"请点击登录";
+        self.userLevel.text                     = @"游客";
+        self.userLntegral.text                  = @"0果果";
         self.contentView.userInteractionEnabled = YES;
     }else{
         // ------头像加载规则(第一次登录账号 或者 第一次启动app)

@@ -51,6 +51,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
     [self creatRate];
 }
 
@@ -70,8 +71,9 @@
     self.navigationItem.rightBarButtonItem = rightItem;
 }
 
-#pragma mark - **************** 展开/隐藏工具栏
+#pragma mark - **************** 展开/隐藏工具栏(tag = 11111)
 - (void)naviToolBarOnClick{
+    
     UIView *views = [self.view viewWithTag:11111];
     [UIView animateWithDuration:0.3 animations:^{
         if (views.top == 0) {
@@ -260,12 +262,14 @@
     [self.mainTableView.mj_footer endRefreshing];
 }
 
+#pragma mark - **************** 创建UI
 - (void)creatConstomUI{
-    self.view.backgroundColor         = [UIColor whiteColor];
-    self.mainTableView                = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-64-50)];
-    self.mainTableView.delegate       = self;
-    self.mainTableView.dataSource     = self;
-    self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.view.backgroundColor          = [UIColor whiteColor];
+    self.mainTableView                 = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-64-50)];
+    self.mainTableView.backgroundColor = [UIColor colorWithWhite:0.871 alpha:1.000];
+    self.mainTableView.delegate        = self;
+    self.mainTableView.dataSource      = self;
+    self.mainTableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
 
     [self.mainTableView registerNib:[UINib nibWithNibName:@"ZLPostDetailCellView" bundle:nil] forCellReuseIdentifier:@"detailCell"];
 
@@ -347,7 +351,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     /**
      *  返回cell的高度
-     *  1.净值1 = 60
+     *  1.净值1 = 80 上20 + 图 40 + 底默认10 + 图底默认10
      *  2.考虑是否为回复贴（如果是返回值为两个）
      *  3.考虑图片高度
      */
@@ -366,14 +370,21 @@
     }
     
     CGFloat height = 0.0f;
-    height += [text1 getHeightWithFramesetter:nil width:ScreenWidth - 20];
+    height += [text1 getHeightWithFramesetter:nil width:ScreenWidth - 40];
     if (text2) {
-        height += [text2 getHeightWithFramesetter:nil width:ScreenWidth - 20] + 10;
+        height += [text2 getHeightWithFramesetter:nil width:ScreenWidth - 40] + 10;
     }
     if (imgArr.count != 0) {
-        height += ((ScreenWidth - 40)/3 + 10) * ((imgArr.count % 3 == 0) ? (imgArr.count / 3) : (imgArr.count / 3) + 1) + 10;
+        if (imgArr.count % 3 == 0) {
+            //整行
+            height += ((ScreenWidth - 60)/3 + 10) * (imgArr.count / 3);
+            
+        }else{
+            //多出一行
+            height += ((ScreenWidth - 60)/3 + 10) * (imgArr.count / 3 + 1);
+        }
     }
-    return height + 75;
+    return height + 80;
     
 }
 
@@ -422,10 +433,10 @@
         for (int i = 0; i < [cell.imgArr count]; i++) {
             NSDictionary *dic      = cell.imgArr[i];
             NSString *url          = [NSString stringWithFormat:@"http://img.zuanke8.com/forum/%@",dic[@"attachment"]];
-            UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(((ScreenWidth - 40)/3 + 10) * (i%3),
-                                                                                  (i/3) * ((ScreenWidth - 40)/3 + 10),
-                                                                                  (ScreenWidth-40)/3,
-                                                                                  (ScreenWidth-40)/3)];
+            UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(((ScreenWidth - 60)/3 + 10) * (i%3),
+                                                                                  (i/3) * ((ScreenWidth - 60)/3 + 10),
+                                                                                  (ScreenWidth-60)/3,
+                                                                                  (ScreenWidth-60)/3)];
             imageView.userInteractionEnabled = YES;
             [imageView sd_setImageWithURL:[NSURL URLWithString:url]];
             [cell.imageBedView addSubview:imageView];
@@ -447,7 +458,7 @@
             }];
         }
         //高度
-        CGFloat  a = ((ScreenWidth - 40)/3 + 10) * ((cell.imgArr.count % 3 == 0) ? (cell.imgArr.count / 3) : (cell.imgArr.count / 3) + 1);
+        CGFloat  a = ((ScreenWidth - 60)/3) * ((cell.imgArr.count % 3 == 0) ? (cell.imgArr.count / 3) : (cell.imgArr.count / 3) + 1);
         [cell.imageBedView mas_makeConstraints:^(MASConstraintMaker *make) {
             
             make.height.mas_equalTo(a);

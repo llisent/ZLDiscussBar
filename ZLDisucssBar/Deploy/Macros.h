@@ -27,6 +27,7 @@
 #define UserLogin   @"UserLoginNotification"
 #define UserExit    @"UserExitNotification"
 
+
 //用户头像姓名存储
 #define UserInformation @"userInfomation"
 
