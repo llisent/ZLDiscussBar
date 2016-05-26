@@ -26,7 +26,7 @@
                                 </mask>
                             </variation>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hsI-3q-HuB">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noavatar_middle.gif" translatesAutoresizingMaskIntoConstraints="NO" id="hsI-3q-HuB">
                             <rect key="frame" x="130" y="40" width="60" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="Icw-Hj-D77"/>
@@ -97,7 +97,7 @@
                 <outlet property="userLntegral" destination="Mue-Qa-vQF" id="ycN-UG-spl"/>
                 <outlet property="userName" destination="ggi-jW-AeE" id="Ouh-db-dLm"/>
             </connections>
-            <point key="canvasLocation" x="352" y="348"/>
+            <point key="canvasLocation" x="-61" y="57"/>
         </view>
         <tapGestureRecognizer id="sbD-8Y-d8q">
             <connections>
@@ -107,5 +107,6 @@
     </objects>
     <resources>
         <image name="bg1.jpg" width="904" height="901"/>
+        <image name="noavatar_middle.gif" width="120" height="120"/>
     </resources>
 </document>

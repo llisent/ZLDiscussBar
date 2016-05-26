@@ -33,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (!self.title) {
-        self.title = @"赚客大家谈";
+        self.navigationItem.title = @"赚客大家谈";
     }
     
     self.edgesForExtendedLayout               = UIRectEdgeNone;

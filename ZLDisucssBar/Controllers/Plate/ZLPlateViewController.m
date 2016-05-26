@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"全部板块";
+    self.navigationItem.title = @"全部板块";
     self.pidArray = @[@"15",
                       @"11",
                       @"13",

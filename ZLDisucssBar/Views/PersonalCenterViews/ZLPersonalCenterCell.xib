@@ -26,12 +26,20 @@
                                 <color key="textColor" red="0.42352941176470588" green="0.42352941176470588" blue="0.42352941176470588" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Odb-E2-Hz6">
+                                <rect key="frame" x="333" y="13" width="30" height="14"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Odb-E2-Hz6" secondAttribute="trailing" constant="12" id="7Nc-UZ-xYD"/>
                             <constraint firstItem="KPF-C7-e3J" firstAttribute="centerY" secondItem="WBa-6I-pam" secondAttribute="centerY" id="MkS-tK-KH8"/>
                             <constraint firstItem="WBa-6I-pam" firstAttribute="centerY" secondItem="QSn-iu-T5a" secondAttribute="centerY" id="ULv-kd-vd3"/>
                             <constraint firstItem="WBa-6I-pam" firstAttribute="leading" secondItem="QSn-iu-T5a" secondAttribute="leading" constant="12" id="fgz-mm-bet"/>
+                            <constraint firstItem="Odb-E2-Hz6" firstAttribute="centerY" secondItem="KPF-C7-e3J" secondAttribute="centerY" id="hoa-ff-w9J"/>
                             <constraint firstItem="KPF-C7-e3J" firstAttribute="leading" secondItem="WBa-6I-pam" secondAttribute="trailing" constant="8" id="q9h-Xj-tAZ"/>
                         </constraints>
                     </view>
@@ -47,8 +55,9 @@
             <connections>
                 <outlet property="icon" destination="WBa-6I-pam" id="OeZ-t8-bMe"/>
                 <outlet property="titleLabel" destination="KPF-C7-e3J" id="dVx-2k-D7d"/>
+                <outlet property="valueLabel" destination="Odb-E2-Hz6" id="SQO-t2-VYc"/>
             </connections>
-            <point key="canvasLocation" x="606.5" y="385.5"/>
+            <point key="canvasLocation" x="308.5" y="279"/>
         </tableViewCell>
     </objects>
     <resources>

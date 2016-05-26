@@ -25,40 +25,90 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.header = [[ZLPersonalCenterView alloc]initWithFrame:CGRectMake(0, 0, ScreenHeight, 190)];
-    __weak typeof(self)weakSelf = self;
-    self.header.loginBlock = ^(){
-        [weakSelf loginNow];
-    };
-    self.title = @"";
-    [self initData];
-    [self initHeader];
-    [self creatConstomUI];
+    
+    self.navigationItem.title = @"";
+    
+    [self creatHeaderUI];               //创建header
+    [self creatLoginNotfication];       //注册登录通知
+    [self creatConstomUI];              //创建UI
+    [self initHeader];                  //刷新头部信息
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    
     [super viewWillAppear:animated];
-    [self initHeader];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    //第二次开始 每次刷新信息
+    static int a = 0;
+    (a != 0) ? ([self initHeader]) : (a++);
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
 }
 
-- (void)loginNow{
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"ZLLogin" bundle:[NSBundle mainBundle]];
-    UINavigationController *navi = [sb instantiateInitialViewController];
+#pragma mark - **************** 创建顶部视图(若有缓存信息 则加载缓存信息)
+- (void)creatHeaderUI{
     
+    self.header       = [[ZLPersonalCenterView alloc]initWithFrame:CGRectMake(0, 0, ScreenHeight, 190)];
+    NSDictionary *dic = [[NSUserDefaults standardUserDefaults]valueForKey:UserInformation];
+    if (dic) {
+        [self.header initHeaderDataWith:dic];
+    }
+    
+    __weak typeof(self)weakSelf = self;
+    self.header.loginBlock = ^(){
+        [weakSelf loginNow];
+    };
+}
+
+#pragma mark - **************** 立即登录
+- (void)loginNow{
+    UIStoryboard *sb             = [UIStoryboard storyboardWithName:@"ZLLogin" bundle:[NSBundle mainBundle]];
+    UINavigationController *navi = [sb instantiateInitialViewController];
     [self.navigationController presentViewController:navi animated:YES completion:^{
+        
     }];
 }
 
+#pragma mark - **************** 更新数据
 - (void)initHeader{
+    // ------判断登录
     NSString *userID = [[ZLUserInfo sharedInstence] userUID];
+    
     if (userID.length > 0) {
-        //已登录
         [[ZLNetworkManager sharedInstence]getUserInfoWithUid:[ZLUserInfo sharedInstence].userUID block:^(NSDictionary *dict){
+            
+            // ------ 保存登录信息
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                NSString *b = dict[@"space"][@"group"][@"grouptitle"];
+                NSString *a = dict[@"space"][@"username"];
+                NSString *c = [NSString stringWithFormat:@"%@果果",dict[@"space"][@"credits"]];
+                NSDictionary *userInfoDic = @{@"a":a,
+                                              @"b":b,
+                                              @"c":c};
+                [[NSUserDefaults standardUserDefaults]setObject:userInfoDic forKey:UserInformation];
+            });
+            
+            
+            // ------更新消息value
+            {
+                NSUInteger count     = 0;
+                NSArray *noticeArray = [dict[@"notice"] allValues];
+                
+                for (NSString *str in noticeArray) {
+                    if (![str isEqualToString:@"0"]) {
+                        count += [str integerValue];
+                    }
+                }
+                
+                if (count != 0) {
+                    [self.navigationController.tabBarItem setBadgeValue:[NSString stringWithFormat:@"%ld",count]];
+                    [self.mainTableView reloadRow:2 inSection:0 withRowAnimation:UITableViewRowAnimationFade];
+                }
+            }
+
             [self.header updateInfoWithDict:dict];
             
         } failure:^(NSError *error) {
@@ -70,21 +120,22 @@
     }
 }
 
-- (void)initData{
+#pragma mark - **************** 注册登录通知
+- (void)creatLoginNotfication{
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UserLogin object:nil]subscribeNext:^(id x) {
         [self initHeader];
     }];
 }
 
+#pragma mark - **************** 创建基本UI
 - (void)creatConstomUI{
     self.mainTableView                = [[UITableView alloc]initWithFrame:CGRectMake(0, -20, ScreenWidth, ScreenHeight - 29)];
     self.mainTableView.delegate       = self;
     self.mainTableView.dataSource     = self;
     self.mainTableView.rowHeight      = 45;
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
+
     [self.mainTableView registerNib:[UINib nibWithNibName:@"ZLPersonalCenterCell" bundle:nil] forCellReuseIdentifier:@"personalCell"];
-    
     [self.mainTableView setTableHeaderView:self.header];
     [self.view addSubview:self.mainTableView];
 }
@@ -108,6 +159,10 @@
             break;
         case 2:
             cell.titleLabel.text = @"我的消息";
+            if (self.navigationController.tabBarItem.badgeValue) {
+                cell.valueLabel.hidden = NO;
+                cell.valueLabel.text = self.navigationController.tabBarItem.badgeValue;
+            }
             cell.icon.image      = [UIImage imageNamed:@"message"];
             break;
         case 3:
@@ -181,12 +236,12 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
+#pragma mark - **************** 跳转到网页
 - (void)pushToWebViewWithURL:(NSString *)address{
-    SVWebViewController *sv = [[SVWebViewController alloc]initWithAddress:address];
+    SVWebViewController *sv     = [[SVWebViewController alloc]initWithAddress:address];
     sv.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:sv animated:YES];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
