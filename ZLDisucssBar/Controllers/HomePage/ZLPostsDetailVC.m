@@ -67,8 +67,9 @@
 - (void)creatRate{
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"icon_xiala"] style:UIBarButtonItemStylePlain target:self action:@selector(naviToolBarOnClick)];
     
+    UIBarButtonItem *favItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"icon_shoucang"] style:UIBarButtonItemStylePlain target:self action:@selector(favouriteCurrent)];
     
-    self.navigationItem.rightBarButtonItem = rightItem;
+    self.navigationItem.rightBarButtonItems = @[rightItem,favItem];
 }
 
 #pragma mark - **************** 展开/隐藏工具栏(tag = 11111)
@@ -554,6 +555,24 @@
             [self.tidType isEqual:@"31"] ? (views.top = - 137) : (views.top = -91);
         }];
     }
+}
+
+#pragma mark - **************** 收藏当前帖子
+- (void)favouriteCurrent{
+    [[ZLNetworkManager sharedInstence]favouriteWithTid:self.tid block:^(NSDictionary *dict) {
+        if ([dict[@"messageval"] isEqualToString:@"favorite_do_success"]) {
+            
+            [self.view showSuccessWithStatus:@"收藏成功"];
+        }else if ([dict[@"messageval"] isEqualToString:@"favorite_repeat"]){
+            
+            [self.view showErrorWithStatus:@"已经收藏过了哦"];
+        }else{
+            
+            [self.view showErrorWithStatus:@"收藏失败"];
+        }
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
