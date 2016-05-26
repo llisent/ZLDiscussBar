@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    self.countImg.hidden = YES;
 }
 
 - (void)updateFavoriteWith:(ZLFavuriteModel *)model{
@@ -20,6 +20,7 @@
     self.title.text    = model.title;
     self.tid           = model.id;
     self.replies.text  = model.replies;
+    self.countImg.hidden = NO;
 }
 
 - (void)updateRecordWith:(ZLPostsModel *)model{

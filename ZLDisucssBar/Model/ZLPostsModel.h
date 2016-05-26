@@ -40,6 +40,9 @@
 /** 查看权限*/
 @property (nonatomic ,strong) NSString *readperm;
 
+/** 所属板块*/
+@property (nonatomic ,strong) NSString *currentType;
+
 
 
 

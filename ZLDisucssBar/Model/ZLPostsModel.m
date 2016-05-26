@@ -13,16 +13,17 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder{
     
     if (self = [super init]) {
-        self.author     = [aDecoder decodeObjectForKey:@"author"];
-        self.authorid   = [aDecoder decodeObjectForKey:@"authorid"];
-        self.subject    = [aDecoder decodeObjectForKey:@"subject"];
-        self.tid        = [aDecoder decodeObjectForKey:@"tid"];
-        self.replies    = [aDecoder decodeObjectForKey:@"replies"];
-        self.views      = [aDecoder decodeObjectForKey:@"views"];
-        self.dateline   = [aDecoder decodeObjectForKey:@"dateline"];
-        self.lastpost   = [aDecoder decodeObjectForKey:@"lastpost"];
-        self.lastposter = [aDecoder decodeObjectForKey:@"lastposter"];
-        self.readperm   = [aDecoder decodeObjectForKey:@"readperm"];
+        self.author      = [aDecoder decodeObjectForKey:@"author"];
+        self.authorid    = [aDecoder decodeObjectForKey:@"authorid"];
+        self.subject     = [aDecoder decodeObjectForKey:@"subject"];
+        self.tid         = [aDecoder decodeObjectForKey:@"tid"];
+        self.replies     = [aDecoder decodeObjectForKey:@"replies"];
+        self.views       = [aDecoder decodeObjectForKey:@"views"];
+        self.dateline    = [aDecoder decodeObjectForKey:@"dateline"];
+        self.lastpost    = [aDecoder decodeObjectForKey:@"lastpost"];
+        self.lastposter  = [aDecoder decodeObjectForKey:@"lastposter"];
+        self.readperm    = [aDecoder decodeObjectForKey:@"readperm"];
+        self.currentType = [aDecoder decodeObjectForKey:@"currentType"];
     }
     return self;
 }
@@ -39,6 +40,7 @@
     [aCoder encodeObject:self.lastpost forKey:@"lastpost"];
     [aCoder encodeObject:self.lastposter forKey:@"lastposter"];
     [aCoder encodeObject:self.readperm forKey:@"readperm"];
+    [aCoder encodeObject:self.currentType forKey:@"currentType"];
     
 }
 

@@ -213,7 +213,11 @@
     [cell updateInformationWithModel:model];
     
     //加入侧滑收藏按钮 (3D)
-    cell.leftButtons = @[[MGSwipeButton buttonWithTitle:@"收藏" backgroundColor:[UIColor lightGrayColor]]];
+    MGSwipeButton *button = [MGSwipeButton buttonWithTitle:@"收藏" backgroundColor:[UIColor colorWithRed:0.941 green:0.133 blue:0.153 alpha:1.000]];
+    button.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:17];
+    
+    cell.leftButtons = @[button];
+    
     cell.leftSwipeSettings.transition = MGSwipeTransition3D;
     cell.delegate = self;
 
@@ -230,11 +234,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     // ------此处将所选加入记录
-    ZLPostsModel *model  = self.dataArray[indexPath.row];
+    ZLPostsModel *model = self.dataArray[indexPath.row];
+    if (self.plateFid) {
+        model.currentType   = self.plateFid;
+    }else{
+        model.currentType   = @"15";
+    }
     [[ZLGlobal sharedInstence]saveModelWith:model];
     ZLPostsDetailVC * vc = [[ZLPostsDetailVC alloc]init];
     vc.tid               = model.tid;
-    vc.title             = model.tid;
+    vc.title             = @"主题帖";
     vc.tidType           = self.plateFid;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];

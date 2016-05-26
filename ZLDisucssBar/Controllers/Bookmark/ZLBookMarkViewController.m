@@ -34,7 +34,10 @@
 @property (nonatomic ,strong) NSArray            *recordArray;
 
 /** 收藏记录页码*/
-@property (nonatomic ,strong) NSString           *page;
+@property (nonatomic ,assign) NSInteger           page;
+
+
+@property (nonatomic ,strong) NSDictionary       *plateDic;
 
 @end
 
@@ -43,9 +46,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     {
-        self.page          = @"1";
+        self.page          = 1;
         self.favoriteArray = [NSMutableArray array];
         self.recordArray   = [NSArray array];
+        
+        self.plateDic = @{@"2":@"免费赠品",
+                          @"15":@"赚客大家谈",
+                          @"11":@"做任务赚果果",
+                          @"13":@"有奖活动",
+                          @"14":@"有奖调查",
+                          @"19":@"活动线报",
+                          @"20":@"赚品显摆",
+                          @"22":@"获奖名单",
+                          @"24":@"微博活动",
+                          @"25":@"赚品交换",
+                          @"26":@"求助咨询",
+                          @"27":@"活动秘籍",
+                          @"29":@"区域活动",
+                          @"30":@"抢楼秒杀",
+                          @"31":@"果果换物"};
     }
     [self creatNavigationBar];
     [self creatConstomUI];
@@ -73,6 +92,13 @@
     self.favoriteTableView.dataSource     = self;
     self.favoriteTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.favoriteTableView registerNib:[UINib nibWithNibName:@"ZLBookMarkCell" bundle:nil] forCellReuseIdentifier:@"favorite"];
+    self.favoriteTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        self.page++;
+        [self initFavoriteData];
+    }];
+    self.favoriteTableView.mj_footer.automaticallyHidden = YES;
+
+    
     [self.mainScroll addSubview:self.favoriteTableView];
 
     // ------创建记录TableView
@@ -96,8 +122,13 @@
     if (![[ZLGlobal sharedInstence]isLogin]) {
         return;
     }
-    [[ZLNetworkManager sharedInstence]getFavoriteThreadWithPage:self.page block:^(NSDictionary *dict) {
+    [[ZLNetworkManager sharedInstence]getFavoriteThreadWithPage:[NSString stringWithFormat:@"%ld",self.page] block:^(NSDictionary *dict) {
         NSArray *array = dict[@"list"];
+        if (array.count != 20) {
+            [self.favoriteTableView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [self.favoriteTableView.mj_footer endRefreshing];
+        }
         
         for (NSDictionary *modelDic in array) {
             ZLFavuriteModel *model = [ZLFavuriteModel mj_objectWithKeyValues:modelDic];
@@ -105,7 +136,8 @@
         }
         [self.favoriteTableView reloadData];
     } failure:^(NSError *error) {
-        
+        [self.favoriteTableView.mj_footer endRefreshing];
+        self.page --;
     }];
 }
 
@@ -154,7 +186,7 @@
     }else{
         ZLPostsModel *model = self.recordArray[indexPath.row];
         ZLBookMarkCell *cell  = [tableView dequeueReusableCellWithIdentifier:@"record" forIndexPath:indexPath];
-        cell.replies.hidden = YES;
+        cell.replies.text = [self.plateDic objectForKey:model.currentType];
         [cell updateRecordWith:model];
         return cell;
     }
@@ -178,16 +210,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *tidStr;
+    NSString *type;
     if (tableView == self.recordTableView) {
         ZLPostsModel *model = self.recordArray[indexPath.row];
-        tidStr = model.tid;
+        tidStr              = model.tid;
+        type                = model.currentType;
     }else{
         ZLFavuriteModel *model = self.favoriteArray[indexPath.row];
-        tidStr = model.id;
+        tidStr                 = model.id;
     }
 
-    ZLPostsDetailVC *vc = [[ZLPostsDetailVC alloc]init];
-    vc.tid = tidStr;
+    ZLPostsDetailVC *vc         = [[ZLPostsDetailVC alloc]init];
+    vc.tid                      = tidStr;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }

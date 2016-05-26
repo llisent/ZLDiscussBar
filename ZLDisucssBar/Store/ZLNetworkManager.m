@@ -165,7 +165,7 @@
     [netManager GET:url parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         success(responseObject[@"Variables"]);
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-        
+        failure(error);
     }];
 }
 

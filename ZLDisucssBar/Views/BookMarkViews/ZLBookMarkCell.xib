@@ -41,11 +41,16 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_reply_count" translatesAutoresizingMaskIntoConstraints="NO" id="tqx-jL-l1M">
+                                <rect key="frame" x="381" y="54" width="16" height="16"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="w5n-8h-Vh6" secondAttribute="trailing" constant="10" id="Bbb-P1-ISK"/>
+                            <constraint firstItem="GTs-JE-EBq" firstAttribute="centerY" secondItem="tqx-jL-l1M" secondAttribute="centerY" id="DLb-Qa-EZ5"/>
                             <constraint firstItem="GTs-JE-EBq" firstAttribute="top" secondItem="WDO-8Q-4CV" secondAttribute="top" id="HSQ-bu-o41"/>
+                            <constraint firstItem="GTs-JE-EBq" firstAttribute="leading" secondItem="tqx-jL-l1M" secondAttribute="trailing" constant="5" id="Jjo-wY-2XT"/>
                             <constraint firstItem="w5n-8h-Vh6" firstAttribute="leading" secondItem="ZY0-G5-FIB" secondAttribute="leading" constant="10" id="NCS-oI-Td3"/>
                             <constraint firstItem="w5n-8h-Vh6" firstAttribute="top" secondItem="ZY0-G5-FIB" secondAttribute="top" constant="10" id="P05-A3-r2O"/>
                             <constraint firstItem="WDO-8Q-4CV" firstAttribute="leading" secondItem="ZY0-G5-FIB" secondAttribute="leading" constant="10" id="VML-A1-Mod"/>
@@ -63,6 +68,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
+                <outlet property="countImg" destination="tqx-jL-l1M" id="yKe-rU-2mN"/>
                 <outlet property="dateline" destination="WDO-8Q-4CV" id="4Gn-Ag-6hO"/>
                 <outlet property="replies" destination="GTs-JE-EBq" id="nCi-tf-g2n"/>
                 <outlet property="title" destination="w5n-8h-Vh6" id="Grd-si-qAi"/>
@@ -70,4 +76,7 @@
             <point key="canvasLocation" x="483.5" y="290"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="icon_reply_count" width="16" height="16"/>
+    </resources>
 </document>

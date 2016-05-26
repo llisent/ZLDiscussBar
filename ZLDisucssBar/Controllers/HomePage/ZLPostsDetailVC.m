@@ -266,7 +266,7 @@
 - (void)creatConstomUI{
     self.view.backgroundColor          = [UIColor whiteColor];
     self.mainTableView                 = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-64-50)];
-    self.mainTableView.backgroundColor = [UIColor colorWithWhite:0.871 alpha:1.000];
+    self.mainTableView.backgroundColor = [UIColor colorWithWhite:0.902 alpha:1.000];
     self.mainTableView.delegate        = self;
     self.mainTableView.dataSource      = self;
     self.mainTableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
@@ -390,9 +390,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ZLPostDetailModel *model = self.dataArray[indexPath.row];
-    IQTextView *textView     = [self.view viewWithTag:1111];
-    textView.placeholder     = [NSString stringWithFormat:@"回复%@",model.author];
-    [textView becomeFirstResponder];
+//    IQTextView *textView     = [self.view viewWithTag:1111];
+//    textView.placeholder     = [NSString stringWithFormat:@"回复%@",model.author];
+//    [textView becomeFirstResponder];
     
 }
 
@@ -412,16 +412,15 @@
     
     // ------建立容器
     TYTextContainer *containerReply = dict[@"a"];
-    
+
     //把容器赋回Label
-    cell.replyLabel.textContainer = containerReply;
+    cell.replyLabel.textContainer   = containerReply;
     
     
     if (model.isReply) {
         // ------建立容器
         TYTextContainer *containerQuote = dict[@"b"];
-
-        cell.quoteLabel.textContainer = containerQuote;
+        cell.quoteLabel.textContainer   = containerQuote;
         [cell.quoteLabel sizeToFit];
         
     }
@@ -445,13 +444,14 @@
 
             SDWebImageDownloader *dl = [SDWebImageDownloader sharedDownloader];
             [dl downloadImageWithURL:[NSURL URLWithString:url] options:SDWebImageDownloaderLowPriority progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+                
                 imageView.image             = image;
                 UITapGestureRecognizer *ges = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
-                    ZLScrollImageVC *vc = [[ZLScrollImageVC alloc]init];
-                    vc.constomImage = image;
-                    vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                ZLScrollImageVC *vc         = [[ZLScrollImageVC alloc]init];
+                vc.constomImage             = image;
+                vc.modalTransitionStyle     = UIModalTransitionStyleCrossDissolve;
                     [self.navigationController presentViewController:vc animated:YES completion:^{
-                        
+
                     }];
                 }];
                 [imageView addGestureRecognizer:ges];
@@ -543,6 +543,16 @@
         }else{
             [self purchaseNow];
         }
+    }
+}
+
+#pragma mark - **************** SCROLLVIEW DELEGATE
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    UIView *views = [self.view viewWithTag:11111];
+    if (views.top == 0) {
+        [UIView animateWithDuration:0.3 animations:^{
+            [self.tidType isEqual:@"31"] ? (views.top = - 137) : (views.top = -91);
+        }];
     }
 }
 

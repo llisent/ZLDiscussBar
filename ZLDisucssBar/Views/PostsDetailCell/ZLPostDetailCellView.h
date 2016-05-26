@@ -36,6 +36,7 @@
 
 @property (nonatomic ,strong) NSArray                    *imgArr;
 
+@property (weak, nonatomic) IBOutlet UIButton *replyBtn;
 
 //依照数据更新布局
 - (void)updateInfomationWith:(ZLPostDetailModel *)model;

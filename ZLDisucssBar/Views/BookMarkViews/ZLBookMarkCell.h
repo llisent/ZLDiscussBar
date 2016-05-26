@@ -19,6 +19,7 @@
 
 @property (nonatomic ,strong) NSString *tid;
 
+@property (weak, nonatomic) IBOutlet UIImageView *countImg;
 
 - (void)updateFavoriteWith:(ZLFavuriteModel *)model;
 
