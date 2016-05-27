@@ -125,7 +125,7 @@
     NSDictionary *par = @{@"charset":@"utf-8",
                           @"formhash":hash,
                           @"message":msg,
-                          @"mobiletype":@"2"};
+                          @"mobiletype":@"1"};
     
     
     [netManager POST:url parameters:par success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {

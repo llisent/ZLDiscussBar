@@ -39,6 +39,9 @@
 
 @property (nonatomic ,strong) NSDictionary       *plateDic;
 
+
+@property (nonatomic ,assign) HPGetInfoType type;
+
 @end
 
 @implementation ZLBookMarkViewController
@@ -96,6 +99,16 @@
         self.page++;
         [self initFavoriteData];
     }];
+    self.favoriteTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        self.page = 1;
+        self.type = HPGetInfoTypeRefresh;
+        [self initData];
+    }];
+    
+    
+    
+    
+    
     self.favoriteTableView.mj_footer.automaticallyHidden = YES;
 
     

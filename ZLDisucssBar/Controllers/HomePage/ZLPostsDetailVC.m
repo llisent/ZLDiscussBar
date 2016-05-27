@@ -459,7 +459,12 @@
             }];
         }
         //高度
-        CGFloat  a = ((ScreenWidth - 60)/3) * ((cell.imgArr.count % 3 == 0) ? (cell.imgArr.count / 3) : (cell.imgArr.count / 3) + 1);
+        CGFloat a = 0.0f;
+        if (cell.imgArr.count % 3 == 0) {
+            a = ((ScreenWidth - 60) / 3) * (cell.imgArr.count / 3) + (cell.imgArr.count / 3 - 1) * 10;
+        }else{
+            a = ((ScreenWidth - 60) / 3) * (cell.imgArr.count / 3 + 1) + (cell.imgArr.count / 3) * 10;
+        }
         [cell.imageBedView mas_makeConstraints:^(MASConstraintMaker *make) {
             
             make.height.mas_equalTo(a);
