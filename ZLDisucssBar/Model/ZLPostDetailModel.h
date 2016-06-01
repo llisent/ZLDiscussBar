@@ -10,25 +10,25 @@
 
 @interface ZLPostDetailModel : NSObject
 
-@property (nonatomic ,strong) NSString     *pid;
+@property (nonatomic ,strong) NSString        *pid;
 
-@property (nonatomic ,strong) NSString     *tid;
+@property (nonatomic ,strong) NSString        *tid;
 
-@property (nonatomic ,strong) NSString     *authorid;
+@property (nonatomic ,strong) NSString        *authorid;
 
-@property (nonatomic ,strong) NSString     *author;
+@property (nonatomic ,strong) NSString        *author;
 
-@property (nonatomic ,strong) NSString     *dateline;
+@property (nonatomic ,strong) NSString        *dateline;
 
 /** 本贴回复*/
-@property (nonatomic ,strong) NSString     *message;
+@property (nonatomic ,strong) NSString        *message;
 
-@property (nonatomic ,strong) NSDictionary *attachments;
+@property (nonatomic ,strong) NSDictionary    *attachments;
 
 /** 引用信息*/
-@property (nonatomic ,strong) NSString     *quoteStr;
+@property (nonatomic ,strong) NSString        *quoteStr;
 
-@property (nonatomic ,assign) BOOL         isReply;
+@property (nonatomic ,assign) BOOL            isReply;
 
 @property (nonatomic ,strong) TYTextContainer *container1;
 

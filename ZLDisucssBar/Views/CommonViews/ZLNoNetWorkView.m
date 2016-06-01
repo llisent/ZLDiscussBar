@@ -13,7 +13,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        self = [[NSBundle mainBundle]loadNibNamed:@"NoNetWorkView" owner:self options:nil][0];
+        self       = [[NSBundle mainBundle]loadNibNamed:@"NoNetWorkView" owner:self options:nil][0];
         self.frame = frame;
     }
     return self;

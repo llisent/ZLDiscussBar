@@ -38,21 +38,21 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-01-01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FYH-dQ-9Ov">
-                                <rect key="frame" x="62" y="34" width="63" height="15"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
+                                <rect key="frame" x="62" y="35" width="73" height="14"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="12"/>
                                 <color key="textColor" red="0.63137254901960782" green="0.62745098039215685" blue="0.65098039215686276" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon_reply_count" translatesAutoresizingMaskIntoConstraints="NO" id="0V4-sp-FlR">
-                                <rect key="frame" x="442" y="13" width="16" height="16"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_reply_count" translatesAutoresizingMaskIntoConstraints="NO" id="0V4-sp-FlR">
+                                <rect key="frame" x="440" y="13" width="16" height="16"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="150" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zhX-Ue-6hc">
-                                <rect key="frame" x="461" y="13" width="22" height="16"/>
+                                <rect key="frame" x="459" y="13" width="24" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="Qua-07-kfd"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="13"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -96,7 +96,7 @@
                 <outlet property="reportNum" destination="zhX-Ue-6hc" id="h1g-jQ-q2m"/>
                 <outlet property="title" destination="Yec-Ye-XVA" id="alM-sE-C7Q"/>
             </connections>
-            <point key="canvasLocation" x="469.5" y="157"/>
+            <point key="canvasLocation" x="376.5" y="248"/>
         </tableViewCell>
     </objects>
     <resources>

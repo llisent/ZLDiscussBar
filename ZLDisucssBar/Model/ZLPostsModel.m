@@ -11,7 +11,6 @@
 @implementation ZLPostsModel
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder{
-    
     if (self = [super init]) {
         self.author      = [aDecoder decodeObjectForKey:@"author"];
         self.authorid    = [aDecoder decodeObjectForKey:@"authorid"];
@@ -29,19 +28,17 @@
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder{
-    
-    [aCoder encodeObject:self.author forKey:@"author"];
-    [aCoder encodeObject:self.authorid forKey:@"authorid"];
-    [aCoder encodeObject:self.subject forKey:@"subject"];
-    [aCoder encodeObject:self.tid forKey:@"tid"];
-    [aCoder encodeObject:self.replies forKey:@"replies"];
-    [aCoder encodeObject:self.views forKey:@"views"];
-    [aCoder encodeObject:self.dateline forKey:@"dateline"];
-    [aCoder encodeObject:self.lastpost forKey:@"lastpost"];
-    [aCoder encodeObject:self.lastposter forKey:@"lastposter"];
-    [aCoder encodeObject:self.readperm forKey:@"readperm"];
-    [aCoder encodeObject:self.currentType forKey:@"currentType"];
-    
+    [aCoder encodeObject:self.author        forKey:@"author"];
+    [aCoder encodeObject:self.authorid      forKey:@"authorid"];
+    [aCoder encodeObject:self.subject       forKey:@"subject"];
+    [aCoder encodeObject:self.tid           forKey:@"tid"];
+    [aCoder encodeObject:self.replies       forKey:@"replies"];
+    [aCoder encodeObject:self.views         forKey:@"views"];
+    [aCoder encodeObject:self.dateline      forKey:@"dateline"];
+    [aCoder encodeObject:self.lastpost      forKey:@"lastpost"];
+    [aCoder encodeObject:self.lastposter    forKey:@"lastposter"];
+    [aCoder encodeObject:self.readperm      forKey:@"readperm"];
+    [aCoder encodeObject:self.currentType   forKey:@"currentType"];
 }
 
 @end
