@@ -39,8 +39,14 @@
         }];
     }
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+        [self.delegate showUserDetailWith:model.authorid];
+    }];
+    [self.avatar addGestureRecognizer:tap];
+    
     // ------头像
     NSString *mass = [[ZLGlobal sharedInstence]avatarMass];
+    
     if ([mass isEqualToString:@"big"] || [mass isEqualToString:@"small"] || [mass isEqualToString:@"no"]) {
         if ([mass isEqualToString:@"no"]) {
             self.avatar.image = [UIImage imageNamed:@"noavatar_big.gif"];

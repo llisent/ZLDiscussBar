@@ -19,6 +19,8 @@
 
 @property (nonatomic ,strong) UITableView          *mainTableView;
 
+@property (nonatomic ,strong) NSDictionary         *userInfoDict;
+
 @end
 
 @implementation ZLPersonalCenter
@@ -78,9 +80,10 @@
     NSString *userID = [[ZLUserInfo sharedInstence] userUID];
     
     if (userID.length > 0) {
-        [[ZLNetworkManager sharedInstence]getUserInfoWithUid:[ZLUserInfo sharedInstence].userUID block:^(NSDictionary *dict){
-            
+        
+        [[ZLNetworkManager sharedInstence]getUserInfoWithBlock:^(NSDictionary *dict) {
             // ------ 保存登录信息
+            self.userInfoDict = dict;
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 NSString *b = dict[@"space"][@"group"][@"grouptitle"];
                 NSString *a = dict[@"space"][@"username"];
@@ -108,12 +111,12 @@
                     [self.mainTableView reloadRow:2 inSection:0 withRowAnimation:UITableViewRowAnimationFade];
                 }
             }
-
-            [self.header updateInfoWithDict:dict];
             
+            [self.header updateInfoWithDict:dict];
         } failure:^(NSError *error) {
             
         }];
+        
     }else{
         //未登录
         [self.header updateInfoWithDict:nil];
@@ -196,9 +199,16 @@
     }
     switch (indexPath.row) {
         case 0:{
-            ZLPersonalInfoViewController *person = [[ZLPersonalInfoViewController alloc]init];
-            person.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:person animated:YES];
+            if (self.userInfoDict) {
+                ZLPersonalInfoViewController *person = [[ZLPersonalInfoViewController alloc]init];
+                person.VariablesDict = self.userInfoDict;
+                person.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+                [self presentViewController:person animated:YES completion:^{
+                    
+                }];
+            }else{
+                [self.view showJGErrorWithStatus:@"获取信息失败"];
+            }
         }
             break;
         case 1:{

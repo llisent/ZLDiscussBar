@@ -33,8 +33,8 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="作者" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCb-C7-1Op">
                                 <rect key="frame" x="62" y="10" width="30" height="18"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                <color key="textColor" red="0.22352941176470587" green="0.22352941176470587" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="15"/>
+                                <color key="textColor" red="0.25882352941176467" green="0.25882352941176467" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016-01-01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FYH-dQ-9Ov">
@@ -44,7 +44,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_reply_count" translatesAutoresizingMaskIntoConstraints="NO" id="0V4-sp-FlR">
-                                <rect key="frame" x="440" y="13" width="16" height="16"/>
+                                <rect key="frame" x="440" y="12" width="16" height="16"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="150" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zhX-Ue-6hc">
                                 <rect key="frame" x="459" y="13" width="24" height="16"/>
@@ -66,7 +66,7 @@
                             <constraint firstItem="FYH-dQ-9Ov" firstAttribute="leading" secondItem="uhq-pW-fdT" secondAttribute="trailing" constant="12" id="JP0-5l-3cX"/>
                             <constraint firstItem="zhX-Ue-6hc" firstAttribute="top" secondItem="yCb-C7-1Op" secondAttribute="top" constant="3" id="JjP-ZN-XZF"/>
                             <constraint firstItem="zhX-Ue-6hc" firstAttribute="centerY" secondItem="uhq-pW-fdT" secondAttribute="centerY" id="NbJ-YN-S4j"/>
-                            <constraint firstItem="zhX-Ue-6hc" firstAttribute="centerY" secondItem="0V4-sp-FlR" secondAttribute="centerY" id="Tkt-um-bTP"/>
+                            <constraint firstItem="zhX-Ue-6hc" firstAttribute="centerY" secondItem="0V4-sp-FlR" secondAttribute="centerY" constant="1" id="Tkt-um-bTP"/>
                             <constraint firstItem="Yec-Ye-XVA" firstAttribute="leading" secondItem="2yP-2z-dUn" secondAttribute="leading" constant="10" id="Vch-bN-5LC"/>
                             <constraint firstItem="Yec-Ye-XVA" firstAttribute="top" secondItem="uhq-pW-fdT" secondAttribute="bottom" constant="12" id="igr-vl-rD2"/>
                             <constraint firstAttribute="trailing" secondItem="zhX-Ue-6hc" secondAttribute="trailing" constant="10" id="jc1-Ju-Xpn"/>

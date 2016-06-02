@@ -30,4 +30,8 @@
     [HUD dismissAfterDelay:1.0];
 }
 
+- (void)dismissLoading{
+    [SVProgressHUD dismiss];
+}
+
 @end

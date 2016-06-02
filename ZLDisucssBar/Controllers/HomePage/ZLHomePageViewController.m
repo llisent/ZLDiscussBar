@@ -15,13 +15,13 @@
 
 @interface ZLHomePageViewController ()<UITableViewDataSource ,UITableViewDelegate ,MGSwipeTableCellDelegate ,ZLNoNetWorkViewDelegate>
 
-@property (nonatomic ,strong) UITableView    *mainTableView;
-@property (nonatomic ,assign) NSInteger      page;
-@property (nonatomic ,assign) HPGetInfoType  type;
-@property (nonatomic ,strong) NSMutableArray *dataArray;
-@property (nonatomic ,strong) NSMutableSet   *dataSet;
-@property (nonatomic ,strong) UIButton       *reloadBtn;
-@property (nonatomic ,strong) ZLNoNetWorkView * noNetWorkView;
+@property (nonatomic ,strong) UITableView     *mainTableView;
+@property (nonatomic ,assign) NSInteger       page;
+@property (nonatomic ,assign) HPGetInfoType   type;
+@property (nonatomic ,strong) NSMutableArray  *dataArray;
+@property (nonatomic ,strong) NSMutableSet    *dataSet;
+@property (nonatomic ,strong) UIButton        *reloadBtn;
+@property (nonatomic ,strong) ZLNoNetWorkView *noNetWorkView;
 
 @property (nonatomic ,assign) BOOL isLocked;
 
@@ -58,20 +58,20 @@
 #pragma mark - **************** UI
 - (void)creatConstomUI{
     self.view.backgroundColor         = [UIColor whiteColor];
-    
-    self.noNetWorkView = [[ZLNoNetWorkView alloc]initWithFrame:ScreenBonds];
-    self.noNetWorkView.delegate = self;
-    
-    
+
+    self.noNetWorkView                = [[ZLNoNetWorkView alloc]initWithFrame:ScreenBonds];
+    self.noNetWorkView.delegate       = self;
+
+
     self.mainTableView                = [[UITableView alloc]init];
     if (!self.plateFid){
         //正常
-        self.mainTableView.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight - 64 - 49);
+    self.mainTableView.frame          = CGRectMake(0, 0, ScreenWidth, ScreenHeight - 64 - 49);
     }else{
         //跳转
-        self.mainTableView.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight - 64);
+    self.mainTableView.frame          = CGRectMake(0, 0, ScreenWidth, ScreenHeight - 64);
     }
-    
+
     self.mainTableView.delegate       = self;
     self.mainTableView.dataSource     = self;
     self.mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -213,7 +213,7 @@
     [cell updateInformationWithModel:model];
     
     //加入侧滑收藏按钮 (3D)
-    MGSwipeButton *button = [MGSwipeButton buttonWithTitle:@"收藏" backgroundColor:[UIColor colorWithRed:0.941 green:0.133 blue:0.153 alpha:1.000]];
+    MGSwipeButton *button = [MGSwipeButton buttonWithTitle:@"收藏" backgroundColor:[UIColor colorWithRed:0.941 green:0.133 blue:0.153 alpha:0.900]];
     button.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:17];
     
     cell.leftButtons = @[button];
@@ -278,7 +278,7 @@
 
 - (void)startPost{
     ZLPostingViewController *vc = [[ZLPostingViewController alloc]init];
-    vc.title = @"发帖";
+    vc.title                    = @"发帖";
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }

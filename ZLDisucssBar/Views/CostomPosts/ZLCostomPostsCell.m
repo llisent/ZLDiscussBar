@@ -22,7 +22,7 @@
         if ([mass isEqualToString:@"no"]) {
             self.avatarImageView.image = [UIImage imageNamed:@"noavatar_big.gif"];
         }else{
-            NSString *iconUrl      = [NSString stringWithFormat:@"http://uc.zuanke8.com/avatar.php?uid=%@&size=%@",model.authorid,mass];
+            NSString *iconUrl          = [NSString stringWithFormat:@"http://uc.zuanke8.com/avatar.php?uid=%@&size=%@",model.authorid,mass];
             [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:iconUrl]];
         }
     }else{

@@ -93,13 +93,14 @@
                   failure:(void (^)(NSError *error))failure;
 
 
+#pragma mark - **************** 自动登陆检测
+- (void)autoLoginWithBlock:(void (^)(NSDictionary *dict))success
+                   failure:(void (^)(NSError *error))failure;
 
 
-
-
-
-
-
+#pragma mark - **************** 获取个人信息(Cookie)
+- (void)getUserInfoWithBlock:(void (^)(NSDictionary *dict))success
+                     failure:(void (^)(NSError *error))failure;
 
 
 

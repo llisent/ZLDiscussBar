@@ -18,5 +18,7 @@
 
 - (void)showJGErrorWithStatus:(NSString *)status;
 
+- (void)dismissLoading;
+
 
 @end

@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "ZLPostDetailModel.h"
 
+@protocol ZLPostDetailCellViewDelegate <NSObject>
+
+- (void)showUserDetailWith:(NSString *)authorid;
+
+@end
+
 
 @interface ZLPostDetailCellView : UITableViewCell
 
@@ -34,9 +40,14 @@
 @property (weak, nonatomic  ) IBOutlet UIView            *floorView;
 
 
-@property (nonatomic ,strong) NSArray                    *imgArr;
+@property (weak, nonatomic  ) IBOutlet UIButton          *replyBtn;
 
-@property (weak, nonatomic) IBOutlet UIButton *replyBtn;
+
+
+
+@property (nonatomic ,strong) NSArray  *imgArr;
+
+@property (nonatomic ,weak) id<ZLPostDetailCellViewDelegate> delegate;
 
 //依照数据更新布局
 - (void)updateInfomationWith:(ZLPostDetailModel *)model;

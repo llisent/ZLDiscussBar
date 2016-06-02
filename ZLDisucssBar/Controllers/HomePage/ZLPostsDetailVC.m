@@ -11,8 +11,9 @@
 #import "ZLScrollImageVC.h"
 #import "ZLPostDetailCellView.h"
 #import "ZLPurchaseModel.h"
+#import "ZLPersonalInfoViewController.h"
 
-@interface ZLPostsDetailVC ()<UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, TYAttributedLabelDelegate, UIAlertViewDelegate>
+@interface ZLPostsDetailVC ()<UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, TYAttributedLabelDelegate, UIAlertViewDelegate,ZLPostDetailCellViewDelegate>
 
 /** TableView*/
 @property (nonatomic ,strong) UITableView     *mainTableView;
@@ -196,7 +197,11 @@
 
 #pragma mark - **************** 初始化数据
 - (void)initData{
+    [self.view showLoadingWithStatus:@"加载中"];
+    
     [[ZLNetworkManager sharedInstence]getDetailInfoWithPage:self.page tid:self.tid block:^(NSDictionary *dict) {
+        
+        [self.view dismissLoading];
         
         [ZLGlobal sharedInstence].gachincoFormHash = dict[@"formhash"];
         
@@ -254,6 +259,8 @@
         
     } failure:^(NSError *error) {
         [self endingRefreshing];
+        [self.view dismissLoading];
+
     }];
 }
 
@@ -343,6 +350,7 @@
     ZLPostDetailModel *model   = self.dataArray[indexPath.row];
     ZLPostDetailCellView *cell = [tableView dequeueReusableCellWithIdentifier:@"detailCell" forIndexPath:indexPath];
     cell.selectionStyle        = UITableViewCellSelectionStyleNone;
+    cell.delegate = self;
     
     [cell updateInfomationWith:model];
     [self deepAssignmentWithCell:cell Model:model rowNum:indexPath.row];
@@ -577,6 +585,23 @@
         }
     } failure:^(NSError *error) {
         
+    }];
+}
+
+#pragma mark - **************** 显示用户信息
+- (void)showUserDetailWith:(NSString *)authorid{
+    [self.view showLoadingWithStatus:@"读取中"];
+    __weak typeof(self)weakSelf = self;
+    [[ZLNetworkManager sharedInstence]getUserInfoWithUid:authorid block:^(NSDictionary *dict) {
+        [weakSelf.view dismissLoading];
+        ZLPersonalInfoViewController *person = [[ZLPersonalInfoViewController alloc]init];
+        person.VariablesDict = dict;
+        person.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        [weakSelf presentViewController:person animated:YES completion:^{
+            
+        }];
+    } failure:^(NSError *error) {
+         [self.view dismissLoading];
     }];
 }
 

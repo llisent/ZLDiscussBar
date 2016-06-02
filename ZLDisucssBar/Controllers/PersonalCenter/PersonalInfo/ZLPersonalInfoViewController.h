@@ -11,6 +11,17 @@
 @interface ZLPersonalInfoViewController : UIViewController
 
 /** 待查询用户的uid*/
-@property (nonatomic ,strong) NSString *uid;
+@property (nonatomic ,strong) NSString     *uid;
+
+@property (nonatomic ,strong) NSDictionary *VariablesDict;
+
+
+
+
+@property (weak, nonatomic  ) IBOutlet UIImageView *userIcon;
+@property (weak, nonatomic  ) IBOutlet UILabel     *userName;
+@property (weak, nonatomic  ) IBOutlet UILabel     *userIntegral;
+@property (weak, nonatomic  ) IBOutlet UILabel     *userLevel;
+@property (weak, nonatomic  ) IBOutlet UITableView *infoTableview;
 
 @end
