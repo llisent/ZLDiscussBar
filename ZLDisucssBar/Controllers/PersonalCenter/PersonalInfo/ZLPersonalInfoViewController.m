@@ -142,6 +142,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ZLPersonalInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"infoCell" forIndexPath:indexPath];
+    cell.selectionStyle      = UITableViewCellSelectionStyleNone;
     [cell updateInfomationWith:self.VariablesDict rowsNum:indexPath.row];
     return cell;
 }

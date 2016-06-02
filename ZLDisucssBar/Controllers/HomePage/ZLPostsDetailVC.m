@@ -437,7 +437,6 @@
     [cell.replyLabel sizeToFit];
     
     if (cell.imgArr.count != 0) {
-        // ------有图片需要显示 加载图片(待加载代理)
         for (int i = 0; i < [cell.imgArr count]; i++) {
             NSDictionary *dic      = cell.imgArr[i];
             NSString *url          = [NSString stringWithFormat:@"http://img.zuanke8.com/forum/%@",dic[@"attachment"]];
@@ -445,25 +444,30 @@
                                                                                   (i/3) * ((ScreenWidth - 60)/3 + 10),
                                                                                   (ScreenWidth-60)/3,
                                                                                   (ScreenWidth-60)/3)];
+            imageView.backgroundColor        = [UIColor lightGrayColor];
             imageView.userInteractionEnabled = YES;
             [imageView sd_setImageWithURL:[NSURL URLWithString:url]];
             [cell.imageBedView addSubview:imageView];
             
-#warning 待修改    Error Domain=NSURLErrorDomain Code=404 "(null)" 控制图片404时状态
-
             SDWebImageDownloader *dl = [SDWebImageDownloader sharedDownloader];
-            [dl downloadImageWithURL:[NSURL URLWithString:url] options:SDWebImageDownloaderLowPriority progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
-                
-                imageView.image             = image;
-                UITapGestureRecognizer *ges = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
-                ZLScrollImageVC *vc         = [[ZLScrollImageVC alloc]init];
-                vc.constomImage             = image;
-                vc.modalTransitionStyle     = UIModalTransitionStyleCrossDissolve;
-                    [self.navigationController presentViewController:vc animated:YES completion:^{
-
-                    }];
-                }];
-                [imageView addGestureRecognizer:ges];
+            [dl downloadImageWithURL:[NSURL URLWithString:url]
+                             options:SDWebImageDownloaderLowPriority
+                            progress:nil
+                           completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+                               if (error) {
+                                   //图片下载失败
+                               }else{
+                                   imageView.image = image;
+                                   UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+                                       ZLScrollImageVC *vc         = [[ZLScrollImageVC alloc]init];
+                                       vc.constomImage             = image;
+                                       vc.modalTransitionStyle     = UIModalTransitionStyleCrossDissolve;
+                                       [self.navigationController presentViewController:vc animated:YES completion:^{
+                                           
+                                       }];
+                                   }];
+                                   [imageView addGestureRecognizer:tap];
+                               }
             }];
         }
         //高度
@@ -590,7 +594,7 @@
 
 #pragma mark - **************** 显示用户信息
 - (void)showUserDetailWith:(NSString *)authorid{
-    [self.view showLoadingWithStatus:@"读取中"];
+    [self.view showLoadingWithStatus:@"读取用户信息中"];
     __weak typeof(self)weakSelf = self;
     [[ZLNetworkManager sharedInstence]getUserInfoWithUid:authorid block:^(NSDictionary *dict) {
         [weakSelf.view dismissLoading];

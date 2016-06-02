@@ -43,8 +43,11 @@
 
 #pragma mark - **************** 初始化数据
 - (void)initData{
+    
+    [self.view showLoadingWithStatus:@"加载中"];
     NSString *dataPage = [NSString stringWithFormat:@"%ld",self.page];
     [[ZLNetworkManager sharedInstence]generalAccessWith:@"mythread" page:dataPage block:^(NSDictionary *dict) {
+        [self.view dismissLoading];
         NSArray *array = dict[@"data"];
         NSString *returnPage = dict[@"perpage"];
         if (array.count < [returnPage intValue]) {
@@ -61,6 +64,7 @@
     } failure:^(NSError *error) {
         //请求失败
          [self.myThreadTableView.mj_footer endRefreshing];
+        [self.view dismissLoading];
     }];
 }
 

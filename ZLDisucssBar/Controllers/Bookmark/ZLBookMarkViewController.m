@@ -53,7 +53,28 @@
         self.favoriteArray = [NSMutableArray array];
         self.recordArray   = [NSArray array];
         
-        self.plateDic = @{@"2":@"免费赠品",
+
+    }
+    [self creatNavigationBar];
+    [self creatConstomUI];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self initData];
+    });
+    
+    static int a = 0;
+    (a != 0) ? ([self initDataOnceMore]) : (a++);
+}
+
+#pragma mark - **************** lazy
+
+- (NSDictionary *)plateDic{
+    if (!_plateDic) {
+        _plateDic =      @{@"2":@"免费赠品",
                           @"15":@"赚客大家谈",
                           @"11":@"做任务赚果果",
                           @"13":@"有奖活动",
@@ -69,13 +90,7 @@
                           @"30":@"抢楼秒杀",
                           @"31":@"果果换物"};
     }
-    [self creatNavigationBar];
-    [self creatConstomUI];
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self initData];
+    return _plateDic;
 }
 
 #pragma mark - **************** 初始化UI
@@ -105,10 +120,6 @@
         [self initData];
     }];
     
-    
-    
-    
-    
     self.favoriteTableView.mj_footer.automaticallyHidden = YES;
 
     
@@ -125,7 +136,16 @@
 
 #pragma mark - **************** 加载数据
 - (void)initData{
+    
     [self initFavoriteData];
+    [self initRecordData];
+}
+
+#pragma mark - **************** 第二次刷新数据
+- (void)initDataOnceMore{
+    self.page = 1;
+    [self initFavoriteData];
+    [self.favoriteTableView.mj_header beginRefreshing];
     [self initRecordData];
 }
 
@@ -136,11 +156,12 @@
         return;
     }
     [[ZLNetworkManager sharedInstence]getFavoriteThreadWithPage:[NSString stringWithFormat:@"%ld",self.page] block:^(NSDictionary *dict) {
+        
         NSArray *array = dict[@"list"];
-        if (array.count != 20) {
-            [self.favoriteTableView.mj_footer endRefreshingWithNoMoreData];
-        }else{
-            [self.favoriteTableView.mj_footer endRefreshing];
+        [self endRefreshWithTableView:self.favoriteTableView nomoreDataFlag:(array.count != 20)];
+        
+        if (self.page == 1) {
+            [self.favoriteArray removeAllObjects];
         }
         
         for (NSDictionary *modelDic in array) {
@@ -149,8 +170,12 @@
         }
         [self.favoriteTableView reloadData];
     } failure:^(NSError *error) {
-        [self.favoriteTableView.mj_footer endRefreshing];
+        [self endRefreshWithTableView:self.favoriteTableView nomoreDataFlag:NO];
         self.page --;
+        //容错
+        if (self.page <= 0) {
+            self.page = 1;
+        }
     }];
 }
 
@@ -159,6 +184,20 @@
     //加载历史记录 (解归档 -- 收藏记录只保存最近30条 多余记录自动删除)
     self.recordArray = [[ZLGlobal sharedInstence]readArchive];
     [self.recordTableView reloadData];
+}
+
+#pragma mark - **************** 停止MJ刷新
+- (void)endRefreshWithTableView:(UITableView *)tableView nomoreDataFlag:(BOOL)flag{
+    if (flag) {
+        [tableView.mj_footer endRefreshingWithNoMoreData];
+    }else{
+        if ([tableView.mj_header isRefreshing]) {
+            [tableView.mj_header endRefreshing];
+        }
+        if ([tableView.mj_footer isRefreshing]) {
+            [tableView.mj_footer endRefreshing];
+        }
+    }
 }
 
 #pragma mark - **************** 创建segment
@@ -197,9 +236,9 @@
         [cell updateFavoriteWith:model];
         return cell;
     }else{
-        ZLPostsModel *model = self.recordArray[indexPath.row];
-        ZLBookMarkCell *cell  = [tableView dequeueReusableCellWithIdentifier:@"record" forIndexPath:indexPath];
-        cell.replies.text = [self.plateDic objectForKey:model.currentType];
+        ZLPostsModel *model  = self.recordArray[indexPath.row];
+        ZLBookMarkCell *cell = [tableView dequeueReusableCellWithIdentifier:@"record" forIndexPath:indexPath];
+        cell.replies.text    = [self.plateDic objectForKey:model.currentType];
         [cell updateRecordWith:model];
         return cell;
     }
@@ -209,11 +248,11 @@
     
     NSString *heightStr;
     if (tableView == self.recordTableView) {
-        ZLPostsModel *model = self.recordArray[indexPath.row];
-        heightStr = model.subject;
+        ZLPostsModel *model    = self.recordArray[indexPath.row];
+        heightStr              = model.subject;
     }else{
         ZLFavuriteModel *model = self.favoriteArray[indexPath.row];
-        heightStr = model.title;
+        heightStr              = model.title;
     }
     NSDictionary *attribute = @{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:15]};
     CGSize size             = [heightStr boundingRectWithSize:CGSizeMake(ScreenWidth-20, CGFLOAT_MAX) options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attribute context:nil].size;
@@ -248,7 +287,6 @@
     CGPoint offset = scrollView.contentOffset;
     self.segmentControl.selectedSegmentIndex = offset.x / self.view.frame.size.width;
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
