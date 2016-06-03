@@ -233,7 +233,7 @@
     ZLUserInfo *user        = [ZLUserInfo sharedInstence];
     
     // ------将编码转换
-    NSString *codStr = [self.answer.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *codStr = [self.authCodeTextField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     NSString *url = [NSString stringWithFormat:@"http://www.zuanke8.com/api/mobile/index.php?loginsubmit=yes&charset=utf-8&secqaahash=%@&loginfield=auto&seccodehash=%@&seccodeverify=%@&sechash=%@&module=login&mobile=no&version=3",self.sechash,self.sechash,codStr,self.sechash];
     

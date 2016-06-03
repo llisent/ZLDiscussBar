@@ -48,19 +48,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    {
-        self.page          = 1;
-        self.favoriteArray = [NSMutableArray array];
-        self.recordArray   = [NSArray array];
-        
 
-    }
+    [self initProperty];
     [self creatNavigationBar];
     [self creatConstomUI];
+    [self creatNotification];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [self initData];
@@ -93,6 +90,13 @@
     return _plateDic;
 }
 
+- (void)initProperty{
+    self.page          = 1;
+    self.type          = HPGetInfoTypeRefresh;
+    self.favoriteArray = [NSMutableArray array];
+    self.recordArray   = [NSArray array];
+}
+
 #pragma mark - **************** 初始化UI
 - (void)creatConstomUI{
     // ------创建Scroll
@@ -110,16 +114,22 @@
     self.favoriteTableView.dataSource     = self;
     self.favoriteTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.favoriteTableView registerNib:[UINib nibWithNibName:@"ZLBookMarkCell" bundle:nil] forCellReuseIdentifier:@"favorite"];
+    
+    // ------上拉记载
     self.favoriteTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         self.page++;
+        self.type = HPGetInfoTypeLoadMore;
         [self initFavoriteData];
     }];
+    
+    // ------下拉刷新
     self.favoriteTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self.page = 1;
         self.type = HPGetInfoTypeRefresh;
         [self initData];
     }];
     
+    // ------有数据在显示footer
     self.favoriteTableView.mj_footer.automaticallyHidden = YES;
 
     
@@ -136,16 +146,12 @@
 
 #pragma mark - **************** 加载数据
 - (void)initData{
-    
     [self initFavoriteData];
     [self initRecordData];
 }
 
 #pragma mark - **************** 第二次刷新数据
 - (void)initDataOnceMore{
-    self.page = 1;
-    [self.favoriteTableView.mj_header beginRefreshing];
-    [self initFavoriteData];
     [self initRecordData];
 }
 
@@ -156,11 +162,22 @@
         return;
     }
     [[ZLNetworkManager sharedInstence]getFavoriteThreadWithPage:[NSString stringWithFormat:@"%ld",self.page] block:^(NSDictionary *dict) {
-        
         NSArray *array = dict[@"list"];
-        [self endRefreshWithTableView:self.favoriteTableView nomoreDataFlag:(array.count != 20)];
         
-        if (self.page == 1) {
+        if (self.type == HPGetInfoTypeLoadMore) {
+            //加载更多
+            [self endRefreshWithTableView:self.favoriteTableView nomoreDataFlag:(array.count != 20)];
+        }else{
+            //刷新
+            if (array.count == 0) {
+                //完全没有数据 -- 显示无数据
+            }else if (array.count < 20){
+                self.page = 1;
+            }
+            [self endRefreshWithTableView:self.favoriteTableView nomoreDataFlag:NO];
+        }
+
+        if (self.type == HPGetInfoTypeRefresh) {
             [self.favoriteArray removeAllObjects];
         }
         
@@ -168,7 +185,9 @@
             ZLFavuriteModel *model = [ZLFavuriteModel mj_objectWithKeyValues:modelDic];
             [self.favoriteArray addObject:model];
         }
+        
         [self.favoriteTableView reloadData];
+        
     } failure:^(NSError *error) {
         [self endRefreshWithTableView:self.favoriteTableView nomoreDataFlag:NO];
         self.page --;
@@ -176,6 +195,13 @@
         if (self.page <= 0) {
             self.page = 1;
         }
+    }];
+}
+
+#pragma mark - **************** 注册通知
+- (void)creatNotification{
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UserLogin object:nil]subscribeNext:^(id x) {
+        [self initData];
     }];
 }
 
@@ -262,11 +288,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *tidStr;
-    NSString *type;
+//    NSString *type;
     if (tableView == self.recordTableView) {
         ZLPostsModel *model         = self.recordArray[indexPath.row];
         tidStr                      = model.tid;
-        type                        = model.currentType;
+//        type                        = model.currentType;
     }else{
         ZLFavuriteModel *model      = self.favoriteArray[indexPath.row];
         tidStr                      = model.id;
