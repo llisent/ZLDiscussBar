@@ -26,7 +26,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"全部板块";
-    self.pidArray = @[@"15",
+
+    
+    [self creatConstomUI];
+}
+
+#pragma mark - **************** Lazy
+- (NSArray *)pidArray{
+    if (!_pidArray) {
+        _pidArray = @[@"15",
                       @"11",
                       @"13",
                       @"14",
@@ -41,8 +49,13 @@
                       @"30",
                       @"31",
                       @"2"];
+    }
+    return _pidArray;
+}
 
-    self.nameArray = @[@"赚客大家谈",
+- (NSArray *)nameArray{
+    if (!_nameArray) {
+        _nameArray = @[@"赚客大家谈",
                        @"做任务赚果果",
                        @"有奖活动",
                        @"有奖调查",
@@ -51,32 +64,33 @@
                        @"获奖名单",
                        @"微博活动",
                        @"赚品交换",
-                       @"求助咨询"
-                       ,@"活动秘籍",
+                       @"求助咨询",
+                       @"活动秘籍",
                        @"区域活动",
                        @"抢楼秒杀",
                        @"果果换物",
                        @"免费赠品"];
-    
-    self.view.backgroundColor = [UIColor whiteColor];
-    [self creatConstomUI];
+    }
+    return _nameArray;
 }
 
 - (void)creatConstomUI{
+    self.view.backgroundColor              = [UIColor colorWithRed:0.914 green:0.918 blue:0.925 alpha:1.000];
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-//    flowLayout.itemSize                    = CGSizeMake((ScreenWidth- 2) / 3, (ScreenWidth - 2) / 3);
     flowLayout.itemSize                    = CGSizeMake((ScreenWidth - 15)/2, 45);
     flowLayout.minimumLineSpacing          = 5;
     flowLayout.minimumInteritemSpacing     = 5;
     flowLayout.sectionInset                = UIEdgeInsetsMake(5, 5, 0, 5);
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    
-    self.plateCollectionView            = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-64) collectionViewLayout:flowLayout];
-    self.plateCollectionView.dataSource = self;
-    self.plateCollectionView.delegate   = self;
+
+    self.plateCollectionView               = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-64)
+                                                             collectionViewLayout:flowLayout];
+    self.plateCollectionView.dataSource    = self;
+    self.plateCollectionView.delegate      = self;
     [self.plateCollectionView setBackgroundColor:[UIColor clearColor]];
-    
-    [self.plateCollectionView registerNib:[UINib nibWithNibName:@"ZLPlateCell" bundle:nil] forCellWithReuseIdentifier:@"collectionCell"];
+
+    [self.plateCollectionView registerNib:[UINib nibWithNibName:@"ZLPlateCell" bundle:nil]
+               forCellWithReuseIdentifier:@"collectionCell"];
     [self.view addSubview:self.plateCollectionView];
 }
 
@@ -91,7 +105,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     ZLPlateCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"collectionCell" forIndexPath:indexPath];
-    cell.title.text = self.nameArray[indexPath.row];
+    cell.title.text   = self.nameArray[indexPath.row];
     return cell;
 }
 

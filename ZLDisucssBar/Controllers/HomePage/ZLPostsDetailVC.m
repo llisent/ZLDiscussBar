@@ -334,10 +334,8 @@
         make.height.mas_equalTo(textView.mas_height).offset(20);
     }];
     
-    
     IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
     manager.placeholderFont = [UIFont fontWithName:@"placeholder" size:15];
-    
 }
 
 #pragma mark - **************** TableViewDelegate & DataSouce
@@ -394,14 +392,6 @@
         }
     }
     return height + 80;
-    
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ZLPostDetailModel *model = self.dataArray[indexPath.row];
-//    IQTextView *textView     = [self.view viewWithTag:1111];
-//    textView.placeholder     = [NSString stringWithFormat:@"回复%@",model.author];
-//    [textView becomeFirstResponder];
     
 }
 
@@ -599,8 +589,8 @@
     [[ZLNetworkManager sharedInstence]getUserInfoWithUid:authorid block:^(NSDictionary *dict) {
         [weakSelf.view dismissLoading];
         ZLPersonalInfoViewController *person = [[ZLPersonalInfoViewController alloc]init];
-        person.VariablesDict = dict;
-        person.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        person.VariablesDict                 = dict;
+        person.modalTransitionStyle          = UIModalTransitionStyleFlipHorizontal;
         [weakSelf presentViewController:person animated:YES completion:^{
             
         }];

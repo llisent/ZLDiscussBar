@@ -20,5 +20,8 @@
 
 - (void)dismissLoading;
 
+- (void)showJGSuccessWithStatus:(NSString *)status;
+
+
 
 @end

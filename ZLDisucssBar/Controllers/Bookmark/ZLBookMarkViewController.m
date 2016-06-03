@@ -34,13 +34,13 @@
 @property (nonatomic ,strong) NSArray            *recordArray;
 
 /** 收藏记录页码*/
-@property (nonatomic ,assign) NSInteger           page;
+@property (nonatomic ,assign) NSInteger          page;
 
 
 @property (nonatomic ,strong) NSDictionary       *plateDic;
 
 
-@property (nonatomic ,assign) HPGetInfoType type;
+@property (nonatomic ,assign) HPGetInfoType      type;
 
 @end
 
@@ -144,8 +144,8 @@
 #pragma mark - **************** 第二次刷新数据
 - (void)initDataOnceMore{
     self.page = 1;
-    [self initFavoriteData];
     [self.favoriteTableView.mj_header beginRefreshing];
+    [self initFavoriteData];
     [self initRecordData];
 }
 
@@ -264,14 +264,13 @@
     NSString *tidStr;
     NSString *type;
     if (tableView == self.recordTableView) {
-        ZLPostsModel *model = self.recordArray[indexPath.row];
-        tidStr              = model.tid;
-        type                = model.currentType;
+        ZLPostsModel *model         = self.recordArray[indexPath.row];
+        tidStr                      = model.tid;
+        type                        = model.currentType;
     }else{
-        ZLFavuriteModel *model = self.favoriteArray[indexPath.row];
-        tidStr                 = model.id;
+        ZLFavuriteModel *model      = self.favoriteArray[indexPath.row];
+        tidStr                      = model.id;
     }
-
     ZLPostsDetailVC *vc         = [[ZLPostsDetailVC alloc]init];
     vc.tid                      = tidStr;
     vc.hidesBottomBarWhenPushed = YES;

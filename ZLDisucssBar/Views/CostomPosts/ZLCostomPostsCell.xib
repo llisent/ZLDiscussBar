@@ -27,7 +27,7 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yec-Ye-XVA">
                                 <rect key="frame" x="10" y="62" width="473" height="94"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -96,7 +96,7 @@
                 <outlet property="reportNum" destination="zhX-Ue-6hc" id="h1g-jQ-q2m"/>
                 <outlet property="title" destination="Yec-Ye-XVA" id="alM-sE-C7Q"/>
             </connections>
-            <point key="canvasLocation" x="376.5" y="248"/>
+            <point key="canvasLocation" x="258.5" y="251"/>
         </tableViewCell>
     </objects>
     <resources>

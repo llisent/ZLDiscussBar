@@ -14,7 +14,7 @@
     [super awakeFromNib];
     
     // ------加边框
-    self.layer.borderColor  = [UIColor lightGrayColor].CGColor;
+    self.layer.borderColor  = [UIColor colorWithRed:0.901 green:0.507 blue:0.208 alpha:1.000].CGColor;
     self.layer.borderWidth  = 1;
     self.layer.cornerRadius = 6;
     self.clipsToBounds      = YES;

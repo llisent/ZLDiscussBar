@@ -88,7 +88,7 @@
         success(responseObject[@"Variables"]);
         
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-        
+        failure(error);
     }];
 }
 
@@ -248,9 +248,9 @@
 - (void)autoLoginWithBlock:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure{
     
     [netManager GET:@"http://www.zuanke8.com/api/mobile/index.php?loginsubmit=yes&charset=utf-8&loginfield=auto&module=login&mobile=no&version=3" parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-        
+        success(responseObject);
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-        
+        failure(error);
     }];
 }
 

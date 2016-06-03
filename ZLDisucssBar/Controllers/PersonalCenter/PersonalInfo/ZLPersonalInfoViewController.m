@@ -41,29 +41,29 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated{
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateWithDuration:0.4 animations:^{
         self.userIcon.alpha = 1;
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.4 animations:^{
+        [UIView animateWithDuration:0.35 animations:^{
             self.nametop.constant = 52;
             [self.view layoutIfNeeded];
         } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.4 animations:^{
+            [UIView animateWithDuration:0.35 animations:^{
                 self.jifentop.constant = 79;
                 [self.view layoutIfNeeded];
             } completion:^(BOOL finished) {
-                [UIView animateWithDuration:0.4 animations:^{
+                [UIView animateWithDuration:0.35 animations:^{
                     self.leveltop.constant = 106;
                     [self.view layoutIfNeeded];
                 } completion:^(BOOL finished) {
-                    [UIView animateWithDuration:0.4 animations:^{
-                        self.nameLeftCons.constant = 118;
+                    [UIView animateWithDuration:0.35 animations:^{
+                        self.nameLeftCons.constant = 100;
                         self.placeLabel1.alpha     = 1;
                         self.placeLabel2.alpha     = 1;
                         self.placeLabel3.alpha     = 1;
                         [self.view layoutIfNeeded];
                     } completion:^(BOOL finished) {
-                        [UIView animateWithDuration:0.4 animations:^{
+                        [UIView animateWithDuration:0.35 animations:^{
                             self.infoTableview.alpha = 1;
                         }];
                     }];

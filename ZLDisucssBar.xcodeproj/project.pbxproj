@@ -27,6 +27,8 @@
 		6A6213C11CE5CA3000628D3D /* ZLPersonalCenterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A6213BF1CE5CA3000628D3D /* ZLPersonalCenterCell.xib */; };
 		6A65F15C1CD9C8D300B69DF4 /* Tips in Resources */ = {isa = PBXBuildFile; fileRef = 6A65F15B1CD9C8D300B69DF4 /* Tips */; };
 		6A6851D91CE1815400087257 /* ZLPostDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A6851D81CE1815400087257 /* ZLPostDetailCell.m */; };
+		6A695A771D015F6D000B4128 /* ZLLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A695A761D015F6D000B4128 /* ZLLoginViewController.m */; };
+		6A695A7F1D018439000B4128 /* ZLQQLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A695A7E1D018439000B4128 /* ZLQQLoginViewController.m */; };
 		6A69EA0B1CE9778800A6BA95 /* ZLSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A69EA091CE9778800A6BA95 /* ZLSettingViewController.m */; };
 		6A69EA0C1CE9778800A6BA95 /* ZLSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A69EA0A1CE9778800A6BA95 /* ZLSettingViewController.xib */; };
 		6A69EA151CE9AD6400A6BA95 /* ZLPictureMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A69EA131CE9AD6400A6BA95 /* ZLPictureMode.m */; };
@@ -172,6 +174,10 @@
 		6A65F15B1CD9C8D300B69DF4 /* Tips */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Tips; sourceTree = "<group>"; };
 		6A6851D71CE1815400087257 /* ZLPostDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPostDetailCell.h; sourceTree = "<group>"; };
 		6A6851D81CE1815400087257 /* ZLPostDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPostDetailCell.m; sourceTree = "<group>"; };
+		6A695A751D015F6D000B4128 /* ZLLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLLoginViewController.h; sourceTree = "<group>"; };
+		6A695A761D015F6D000B4128 /* ZLLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLLoginViewController.m; sourceTree = "<group>"; };
+		6A695A7D1D018439000B4128 /* ZLQQLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLQQLoginViewController.h; sourceTree = "<group>"; };
+		6A695A7E1D018439000B4128 /* ZLQQLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLQQLoginViewController.m; sourceTree = "<group>"; };
 		6A69EA081CE9778800A6BA95 /* ZLSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSettingViewController.h; sourceTree = "<group>"; };
 		6A69EA091CE9778800A6BA95 /* ZLSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSettingViewController.m; sourceTree = "<group>"; };
 		6A69EA0A1CE9778800A6BA95 /* ZLSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLSettingViewController.xib; sourceTree = "<group>"; };
@@ -675,6 +681,10 @@
 				6AD52D771CD0BFBE00207D23 /* ZLMainLoginViewController.m */,
 				6AD52D741CD0BFBE00207D23 /* ZLCheckSecurityCodeVc.h */,
 				6AD52D751CD0BFBE00207D23 /* ZLCheckSecurityCodeVc.m */,
+				6A695A751D015F6D000B4128 /* ZLLoginViewController.h */,
+				6A695A761D015F6D000B4128 /* ZLLoginViewController.m */,
+				6A695A7D1D018439000B4128 /* ZLQQLoginViewController.h */,
+				6A695A7E1D018439000B4128 /* ZLQQLoginViewController.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -996,6 +1006,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A6851D91CE1815400087257 /* ZLPostDetailCell.m in Sources */,
+				6A695A771D015F6D000B4128 /* ZLLoginViewController.m in Sources */,
 				6A0187561CE068F8003DA05B /* NSString+ZLPostsDetail.m in Sources */,
 				6A01875D1CE096B4003DA05B /* ZLShowImageView.m in Sources */,
 				DD0CFE3C1CD1B5C10002531F /* ZLBookMarkViewController.m in Sources */,
@@ -1014,6 +1025,7 @@
 				6A8F600A1CE2DBF0000C81D3 /* ZLPostDetailCellNew.m in Sources */,
 				6A5B3C8D1CEC140A00CD7359 /* UIView+ZLViewsExpand.m in Sources */,
 				6A5F81361CF44C08009E2393 /* ZLImageCollectionCell.m in Sources */,
+				6A695A7F1D018439000B4128 /* ZLQQLoginViewController.m in Sources */,
 				6AD52D6B1CD0BF9E00207D23 /* ZLNetworkManager.m in Sources */,
 				DD0CFE3F1CD1B5CC0002531F /* ZLPlateViewController.m in Sources */,
 				6A0187621CE0A938003DA05B /* ZLScrollImageVC.m in Sources */,
