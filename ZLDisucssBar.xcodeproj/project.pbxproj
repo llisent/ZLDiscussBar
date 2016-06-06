@@ -50,6 +50,8 @@
 		6A7098981D0549A300A97BEC /* ZLNodataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A7098971D0549A300A97BEC /* ZLNodataView.xib */; };
 		6A70989B1D0549B400A97BEC /* ZLNotLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A70989A1D0549B400A97BEC /* ZLNotLoginView.m */; };
 		6A70989D1D0549BF00A97BEC /* ZLNotLoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A70989C1D0549BF00A97BEC /* ZLNotLoginView.xib */; };
+		6A7098A51D057A9600A97BEC /* ZLMainPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A7098A31D057A9600A97BEC /* ZLMainPostViewController.m */; };
+		6A7098A61D057A9600A97BEC /* ZLMainPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A7098A41D057A9600A97BEC /* ZLMainPostViewController.xib */; };
 		6A8250C91CF2D54500F5DA23 /* ZLPurchaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8250C81CF2D54500F5DA23 /* ZLPurchaseModel.m */; };
 		6A881A201CE30843000B20DE /* smile155.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6A8819EF1CE30843000B20DE /* smile155.gif */; };
 		6A881A211CE30843000B20DE /* smile156.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6A8819F01CE30843000B20DE /* smile156.gif */; };
@@ -213,6 +215,9 @@
 		6A7098991D0549B400A97BEC /* ZLNotLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLNotLoginView.h; sourceTree = "<group>"; };
 		6A70989A1D0549B400A97BEC /* ZLNotLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLNotLoginView.m; sourceTree = "<group>"; };
 		6A70989C1D0549BF00A97BEC /* ZLNotLoginView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLNotLoginView.xib; sourceTree = "<group>"; };
+		6A7098A21D057A9600A97BEC /* ZLMainPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLMainPostViewController.h; sourceTree = "<group>"; };
+		6A7098A31D057A9600A97BEC /* ZLMainPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLMainPostViewController.m; sourceTree = "<group>"; };
+		6A7098A41D057A9600A97BEC /* ZLMainPostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZLMainPostViewController.xib; sourceTree = "<group>"; };
 		6A8250C71CF2D54500F5DA23 /* ZLPurchaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLPurchaseModel.h; sourceTree = "<group>"; };
 		6A8250C81CF2D54500F5DA23 /* ZLPurchaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLPurchaseModel.m; sourceTree = "<group>"; };
 		6A8819EF1CE30843000B20DE /* smile155.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = smile155.gif; sourceTree = "<group>"; };
@@ -790,6 +795,9 @@
 				6A5F812C1CF43C25009E2393 /* ZLPostingViewController.h */,
 				6A5F812D1CF43C25009E2393 /* ZLPostingViewController.m */,
 				6A5F812E1CF43C25009E2393 /* ZLPostingViewController.xib */,
+				6A7098A21D057A9600A97BEC /* ZLMainPostViewController.h */,
+				6A7098A31D057A9600A97BEC /* ZLMainPostViewController.m */,
+				6A7098A41D057A9600A97BEC /* ZLMainPostViewController.xib */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";
@@ -901,6 +909,7 @@
 				6A881A3B1CE30843000B20DE /* smile12.gif in Resources */,
 				6A8DBBAF1CEB0EF7008542BA /* ZLPersonalInfoViewController.xib in Resources */,
 				6A881A251CE30843000B20DE /* smile162.gif in Resources */,
+				6A7098A61D057A9600A97BEC /* ZLMainPostViewController.xib in Resources */,
 				DD0CFE251CD1B0750002531F /* LaunchScreen.storyboard in Resources */,
 				6A65F15C1CD9C8D300B69DF4 /* Tips in Resources */,
 				6A1A69011CFEDFF900CC7624 /* person_bg2.jpg in Resources */,
@@ -1058,6 +1067,7 @@
 				6A6A1A6F1CF5796B0062F578 /* ZLMyThreadVC.m in Sources */,
 				6A6C895C1CEEEE3B009DBA29 /* ZLRecordCell.m in Sources */,
 				6ABE1FA11CDB390600B9AD6E /* ZLPersonalCenterView.m in Sources */,
+				6A7098A51D057A9600A97BEC /* ZLMainPostViewController.m in Sources */,
 				6A0187591CE07148003DA05B /* ZLPostDetailModel.m in Sources */,
 				6A40B41E1CD1B3CD0096C14E /* HomeGuide.m in Sources */,
 				6A5F812F1CF43C25009E2393 /* ZLPostingViewController.m in Sources */,
