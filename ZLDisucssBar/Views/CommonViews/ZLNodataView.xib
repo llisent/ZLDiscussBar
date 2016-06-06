@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YxF-Ly-cPc">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_noorder" translatesAutoresizingMaskIntoConstraints="NO" id="YI4-Ng-HPB">
+                            <rect key="frame" x="140" y="219" width="40" height="50"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前列表还没有数据哦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUu-aE-sGZ">
+                            <rect key="frame" x="85" y="284" width="150" height="18"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                            <color key="textColor" red="0.59999999999999998" green="0.65490196078431373" blue="0.69803921568627447" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="YI4-Ng-HPB" firstAttribute="centerY" secondItem="YxF-Ly-cPc" secondAttribute="centerY" constant="-40" id="1Pl-xT-HmO"/>
+                        <constraint firstItem="zUu-aE-sGZ" firstAttribute="centerX" secondItem="YxF-Ly-cPc" secondAttribute="centerX" id="Qms-fJ-ew4"/>
+                        <constraint firstItem="zUu-aE-sGZ" firstAttribute="top" secondItem="YI4-Ng-HPB" secondAttribute="bottom" constant="15" id="afL-nx-uIi"/>
+                        <constraint firstItem="YI4-Ng-HPB" firstAttribute="centerX" secondItem="YxF-Ly-cPc" secondAttribute="centerX" id="miz-lv-acw"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="YxF-Ly-cPc" secondAttribute="trailing" id="3xC-Ch-GrP"/>
+                <constraint firstAttribute="bottom" secondItem="YxF-Ly-cPc" secondAttribute="bottom" id="K3C-VE-uP5"/>
+                <constraint firstItem="YxF-Ly-cPc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="sNI-Qx-hj8"/>
+                <constraint firstItem="YxF-Ly-cPc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="wt9-NL-wEy"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="588" y="269"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_noorder" width="40" height="50"/>
+    </resources>
+</document>

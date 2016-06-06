@@ -36,13 +36,17 @@
 /** 登陆按钮*/
 @property (weak, nonatomic  ) IBOutlet UIButton           *submitBtn;
 
-@property (weak, nonatomic) IBOutlet UIView *answerView;
+/** 答案输入区*/
+@property (weak, nonatomic  ) IBOutlet UIView             *answerView;
 
 /** 安全问题picker*/
 @property (nonatomic ,strong) CostomPickerView *pickerView;
-@property (nonatomic ,strong) NSDictionary     *safetyDict;
-@property (nonatomic ,strong) NSArray          *safeArr;
-@property (nonatomic ,strong) NSString         *sechash;
+
+
+/** 数据变量*/
+@property (nonatomic ,strong) NSDictionary *safetyDict;
+@property (nonatomic ,strong) NSArray      *safeArr;
+@property (nonatomic ,strong) NSString     *sechash;
 
 
 @end
@@ -51,14 +55,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self getAuthImg];
-    [self creatCostomView];
-    [self creatSignal];
+    [self getAuthImg];      // ------获取验证码
+    [self creatCostomView]; // ------创建UI
+    [self creatSignal];     // ------创建信号
     
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
@@ -91,9 +96,11 @@
     return _safeArr;
 }
 
+#pragma mark - **************** 创建UI
 - (void)creatCostomView{
     __weak typeof(self)weakSelf           = self;
     
+    // ------细节设置
     {
         self.submitBtn.layer.cornerRadius     = 5;
         self.submitBtn.clipsToBounds          = YES;
@@ -102,7 +109,7 @@
         self.answer.delegate                  = self;
     }
     
-    
+    // ------placeHolder字体设置
     {
         [self.userName setValue:[UIFont fontWithName:@"HelveticaNeue-Light" size:14]
                      forKeyPath:@"_placeholderLabel.font"];
@@ -117,6 +124,7 @@
                               forKeyPath:@"_placeholderLabel.font"];
     }
     
+    // ------pickerview相关
     {
         self.pickerView                       = [[CostomPickerView alloc]initWithFrame:CGRectMake(0, ScreenHeight, ScreenWidth, 235)];
         self.pickerView.pickerView.dataSource = self;
@@ -127,14 +135,14 @@
             if (row == 0) {
                 [UIView animateWithDuration:0.35 animations:^{
                     self.authCodeTop.constant = 8;
-                    self.answerView.hidden = YES;
+                    self.answerView.hidden    = YES;
                     [self.view layoutIfNeeded];
                 }];
                 self.problemLabel.text = @"安全提问(未设置请忽略)";
             }else{
                 [UIView animateWithDuration:0.35 animations:^{
                     self.authCodeTop.constant = 51;
-                    self.answerView.hidden = NO;
+                    self.answerView.hidden    = NO;
                     [self.view layoutIfNeeded];
                 }];
                 self.problemLabel.text = self.safeArr[row];
@@ -154,6 +162,7 @@
     }
 }
 
+#pragma mark - **************** 创建信号
 - (void)creatSignal{
     [self.userName.rac_textSignal subscribeNext:^(id x) {
         [self executeSignal];
@@ -168,6 +177,7 @@
     }];
 }
 
+#pragma mark - **************** 信号执行函数
 - (void)executeSignal{
     if ([self checkEmpty]) {
         self.submitBtn.backgroundColor = [UIColor whiteColor];
@@ -176,6 +186,7 @@
     }
 }
 
+#pragma mark - **************** 测空
 - (BOOL)checkEmpty{
     if (self.userName.text.length > 0 &&
         self.passWord.text.length > 0 &&
@@ -185,7 +196,9 @@
     return NO;
 }
 
+#pragma mark - **************** 获取验证码图片
 - (void)getAuthImg{
+    
     [[ZLNetworkManager sharedInstence]getSeccodeWithblock:^(NSDictionary *dict) {
         
         SDWebImageDownloader *dl = [SDWebImageDownloader sharedDownloader];
@@ -200,10 +213,11 @@
             });
         }];
     } failure:^(NSError *error) {
-        [self.view showErrorWithStatus:@"获取验证码失败"];
+        [self.view showJGErrorWithStatus:@"获取验证码失败,请点击重试"];
     }];
 }
 
+#pragma mark - **************** 显示答案选择view
 - (IBAction)showProblem:(id)sender {
     [self.view endEditing:YES];
     __weak typeof(self)weakSelf = self;
@@ -212,35 +226,61 @@
     }];
 }
 
+#pragma mark - **************** 返回
 - (IBAction)goBack:(id)sender {
     [self.navigationController dismissViewControllerAnimated:YES completion:^{
     }];
 }
 
+#pragma mark - **************** 更换验证码
 - (IBAction)changeAuthImage:(id)sender {
     [self getAuthImg];
 }
+
+#pragma mark - **************** 点击登陆
 - (IBAction)submitOnClick:(id)sender {
-    if (self.userName.text.length != 0 && self.passWord.text.length != 0 && self.authCodeTextField.text.length !=0) {
-        [self loginNow];
+    if (self.userName.text.length != 0 &&
+        self.passWord.text.length != 0 &&
+        self.authCodeTextField.text.length !=0) {
+        if (![self.problemLabel.text isEqualToString:@"安全提问(未设置请忽略)"]) {
+            if (self.answer.text.length == 0) {
+                [self.view showJGErrorWithStatus:@"还未填写安全问题答案哦"];
+            }else{
+                [self loginNow];
+            }
+        }else{
+            [self loginNow];
+        }
     }else{
         [self.view showJGErrorWithStatus:@"填写完整在登陆吧"];
     }
 }
 
+#pragma mark - **************** 登陆
 - (void)loginNow{
     // ------存储此次登陆信息
     ZLUserInfo *user        = [ZLUserInfo sharedInstence];
     
-    // ------将编码转换
+    // ------将编码转换(验证码转码)
     NSString *codStr = [self.authCodeTextField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSString *pro;
+    NSString *ans;
+    
+    if ([self.problemLabel.text isEqualToString:@"安全提问(未设置请忽略)"]) {
+        pro = @"0";
+        ans = @"";
+    }else{
+        pro = [self.safetyDict valueForKey:self.problemLabel.text];
+        ans = self.answer.text;
+    }
     
     NSString *url = [NSString stringWithFormat:@"http://www.zuanke8.com/api/mobile/index.php?loginsubmit=yes&charset=utf-8&secqaahash=%@&loginfield=auto&seccodehash=%@&seccodeverify=%@&sechash=%@&module=login&mobile=no&version=3",self.sechash,self.sechash,codStr,self.sechash];
     
     [[ZLNetworkManager sharedInstence]userLoginSecondWithUserID:self.userName.text
                                                        password:self.passWord.text
-                                                           type:[self.safetyDict valueForKey:self.problemLabel.text]
-                                                            asw:self.answer.text
+                                                           type:pro
+                                                            asw:ans
                                                             url:url
                                                        formhash:[ZLGlobal sharedInstence].gachincoFormHash block:^(NSDictionary *dic) {
                                                            //登陆信息
@@ -249,6 +289,8 @@
                                                            NSLog(@"登陆信息---%@ ---%@",messageval,messDic[@"messagestr"]);
                                                            
                                                            NSRange succRange = [messageval rangeOfString:@"succeed"];
+                                                           
+                                                           // ------登陆成功
                                                            if (succRange.length != 0) {
                                                                user.userUID    = dic[@"Variables"][@"member_uid"];
                                                                user.username   = dic[@"Variables"][@"member_username"];
@@ -263,7 +305,6 @@
                                                                //发送通知
                                                                [[NSNotificationCenter defaultCenter]postNotificationName:UserLogin object:nil];
                                                                
-                                                               
                                                                [self.navigationController dismissViewControllerAnimated:YES completion:^{
                                                                    
                                                                    [self.view showSuccessWithStatus:@"登陆成功"];
@@ -271,17 +312,17 @@
                                                                    SaveCookies
                                                                }];
                                                            }else{
-                                                               [self.view showErrorWithStatus:messDic[@"messagestr"]];
+                                                               [self.view showJGErrorWithStatus:messDic[@"messagestr"]];
                                                                return ;
                                                            }
                                                            
                                                        } failure:^(NSError *error) {
-                                                           
+                                                           [self.view showJGErrorWithStatus:@"网络错误,登陆失败"];
                                                        }];
 
 }
 
-#pragma mark - **************** PickerViewDataSource
+#pragma mark - **************** PicerViewDataSource
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     return 1;
 }

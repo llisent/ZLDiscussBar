@@ -13,15 +13,6 @@
 /** 用户名*/
 @property (nonatomic ,strong) NSString *userID;
 
-/** 密码*/
-@property (nonatomic ,strong) NSString *password;
-
-/** 安全问题*/
-@property (nonatomic ,strong) NSString *safetyQuestion;
-
-/** 密码*/
-@property (nonatomic ,strong) NSString *safetyAnswer;
-
 /** UID*/
 @property (nonatomic ,strong) NSString *userUID;
 
@@ -33,5 +24,8 @@
 
 
 + (instancetype)sharedInstence;
+
+#pragma mark - **************** 退出清除数据
+- (void)clearUserInfoWhenExit;
 
 @end

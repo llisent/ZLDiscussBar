@@ -120,22 +120,22 @@
 #pragma mark - **************** 登陆
 - (IBAction)loginNow:(id)sender {
     
-    UIStoryboard *sb                     = [UIStoryboard storyboardWithName:@"ZLLogin" bundle:[NSBundle mainBundle]];
-    ZLCheckSecurityCodeVc *vc            = [sb instantiateViewControllerWithIdentifier:@"CheckSecurity"];
-    [ZLUserInfo sharedInstence].userID   = self.userIDTextField.text;
-    [ZLUserInfo sharedInstence].password = self.passwordTextField.text;
-    
-    if (![self.safetyLabel.text isEqualToString:@"安全提问(未设置请忽略)"]) {
-        // ------有安全问题
-        [ZLUserInfo sharedInstence].safetyQuestion = [self.safetyDict valueForKey:self.safetyLabel.text];
-        [ZLUserInfo sharedInstence].safetyAnswer   = self.safetyAnswerTextField.text;
-    }else{
-        // ------无安全问题
-        [ZLUserInfo sharedInstence].safetyQuestion = @"";
-        [ZLUserInfo sharedInstence].safetyAnswer   = @"";
+//    UIStoryboard *sb                     = [UIStoryboard storyboardWithName:@"ZLLogin" bundle:[NSBundle mainBundle]];
+//    ZLCheckSecurityCodeVc *vc            = [sb instantiateViewControllerWithIdentifier:@"CheckSecurity"];
+//    [ZLUserInfo sharedInstence].userID   = self.userIDTextField.text;
+//    [ZLUserInfo sharedInstence].password = self.passwordTextField.text;
+//    
+//    if (![self.safetyLabel.text isEqualToString:@"安全提问(未设置请忽略)"]) {
+//        // ------有安全问题
+//        [ZLUserInfo sharedInstence].safetyQuestion = [self.safetyDict valueForKey:self.safetyLabel.text];
+//        [ZLUserInfo sharedInstence].safetyAnswer   = self.safetyAnswerTextField.text;
+//    }else{
+//        // ------无安全问题
+//        [ZLUserInfo sharedInstence].safetyQuestion = @"";
+//        [ZLUserInfo sharedInstence].safetyAnswer   = @"";
     }
     
-    [self.navigationController pushViewController:vc animated:YES];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - **************** 返回首页

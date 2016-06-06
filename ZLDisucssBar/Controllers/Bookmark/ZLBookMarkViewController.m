@@ -126,7 +126,7 @@
     self.favoriteTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self.page = 1;
         self.type = HPGetInfoTypeRefresh;
-        [self initData];
+        [self initFavoriteData];
     }];
     
     // ------有数据在显示footer
@@ -159,6 +159,12 @@
 - (void)initFavoriteData{
     //加载收藏记录 (NET)
     if (![[ZLGlobal sharedInstence]isLogin]) {
+        [self.favoriteTableView.mj_header endRefreshing];
+        [self.favoriteTableView.mj_footer endRefreshing];
+        
+        [self.favoriteArray removeAllObjects];
+        [self.favoriteTableView reloadData];
+        
         return;
     }
     [[ZLNetworkManager sharedInstence]getFavoriteThreadWithPage:[NSString stringWithFormat:@"%ld",self.page] block:^(NSDictionary *dict) {
@@ -171,6 +177,9 @@
             //刷新
             if (array.count == 0) {
                 //完全没有数据 -- 显示无数据
+                ZLNodataView * view = [[ZLNodataView alloc]initWithFrame:self.view.bounds];
+                [self.mainScroll addSubview:view];
+                
             }else if (array.count < 20){
                 self.page = 1;
             }
@@ -201,6 +210,9 @@
 #pragma mark - **************** 注册通知
 - (void)creatNotification{
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UserLogin object:nil]subscribeNext:^(id x) {
+        [self initData];
+    }];
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UserExit object:nil]subscribeNext:^(id x) {
         [self initData];
     }];
 }

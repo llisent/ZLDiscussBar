@@ -30,7 +30,7 @@
         NSDictionary *dic = responseObject[@"Variables"];
         success(dic);
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-        
+        failure(error);
     }];
 }
 
@@ -260,7 +260,7 @@
     [netManager GET:@"http://www.zuanke8.com/api/mobile/index.php?version=3&module=profile" parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         success(responseObject[@"Variables"]);
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-        
+        failure(error);
     }];
 }
 

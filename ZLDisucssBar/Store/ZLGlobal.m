@@ -76,6 +76,11 @@
     }
 }
 
+- (void)removeCookies{
+    NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    [cookieStorage removeCookiesSinceDate:[NSDate dateWithTimeIntervalSince1970:0]];
+}
+
 #pragma mark - **************** 归档解归档
 - (void)saveModelWith:(ZLPostsModel *)model{
     NSString *docPath     = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
@@ -106,6 +111,33 @@
         return [NSArray array];
     }
     return array;
+}
+
+
+#pragma mark - **************** 删除用户信息
+- (void)cleanUserInfo{
+    
+    [self removeCookies];
+    
+    {
+        NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+        NSString *path1   = [docPath stringByAppendingPathComponent:@"user.info"];
+        [[NSFileManager defaultManager]removeItemAtPath:path1 error:nil];
+    }
+    
+    {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSDictionary *dic            = [userDefaults dictionaryRepresentation];
+        for (id key in dic) {
+            [userDefaults removeObjectForKey:key];
+        }
+        [userDefaults synchronize];
+    }
+    
+    [[ZLUserInfo sharedInstence]clearUserInfoWhenExit];
+
+    [[NSNotificationCenter defaultCenter]postNotificationName:UserExit object:nil];
+    
 }
 
 

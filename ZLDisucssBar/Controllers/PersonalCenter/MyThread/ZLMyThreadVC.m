@@ -48,19 +48,24 @@
     NSString *dataPage = [NSString stringWithFormat:@"%ld",self.page];
     [[ZLNetworkManager sharedInstence]generalAccessWith:@"mythread" page:dataPage block:^(NSDictionary *dict) {
         [self.view dismissLoading];
-        NSArray *array = dict[@"data"];
+        NSArray *array       = dict[@"data"];
         NSString *returnPage = dict[@"perpage"];
-        if (array.count < [returnPage intValue]) {
-            self.page--;
-            [self.myThreadTableView.mj_footer endRefreshingWithNoMoreData];
+        
+        if ([array isKindOfClass:[NSNull class]] && self.page == 1) {
+            [self.view showJGErrorWithStatus:@"您还没有发过帖子呢"];
         }else{
-            [self.myThreadTableView.mj_footer endRefreshing];
+            if (array.count < [returnPage intValue]) {
+                self.page--;
+                [self.myThreadTableView.mj_footer endRefreshingWithNoMoreData];
+            }else{
+                [self.myThreadTableView.mj_footer endRefreshing];
+            }
+            for (NSDictionary *item in array) {
+                ZLMyThreadModel *model = [ZLMyThreadModel mj_objectWithKeyValues:item];
+                [self.dataArray addObject:model];
+            }
+            [self.myThreadTableView reloadData];
         }
-        for (NSDictionary *item in array) {
-            ZLMyThreadModel *model = [ZLMyThreadModel mj_objectWithKeyValues:item];
-            [self.dataArray addObject:model];
-        }
-        [self.myThreadTableView reloadData];
     } failure:^(NSError *error) {
         //请求失败
          [self.myThreadTableView.mj_footer endRefreshing];

@@ -21,6 +21,7 @@
     
 }
 
+#pragma mark - **************** 初始化WebView
 - (void)initWebView{
     self.webView.delegate = self;
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.zuanke8.com/connect.php?mod=login&op=init&referer=forum.php%3Fmobile%3Dyes&statfrom=login_simple"]];
@@ -32,10 +33,10 @@
     ZLUserInfo *user = [ZLUserInfo sharedInstence];
     
     [[ZLNetworkManager sharedInstence]autoLoginWithBlock:^(NSDictionary *dict) {
+        
         NSString *message = dict[@"Message"][@"messageval"];
+        
         if ([message rangeOfString:@"succeed"].length != 0) {
-            
-            
             user.userUID    = dict[@"Variables"][@"member_uid"];
             user.username   = dict[@"Variables"][@"member_username"];
             user.readaccess = dict[@"Variables"][@"readaccess"];
@@ -63,10 +64,13 @@
         [self.view showJGErrorWithStatus:@"网络错误,请重试"];
     }];
 }
+
+#pragma mark - **************** 返回登陆页面
 - (IBAction)goBack:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - **************** WebViewDelegate
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error{
     [self.view showJGErrorWithStatus:@"加载失败"];
 }

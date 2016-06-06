@@ -22,6 +22,7 @@
 #import "ZLUserInfo.h"
 #import "ZLPostsModel.h"
 #import "ZLNoNetWorkView.h"
+#import "ZLNodataView.h"
 
 //Library
 #import <Masonry.h>

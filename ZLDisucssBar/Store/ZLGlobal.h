@@ -53,4 +53,8 @@
 - (NSArray *)readArchive;
 
 
+#pragma mark - **************** 退出登陆
+- (void)cleanUserInfo;
+
+
 @end

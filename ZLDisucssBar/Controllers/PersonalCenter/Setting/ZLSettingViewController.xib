@@ -36,7 +36,7 @@
                                     <color key="textColor" red="0.22352941179999999" green="0.22352941179999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="nav_icon_back" translatesAutoresizingMaskIntoConstraints="NO" id="8GF-bQ-H9a">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav_icon_back" translatesAutoresizingMaskIntoConstraints="NO" id="8GF-bQ-H9a">
                                     <rect key="frame" x="353" y="14" width="12" height="18"/>
                                 </imageView>
                             </subviews>
@@ -69,7 +69,7 @@
                                     <color key="textColor" red="0.22352941179999999" green="0.22352941179999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="nav_icon_back" translatesAutoresizingMaskIntoConstraints="NO" id="tMi-aB-t8u">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav_icon_back" translatesAutoresizingMaskIntoConstraints="NO" id="tMi-aB-t8u">
                                     <rect key="frame" x="353" y="14" width="12" height="18"/>
                                 </imageView>
                             </subviews>
@@ -134,7 +134,7 @@
                                     <color key="textColor" red="0.22352941179999999" green="0.22352941179999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="nav_icon_back" translatesAutoresizingMaskIntoConstraints="NO" id="VMt-mj-UT0">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav_icon_back" translatesAutoresizingMaskIntoConstraints="NO" id="VMt-mj-UT0">
                                     <rect key="frame" x="353" y="14" width="12" height="18"/>
                                 </imageView>
                             </subviews>
@@ -163,13 +163,13 @@
                                     <color key="textColor" red="0.22352941179999999" green="0.22352941179999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFy-GB-c4Y">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFy-GB-c4Y">
                                     <rect key="frame" x="347" y="23" width="0.0" height="0.0"/>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                     <color key="textColor" red="0.22352941176470587" green="0.22352941176470587" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="nav_icon_back" translatesAutoresizingMaskIntoConstraints="NO" id="j2g-gN-3cZ">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav_icon_back" translatesAutoresizingMaskIntoConstraints="NO" id="j2g-gN-3cZ">
                                     <rect key="frame" x="351" y="13" width="12" height="18"/>
                                 </imageView>
                             </subviews>

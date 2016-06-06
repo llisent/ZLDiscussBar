@@ -137,18 +137,10 @@
      */
     //发送通知
     
-    http://www.zuanke8.com//connect.php?mod=login&op=init&mobile=no&oauth_style=mobile&referer=Mobile_Android
+    [[ZLGlobal sharedInstence]cleanUserInfo];
     
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"UserLoginNotification" object:nil];
-    
-    [self.navigationController dismissViewControllerAnimated:YES completion:^{
-        
-        [self.view showSuccessWithStatus:@"登陆成功"];
-        
-        SaveCookies
-    }];
+    [self.navigationController popViewControllerAnimated:YES];
 
-    
 }
 - (IBAction)clickNotice:(id)sender {
     if (!self.noticeSwitch.isOn) {

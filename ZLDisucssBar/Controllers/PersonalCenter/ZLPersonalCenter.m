@@ -76,10 +76,7 @@
 
 #pragma mark - **************** 更新数据
 - (void)initHeader{
-    // ------判断登录
-    NSString *userID = [[ZLUserInfo sharedInstence] userUID];
-    
-    if (userID.length > 0) {
+    if ([[ZLGlobal sharedInstence]isLogin]) {
         
         [[ZLNetworkManager sharedInstence]getUserInfoWithBlock:^(NSDictionary *dict) {
             // ------ 保存登录信息
@@ -127,6 +124,10 @@
 - (void)creatLoginNotfication{
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UserLogin object:nil]subscribeNext:^(id x) {
         [self initHeader];
+    }];
+    
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UserExit object:nil]subscribeNext:^(id x) {
+        [self.header updateInfoWithDict:nil];
     }];
 }
 
